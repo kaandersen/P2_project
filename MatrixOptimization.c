@@ -25,6 +25,7 @@ PROGRAM DESCRIPTION
 
 void getStudentAnswers(char* inputFile, int* amountOfStudents, /* Reads from the input file */ 
                     int* amountOfQuestions, int* listOfQuestionTypes, int* listOfOverrulingQuestions,  /* Question related*/
+                    int** roomtypes,    /* Get roomtypes in an array */
                     int** listOfStudents);
 
 
@@ -41,6 +42,7 @@ int main(){
     /* Declaring variables */
     int amountOfGroups, amountOfQuestions, amountOfStudents;
     int** listOfStudents;     /* 2 Dimensional array with all students-ID's followed by their answers */
+    int** roomtypes;          /* 2 Dimensional array with amount of rooms with different amount of people capacity */
     int* listOfQuestionTypes; /* List of question types */
     int* listOfOverrulingQuestions;  /* List of questions that are overruling */
 
@@ -48,6 +50,7 @@ int main(){
 
     getStudentAnswers("input.txt", &amountOfStudents, /* Reads from the input file */ 
                     &amountOfQuestions, listOfQuestionTypes, listOfOverrulingQuestions,  /* Question related*/
+                    roomtypes,  /* Get roomtypes in an array */
                     listOfStudents);
 
     int** listOfGroups = generateGroups(listOfStudents, listOfOverrulingQuestions);       /*Generates associative array to refer to which student-IDs are in groups */
@@ -60,7 +63,7 @@ int main(){
 }
 
 
-void getStudentAnswers(char* inputFile, int* amountOfStudents, int* amountOfQuestions, int* listOfQuestionTypes, int* listOfOverrulingQuestions, int** listOfStudents){
+void getStudentAnswers(char* inputFile, int* amountOfStudents, int* amountOfQuestions, int* listOfQuestionTypes, int* listOfOverrulingQuestions, int** roomtypes, int** listOfStudents){
     
     
 }
