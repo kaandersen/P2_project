@@ -12,8 +12,8 @@
 *   - Create the possibility of accessing the data that was filled out, so that the student can edit their answers
 */
 
-// the fs.readFile() method
-// Include fs module
+
+/* Test writing a text file */
 import { readFile, writeFile } from 'fs';
 
 /* Test Reading a text file */
@@ -22,9 +22,6 @@ readFile('DemoRead.txt', 'utf8', function(err, data){
     // Display the file content
     console.log(data);
 });
-
-console.log('readFile called'); //Affirmation
-
 
 /* Test writing a text file */
 const content = "ayaya";
