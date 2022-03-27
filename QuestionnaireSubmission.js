@@ -17,7 +17,7 @@
 import { readFile, writeFile } from 'fs';
 
 /* Test Reading a text file */
-readFile('DemoRead.txt', 'utf8', function(err, data){
+readFile('fs-demo\\DemoRead.txt', 'utf8', function(err, data){
       
     // Display the file content
     console.log(data);
@@ -26,7 +26,7 @@ readFile('DemoRead.txt', 'utf8', function(err, data){
 /* Test writing a text file */
 const content = "ayaya";
 
-writeFile('DemoWrite.txt', content, err => {
+writeFile('fs-demo\\DemoWrite.txt', content, err => {
     if(err){
         console.err;
         return;
