@@ -13,8 +13,28 @@
 */
 
 
+/** 
+ * lav object
+ * 
+ * se om jeg kan printe just to check
+ * 
+ * see if I can add elements to the object 
+ * 
+ * store the objects to textfiles 
+ * 
+ */
+
+
+
+
+
+
 /* Test writing a text file */
 import { readFile, writeFile } from 'fs';
+import {Submit} from 'SampleForm.html';
+
+document.getElementById("Submit").addEventListener("submit", submitCall);
+
 
 /* Test Reading a text file */
 readFile('DemoRead.txt', 'utf8', function(err, data){
@@ -24,7 +44,7 @@ readFile('DemoRead.txt', 'utf8', function(err, data){
 });
 
 /* Test writing a text file */
-const content = "ayaya";
+const content = "conecting";
 
 writeFile('DemoWrite.txt', content, err => {
     if(err){
@@ -32,4 +52,6 @@ writeFile('DemoWrite.txt', content, err => {
         return;
     }    
 });
+
+
 
