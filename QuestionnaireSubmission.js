@@ -20,7 +20,12 @@ function questionFormatter(/**WIP*/){
     let questionList = [];
     let answerList = [];
 
+
+
     //-----------WIP---------------
+
+
+
     
     questionAppend(questionList, answerList);
 }
@@ -46,7 +51,13 @@ console.log(questionObj);
  * answers: []
 */
 function studentResponse(/**WIP*/){
-    //WIP
+
+
+
+    //-----------WIP---------------
+
+
+
 }
 
 /**Student object constructor function */
@@ -54,7 +65,14 @@ function Student(studentID){
     this.id = studentID;
 
     this.answers = function(){
-        //this should be an array of the student's answers
+
+
+
+
+
+
+
+        //this should result in an array of the student's answers
     }
 }
 
@@ -62,6 +80,19 @@ let sampleStudent = new Student(12345);
 sampleStudent.answers();
 
 // data passed to Frederik = student id, answers in chronological order 
+
+
+/***************************** sample obj constructor ********************************/
+// function Circle(radius){
+//     this.radius = radius;
+//     this.draw = function(){
+//         console.log('draw');
+//     } 
+// }
+
+// const circle = new Circle(5);
+// circle.draw();
+
 
 /*******************************************************************************************************************************************************/
 
@@ -77,7 +108,6 @@ sampleStudent.answers();
 //     this.storeQuestion = function(QuestionID, numAnswers, answerOptions, studentAnswer){
 //         this.QuestionID = [numAnswers, answerOptions, studentAnswer]
 //     }
-
 // };
 
 // function Student(studentID){
@@ -92,17 +122,3 @@ sampleStudent.answers();
 // student1.storeQuestion("q1", 3, ["yes", "no", "maybe"], 2);
 
 // console.log(student1);
-
-
-//sample constructor
-// function Circle(radius){
-//     this.radius = radius;
-//     this.draw = function(){
-//         console.log('draw');
-//     } 
-// }
-
-// const circle = new Circle(5);
-// circle.draw();
-
-
