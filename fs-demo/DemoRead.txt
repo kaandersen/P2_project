@@ -1,7 +1,7 @@
-Line 1,
-Line 2,
-Line 3,
-Line 4,
-Line 5,
-Line 6,
-Linr 7
+3
+How old are you?
+Where are you from?
+What is your major?
+1
+2
+3

@@ -16,7 +16,10 @@
 import { readFile, writeFile } from 'fs';
 
 const Localpath = 'fs-demo\\DemoRead.txt'; /**temporary relative path, replace with student answers*/
+
 let questionObj = {};
+
+function Question(){};
 
 questionfileReader(Localpath);
 
@@ -24,50 +27,52 @@ questionfileReader(Localpath);
  * Takes a relative path to a textfile and reads the content
  * Calls the processFile function
  */
-function questionfileReader(path){
+ function questionfileReader(path){
     readFile(path, 'utf8', function read(err, data) {
         if (err) {
             throw err;
         }
-        const content = data;
 
         // Invoke the Process file function
-        processFile(content);   // Or put the next step in a function and invoke it
+        processFile(data);   // Or put the next step in a function and invoke it
     });
 }
 
 /**Processes the content from the .txt file into an array of questions, and an array of answer options */
 //https://www.w3schools.com/jsref/jsref_split.asp
 //https://www.w3schools.com/js/js_string_methods.asp
-function processFile(content) {
-    let questionList = [];
-    let answerList = [];
-    let wordArray = [];
+function processFile(data) {
+    let questionList = []; let answerList = [];
+    let numQuestions; let i; let answerIndex;
 
-    /*splts the string at every "," */
-    wordArray = content.split(","); 
-    console.log(wordArray[0]); //This prints the word "Line 1"
+    /**splits the incomming data into an array */
+    let dataArray = data.split(/\r\n/g);
+
+    numQuestions = parseInt(dataArray[0]);
+
+    /**loads all of the questions into an array, assuming that they're at the beginning of the txt file */
+    for(i = 1; i <= numQuestions; i++){
+        questionList[i] = dataArray[i];
+    }
 
 
+    answerIndex = numQuestions+1; //in order to skip the elements loaded into questionlist already
 
-    //questionAppend(questionList, answerList);
+    /**loads all of the answers into an array, assuming that they're at the end of the txt file */
+    for(i = 0; answerIndex+i < dataArray.length; i++){
+        answerList[i] = dataArray[answerIndex+i];
+    }
+    
+    questionAppend(questionList, answerList); //appends the question and answer arrays to the questionObj
 }
-
-
 
 /**adds an array of question promps and an array of answer possibilities into the questions Object as properties */
 function questionAppend(questionList, answerList){
     questionObj.promts = questionList;
     questionObj.answers = answerList;
-
-    /**adds the elements from a list as new properties individually to the questionObj */
-    // for(let i in questionList){
-    //     questions['question'+i] += questionList[i];
-    // }
 }
 
-//test run with sample arrays
-questionAppend(['How old are you?', 'Where are you from?', 'What is your major?'], [[20,21,21],['aalborg', 'kbh', 'aarhus'],['math', 'arts', 'phsyical']])
+
 console.log(questionObj);
 
 
@@ -101,11 +106,21 @@ function Student(studentID){
     }
 }
 
-let sampleStudent = new Student(12345);
-sampleStudent.answers();
+// let sampleStudent = new Student(12345);
+// sampleStudent.answers();
 
 // data passed to Frederik = student id, answers in chronological order 
 
+
+
+
+
+/***************************** practice ************************************************************************************************************/
+
+/**adds the elements from a list as new properties individually to the questionObj */
+    // for(let i in questionList){
+    //     questions['question'+i] += questionList[i];
+    // }
 
 /***************************** sample obj constructor ********************************/
 // function Circle(radius){
