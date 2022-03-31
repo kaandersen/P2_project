@@ -10,9 +10,3 @@ app.get("/*", (req, res) => {
 });
 
 app.listen(process.env.PORT || 5000, () => console.log("Server running at http://localhost:5000/"));
-
-/* Virker ikke
-app.get("/NicklasStuff/P2HTML_continue.html", (req, res) => {
-    console.log("This one ticks of");
-});
-*/
