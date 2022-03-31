@@ -10,13 +10,13 @@ function checkForQuestionnaire() {
         linkText = document.createTextNode("Continue working on questionnaire");
         a.appendChild(linkText);
         a.title = "Continue";
-        a.href = "file:///C:/Users/Nickl/Desktop/P2%20Projekt/P2HTML_continue.html";
+        a.href = "C:\Users\Nickl\Desktop\p2 Git\P2_project\Nicklas' Stuff\P2HTML_continue.html";
         document.body.appendChild(a);
     } else {
         linkText = document.createTextNode("Create new questionnaire");
         a.appendChild(linkText);
         a.title = "Create new";
-        a.href = "file:///C:/Users/Nickl/Desktop/P2%20Projekt/P2HTML_new.html";
+        a.href = "C:\Users\Nickl\Desktop\p2 Git\P2_project\Nicklas' Stuff\P2HTML_new.html";
         document.body.appendChild(a);
     }
 }

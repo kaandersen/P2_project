@@ -28,7 +28,7 @@ function collectData() {
     amountOf5Rooms = document.getElementById("#5rooms").value;
 
     saveData(students, amountOf1Rooms, amountOf2Rooms, amountOf3Rooms, amountOf4Rooms, amountOf5Rooms);
-    window.location.href="file:///C:/Users/Nickl/Desktop/P2%20Projekt/P2HTML_continue.html";
+    window.location.href="C:\Users\Nickl\Desktop\p2 Git\P2_project\Nicklas' Stuff\P2HTML_continue.html";
 }
 
 function saveData(students, amountOf1Rooms, amountOf2Rooms, amountOf3Rooms, amountOf4Rooms, amountOf5Rooms) {
