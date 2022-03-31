@@ -1,6 +1,7 @@
 import Dashboard from "./views/FrontPage.js";
 import Posts from "./views/StudentLogIn.js";
 import Settings from "./views/AdminLogIn.js";
+const fs = require("fs");
 
 window.addEventListener("mousemove", giveFunctionality);
 
@@ -79,6 +80,6 @@ function helloWorld(){
         console.log("This will now go to answer questionnaire");
     }
     if (location.pathname == "/admin"){
-        console.log("This will now go to create questionnaire");
+        window.location.href= "C:\Users\hugin\Desktop\P2\P2_project\NicklasStuff\P2HTML_from.html";
     }
 }
