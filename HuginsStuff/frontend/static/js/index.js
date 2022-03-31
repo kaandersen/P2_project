@@ -1,7 +1,6 @@
-import Dashboard from "./views/FrontPage.js";
-import Posts from "./views/StudentLogIn.js";
-import Settings from "./views/AdminLogIn.js";
-const fs = require("fs");
+import FrontPage from "./views/FrontPage.js";
+import Student from "./views/StudentLogIn.js";
+import Admin from "./views/AdminLogIn.js";
 
 window.addEventListener("mousemove", giveFunctionality);
 
@@ -24,9 +23,9 @@ const navigateTo = url => {
 
 const router = async () => {
     const routes = [
-        { path: "/", view: Dashboard },
-        { path: "/student", view: Posts },
-        { path: "/admin", view: Settings }
+        { path: "/", view: FrontPage },
+        { path: "/student", view: Student },
+        { path: "/admin", view: Admin }
     ];
 
     // Test each route for potential match
@@ -80,6 +79,6 @@ function helloWorld(){
         console.log("This will now go to answer questionnaire");
     }
     if (location.pathname == "/admin"){
-        window.location.href= "C:\Users\hugin\Desktop\P2\P2_project\NicklasStuff\P2HTML_from.html";
+        console.log("This will make a new questionnaire, or edit an existing");
     }
 }
