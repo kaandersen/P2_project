@@ -1,7 +1,7 @@
 //// Import this file in the header of the respective code file to access these finctions when dececting the "SUBMIT" button   ////
 
 /*
-*   This Code initializes when the students has filled out the questionnaire and presses the "SUBMIT" button
+*   This Code initializes when the students has filled out the questionnaire and pressed the "SUBMIT" button
 *   
 *   - Find / note down the student's ID and save it together with the student's answers and Questions
 *
@@ -13,22 +13,47 @@
 */
 
 /**Empty object that stores all the questions and their answers as an array each*/
+import { readFile, writeFile } from 'fs';
+
+const Localpath = 'fs-demo\\DemoRead.txt'; /**temporary relative path, replace with student answers*/
 let questionObj = {};
 
-/**Read input from txt file (or whatever), into an array of questions, and an array of answer options */
-function questionFormatter(/**WIP*/){
+questionfileReader(Localpath);
+
+/**
+ * Takes a relative path to a textfile and reads the content
+ * Calls the processFile function
+ */
+function questionfileReader(path){
+    readFile(path, 'utf8', function read(err, data) {
+        if (err) {
+            throw err;
+        }
+        const content = data;
+
+        // Invoke the Process file function
+        processFile(content);   // Or put the next step in a function and invoke it
+    });
+}
+
+/**Processes the content from the .txt file into an array of questions, and an array of answer options */
+//https://www.w3schools.com/jsref/jsref_split.asp
+//https://www.w3schools.com/js/js_string_methods.asp
+function processFile(content) {
     let questionList = [];
     let answerList = [];
+    let wordArray = [];
+
+    /*splts the string at every "," */
+    wordArray = content.split(","); 
+    console.log(wordArray[0]); //This prints the word "Line 1"
 
 
 
-    //-----------WIP---------------
-
-
-
-    
-    questionAppend(questionList, answerList);
+    //questionAppend(questionList, answerList);
 }
+
+
 
 /**adds an array of question promps and an array of answer possibilities into the questions Object as properties */
 function questionAppend(questionList, answerList){
