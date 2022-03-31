@@ -12,46 +12,98 @@
 *   - Create the possibility of accessing the data that was filled out, so that the student can edit their answers
 */
 
+/**Empty object that stores all the questions and their answers as an array each*/
+let questionObj = {};
 
-/** 
- * lav object
- * 
- * se om jeg kan printe just to check
- * 
- * see if I can add elements to the object 
- * 
- * store the objects to textfiles 
- * 
+/**Read input from txt file (or whatever), into an array of questions, and an array of answer options */
+function questionFormatter(/**WIP*/){
+    let questionList = [];
+    let answerList = [];
+
+    //-----------WIP---------------
+    
+    questionAppend(questionList, answerList);
+}
+
+/**adds an array of question promps and an array of answer possibilities into the questions Object as properties */
+function questionAppend(questionList, answerList){
+    questionObj.promts = questionList;
+    questionObj.answers = answerList;
+
+    /**adds the elements from a list as new properties individually to the questionObj */
+    // for(let i in questionList){
+    //     questions['question'+i] += questionList[i];
+    // }
+}
+
+//test run with sample arrays
+questionAppend(['How old are you?', 'Where are you from?', 'What is your major?'], [[20,21,21],['aalborg', 'kbh', 'aarhus'],['math', 'arts', 'phsyical']])
+console.log(questionObj);
+
+
+/**Reads the student ID, and the student answers for each question, load into a Student object containing properties
+ * studentID: xxx, 
+ * answers: []
+*/
+function studentResponse(/**WIP*/){
+    //WIP
+}
+
+/**Student object constructor function */
+function Student(studentID){
+    this.id = studentID;
+
+    this.answers = function(){
+        //this should be an array of the student's answers
+    }
+}
+
+let sampleStudent = new Student(12345);
+sampleStudent.answers();
+
+
+
+
+/*******************************************************************************************************************************************************/
+
+/**
+ * The Object constructor function can be used to create a student object
+ * that that stores the students id, and answers.
  */
+// function Student(studentID){
+//     /* stores the student id */ 
+//     this.id = studentID;
+
+//     /* question sorage by question num/id (i.e. string? example: "q1"), stores number of answers as int, stores answer options as an array, stores student answer*/
+//     this.storeQuestion = function(QuestionID, numAnswers, answerOptions, studentAnswer){
+//         this.QuestionID = [numAnswers, answerOptions, studentAnswer]
+//     }
+
+// };
+
+// function Student(studentID){
+//     this.id = studentID;
+//     this.storeQuestion = function(newValue){
+//         this.newValue = "grass";
+//     }
+    
+// }
+
+// let student1 = new Student(12345);
+// student1.storeQuestion("q1", 3, ["yes", "no", "maybe"], 2);
+
+// console.log(student1);
 
 
+//sample constructor
+// function Circle(radius){
+//     this.radius = radius;
+//     this.draw = function(){
+//         console.log('draw');
+//     } 
+// }
 
-
-
-
-/* Test writing a text file */
-import { readFile, writeFile } from 'fs';
-import {Submit} from 'SampleForm.html';
-
-document.getElementById("Submit").addEventListener("submit", submitCall);
-
-
-/* Test Reading a text file */
-readFile('fs-demo\\DemoRead.txt', 'utf8', function(err, data){
-      
-    // Display the file content
-    console.log(data);
-});
-
-/* Test writing a text file */
-const content = "conecting";
-
-writeFile('fs-demo\\DemoWrite.txt', content, err => {
-    if(err){
-        console.err;
-        return;
-    }    
-});
-
+// const circle = new Circle(5);
+// circle.draw();
 
 
