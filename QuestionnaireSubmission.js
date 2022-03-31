@@ -61,8 +61,7 @@ function Student(studentID){
 let sampleStudent = new Student(12345);
 sampleStudent.answers();
 
-
-
+// data passed to Frederik = student id, answers in chronological order 
 
 /*******************************************************************************************************************************************************/
 
