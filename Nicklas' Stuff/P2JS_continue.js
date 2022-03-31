@@ -9,7 +9,7 @@ function checkForQuestionnaire() {
     let linkText1 = document.createTextNode("Change done state");
     a1.appendChild(linkText1);
     a1.title = "Change state";
-    a1.href = ".\Nicklas' Stuff\P2HTML_finish.html";
+    a1.href = "./P2HTML_finish.html";
     document.body.appendChild(a1);
 
     document.body.appendChild(document.createElement("br"));
@@ -24,7 +24,7 @@ function checkForQuestionnaire() {
         let linkText2 = document.createTextNode("Edit current questionnaire");
         a2.appendChild(linkText2);
         a2.title = "Edit";
-        a2.href = ".\Nicklas' Stuff\P2HTML_edit.html";
+        a2.href = "./P2HTML_edit.html";
         document.body.appendChild(a2);
     }
 }
