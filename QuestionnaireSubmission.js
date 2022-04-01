@@ -53,6 +53,7 @@ function processFile(data) {
     /**loads all of the questions into an array, assuming that they're at the beginning of the txt file */
     for(i = 1; i <= numQuestions; i++){
         questionList[i] = dataArray[i];
+        console.log(questionList[i]); //test
     }
 
 
@@ -61,6 +62,7 @@ function processFile(data) {
     /**loads all of the answers into an array, assuming that they're at the end of the txt file */
     for(i = 0; answerIndex+i < dataArray.length; i++){
         answerList[i] = dataArray[answerIndex+i];
+        console.log(answerList[i]);// test 
     }
     
     questionAppend(questionList, answerList); //appends the question and answer arrays to the questionObj
