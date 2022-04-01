@@ -1,1 +1,7 @@
-I am being read
+3
+How old are you?
+Where are you from?
+What is your major?
+1
+2
+3
