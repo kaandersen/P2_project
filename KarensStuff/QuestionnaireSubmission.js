@@ -14,14 +14,15 @@
 
 /**Empty object that stores all the questions and their answers as an array each*/
 import { readFile, writeFile } from 'fs';
+export {questionfileReader, processFile, questionAppend};
 
-const Localpath = 'fs-demo\\DemoRead.txt'; /**temporary relative path, replace with student answers*/
+const localpath = 'fs-demo\\DemoRead.txt'; /**temporary relative path, replace with student answers*/
 
 let questionObj = {};
 
 function Question(){};
 
-questionfileReader(Localpath);
+questionfileReader(localpath);
 
 /**
  * Takes a relative path to a textfile and reads the content
@@ -35,6 +36,7 @@ questionfileReader(Localpath);
 
         // Invoke the Process file function
         processFile(data);   // Or put the next step in a function and invoke it
+        //return data;
     });
 }
 
@@ -47,13 +49,14 @@ function processFile(data) {
 
     /**splits the incomming data into an array */
     let dataArray = data.split(/\r\n/g);
+    //console.log(dataArray);
 
     numQuestions = parseInt(dataArray[0]);
 
     /**loads all of the questions into an array, assuming that they're at the beginning of the txt file */
     for(i = 1; i <= numQuestions; i++){
         questionList[i] = dataArray[i];
-        console.log(questionList[i]); //test
+        //console.log(questionList[i]); //test
     }
 
 
@@ -62,10 +65,11 @@ function processFile(data) {
     /**loads all of the answers into an array, assuming that they're at the end of the txt file */
     for(i = 0; answerIndex+i < dataArray.length; i++){
         answerList[i] = dataArray[answerIndex+i];
-        console.log(answerList[i]);// test 
+        //console.log(answerList[i]);// test 
     }
     
-    questionAppend(questionList, answerList); //appends the question and answer arrays to the questionObj
+    //questionAppend(questionList, answerList); //appends the question and answer arrays to the questionObj
+    return dataArray;
 }
 
 /**adds an array of question promps and an array of answer possibilities into the questions Object as properties */
