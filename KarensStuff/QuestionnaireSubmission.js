@@ -13,23 +13,23 @@
 */
 
 /**Empty object that stores all the questions and their answers as an array each*/
-import { readFile, writeFile } from 'fs';
+//import { readFile, writeFile } from 'fs';
 export {questionfileReader, processFile, questionAppend};
+const fs = require('fs');
+const path = require("path");
 
-const localpath = 'fs-demo\\DemoRead.txt'; /**temporary relative path, replace with student answers*/
-
-let questionObj = {};
-
-function Question(){};
-
+const localpath = 'KarensStuff\\fs-demo\\DemoRead.txt'; /**temporary relative path, replace with student answers*/
 questionfileReader(localpath);
+
+//function Question(){};
+let questionObj = {};
 
 /**
  * Takes a relative path to a textfile and reads the content
  * Calls the processFile function
  */
- function questionfileReader(path){
-    readFile(path, 'utf8', function read(err, data) {
+ function questionfileReader(filepath){
+    fs.readFileSync(path.join(__dirname, filepath), 'utf8', function read(err, data) {
         if (err) {
             throw err;
         }
