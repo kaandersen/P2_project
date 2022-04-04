@@ -18,7 +18,7 @@ export {questionfileReader, processFile, questionAppend};
 const fs = require('fs');
 const path = require("path");
 
-const localpath = 'KarensStuff\\fs-demo\\DemoRead.txt'; /**temporary relative path, replace with student answers*/
+//const localpath = 'KarensStuff\\fs-demo\\DemoRead.txt'; /**temporary relative path, replace with student answers*/
 questionfileReader(localpath);
 
 //function Question(){};
