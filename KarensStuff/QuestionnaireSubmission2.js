@@ -40,7 +40,7 @@ function processFile(data) {
     /**splits the incomming data into an array */
     let dataArray = data.split(/\r\n/g);
 
-    //numQuestions = parseInt(dataArray[0]); //test: if the first element indicates how many questions there are
+    numQuestions = parseInt(dataArray[0]); //test: if the first element indicates how many questions there are
     //console.log(dataArray);//test
 
     return dataArray;
