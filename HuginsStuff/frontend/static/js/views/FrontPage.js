@@ -10,7 +10,7 @@ export default class extends AbstractView {
         return `
             <h1>Questionnaire based Student allocation</h1>
             <p>
-                Welcome to out questionnaire based student allocation program, please proceed
+                Welcome to our questionnaire based student allocation program, please proceed
             </p>
         `;
     }
