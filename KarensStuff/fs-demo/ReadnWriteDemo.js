@@ -4,21 +4,18 @@
 **************************************************************************************************************** */
 
 /* Test writing a text file */
-import { readFile, writeFile } from 'fs';
+const path = require("path");
+const fs = require("fs");
 
 /* Test Reading a text file */
-readFile('fs-demo\\DemoRead.txt', 'utf8', function(err, data){
-      
-    // Display the file content
-    console.log(data);
-});
+data = fs.readFileSync(path.join(__dirname, 'DemoRead.txt'), 'utf-8');
+console.log(data);
 
-/* Test writing a text file */
 const content = "banan";
 
-writeFile('fs-demo\\DemoWrite.txt', content, err => {
-    if(err){
-        console.err;
-        return;
-    }    
-});
+// fs.writeFile('fs-demo\\DemoWrite.txt', content, err => {
+//     if(err){
+//         console.err;
+//         return;
+//     }    
+// });

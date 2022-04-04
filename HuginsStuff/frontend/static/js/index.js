@@ -1,6 +1,9 @@
-import Dashboard from "./views/FrontPage.js";
-import Posts from "./views/StudentLogIn.js";
-import Settings from "./views/AdminLogIn.js";
+import FrontPage from "./views/FrontPage.js";
+import Student from "./views/StudentLogIn.js";
+import Admin from "./views/AdminLogIn.js";
+
+window.addEventListener("mousemove", giveFunctionality);
+
 
 const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 
@@ -20,9 +23,9 @@ const navigateTo = url => {
 
 const router = async () => {
     const routes = [
-        { path: "/", view: Dashboard },
-        { path: "/student", view: Posts },
-        { path: "/admin", view: Settings }
+        { path: "/", view: FrontPage },
+        { path: "/student", view: Student },
+        { path: "/admin", view: Admin }
     ];
 
     // Test each route for potential match
@@ -47,8 +50,12 @@ const router = async () => {
     document.querySelector("#app").innerHTML = await view.getHtml();
 };
 
+
+/* Runs code, when going "back" */
 window.addEventListener("popstate", router);
 
+
+/* Adds a seamless transition between sites */
 document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("click", e => {
         if (e.target.matches("[data-link]")) {
@@ -59,3 +66,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     router();
 });
+
+function giveFunctionality() {
+    let buttonID = document.getElementById("logInButton");
+    if (buttonID) {
+        buttonID.addEventListener("click", helloWorld);
+    }
+}
+
+function helloWorld(){
+    if (location.pathname == "/student"){
+        console.log("This will now go to answer questionnaire");
+    }
+    if (location.pathname == "/admin"){
+        location.pathname = "/Nicklas";
+    }
+}
