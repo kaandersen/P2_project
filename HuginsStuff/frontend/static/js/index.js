@@ -79,6 +79,6 @@ function helloWorld(){
         console.log("This will now go to answer questionnaire");
     }
     if (location.pathname == "/admin"){
-        console.log("This will make a new questionnaire, or edit an existing");
+        location.pathname = "/Nicklas";
     }
 }
