@@ -11,52 +11,54 @@ function giveFunctionality() {
     let buttonID2 = document.getElementById("createNewSize");
     if (buttonID2) {
         buttonID2.addEventListener("click", () => {
+            counter++;
             createNewRoomSize();
         });
     }
     window.removeEventListener("mousemove", giveFunctionality);
 }
 
+//Creates the ability to add a room of a size larger than the previous, when clicking a button
 function createNewRoomSize() {
-    counter++;
+    counterString = counter.toString(10);
+
     let input = document.createElement("input");
     input.type = "text";
-    input.id = "#"${}"rooms"
+    input.id = "#"+counterString+"rooms";
+    input.value = "0";
+
+    let label = document.createElement("label");
+    label.setAttribute = ("for","lname");
+    label.id = "label#"+counterString+"rooms";
+    label.innerHTML = "Amount of "+ counterString  +" person rooms:";
+
+    let linebreak = document.createElement("br");
+    let form = document.getElementById("dataForm");
+    form.lastElementChild.parentNode.insertBefore(label, form.lastElementChild);
+    form.lastElementChild.parentNode.insertBefore(input, form.lastElementChild);
+    form.lastElementChild.parentNode.insertBefore(linebreak, form.lastElementChild);
 }
 
 //Load the previously saved data and logs it in the console, to check saving capability.
 function loadData() {
-    console.log(JSON.parse(localStorage.numberOfStudents));
-    console.log(JSON.parse(localStorage.numberOf1Rooms));
-    console.log(JSON.parse(localStorage.numberOf2Rooms));
-    console.log(JSON.parse(localStorage.numberOf3Rooms));
-    console.log(JSON.parse(localStorage.numberOf4Rooms));
-    console.log(JSON.parse(localStorage.numberOf5Rooms));
+    console.log(JSON.parse(localStorage.numberOfRooms));
+    let numberOfRooms = JSON.parse(localStorage.numberOfRooms).split(',').map(Number);
+    numberOfRooms.pop();
+    numberOfRooms.unshift(0);
+    console.log(numberOfRooms);
     window.removeEventListener("mousemove", loadData);
 }
 
-//collects data from input fields when button is pressed and finishes by calling the function for saving the gathered data.
+//collects data from input fields when button is pressed and saves it to the localStorage.
 function collectData() {
-    let students, amountOf1Rooms, amountOf2Rooms, amountOf3Rooms, amountOf4Rooms, amountOf5Rooms;
-    students = document.getElementById("#students").value;
-    amountOf1Rooms = document.getElementById("#1rooms").value;
-    amountOf2Rooms = document.getElementById("#2rooms").value;
-    amountOf3Rooms = document.getElementById("#3rooms").value;
-    amountOf4Rooms = document.getElementById("#4rooms").value;
-    amountOf5Rooms = document.getElementById("#5rooms").value;
+    let myString = "";
+    localStorage.numberOfStudents = JSON.stringify(document.getElementById("#students").value);
+    for (let index = 1; index <= counter; index++) {
+        indexString = index.toString(10);
+        myString += document.getElementById("#"+indexString+"rooms").value+",";
+    }
+    console.log(myString);
+    localStorage.numberOfRooms = JSON.stringify(myString);
 
-    saveData(students, amountOf1Rooms, amountOf2Rooms, amountOf3Rooms, amountOf4Rooms, amountOf5Rooms);
     window.location.href="./P2HTML_continue.html";
-}
-
-//saves the gathered data into localStorage
-function saveData(students, amountOf1Rooms, amountOf2Rooms, amountOf3Rooms, amountOf4Rooms, amountOf5Rooms) {
-    localStorage.numberOfStudents = JSON.stringify(students);
-    localStorage.numberOf1Rooms = JSON.stringify(amountOf1Rooms);
-    localStorage.numberOf2Rooms = JSON.stringify(amountOf2Rooms);
-    localStorage.numberOf3Rooms = JSON.stringify(amountOf3Rooms);
-    localStorage.numberOf4Rooms = JSON.stringify(amountOf4Rooms);
-    localStorage.numberOf5Rooms = JSON.stringify(amountOf5Rooms);
-    let done = false;
-    localStorage.doneFlag = JSON.stringify(done);
 }
