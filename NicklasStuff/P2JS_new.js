@@ -26,6 +26,7 @@ function createNewRoomSize() {
     input.type = "text";
     input.id = "#"+counterString+"rooms";
     input.value = "0";
+    input.className = "roomData"; //adds classs name for css use
 
     let label = document.createElement("label");
     label.setAttribute = ("for","lname");
