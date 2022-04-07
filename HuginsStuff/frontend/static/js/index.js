@@ -3,6 +3,7 @@ import Student from "./views/StudentLogIn.js";
 import Admin from "./views/AdminLogIn.js";
 import About from "./views/AboutPage.js";
 
+
 window.addEventListener("mousemove", giveFunctionality);
 
 
@@ -78,7 +79,9 @@ function giveFunctionality() {
 
 function helloWorld(){
     if (location.pathname == "/student"){
-        console.log("This will now go to answer questionnaire");
+        fetch("/views/StudentID.txt").then(response => response.text()).then(data => {
+            console.log(data);
+        });
     }
     if (location.pathname == "/admin"){
         location.pathname = "/Nicklas";
