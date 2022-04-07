@@ -82,6 +82,8 @@ function helloWorld(){
         fetch("/views/StudentID.txt").then(response => response.text()).then(data => {
             console.log(data);
         });
+        let inputvalue = document.getElementById("logInID").value;
+        console.log(inputvalue);
     }
     if (location.pathname == "/admin"){
         location.pathname = "/Nicklas";
