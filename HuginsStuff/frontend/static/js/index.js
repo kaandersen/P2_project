@@ -1,6 +1,7 @@
 import FrontPage from "./views/FrontPage.js";
 import Student from "./views/StudentLogIn.js";
 import Admin from "./views/AdminLogIn.js";
+import About from "./views/AboutPage.js";
 
 window.addEventListener("mousemove", giveFunctionality);
 
@@ -25,7 +26,8 @@ const router = async () => {
     const routes = [
         { path: "/", view: FrontPage },
         { path: "/student", view: Student },
-        { path: "/admin", view: Admin }
+        { path: "/admin", view: Admin }, 
+        { path: "/About", view: About}
     ];
 
     // Test each route for potential match
