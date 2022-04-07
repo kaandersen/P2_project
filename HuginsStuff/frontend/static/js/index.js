@@ -19,7 +19,7 @@ const getParams = match => {
 
 const navigateTo = url => {
     history.pushState(null, null, url);
-    router();
+    router(); //calls the client side router to process the new history entry
 };
 
 const router = async () => {
@@ -27,7 +27,7 @@ const router = async () => {
         { path: "/", view: FrontPage },
         { path: "/student", view: Student },
         { path: "/admin", view: Admin }, 
-        { path: "/About", view: About}
+        { path: "/about", view: About}
     ];
 
     // Test each route for potential match
@@ -40,7 +40,7 @@ const router = async () => {
 
     let match = potentialMatches.find(potentialMatch => potentialMatch.result !== null);
 
-    if (!match) {
+    if (!match) { //if there is no match for the route we default to the front page
         match = {
             route: routes[0],
             result: [location.pathname]
@@ -59,7 +59,7 @@ window.addEventListener("popstate", router);
 
 /* Adds a seamless transition between sites */
 document.addEventListener("DOMContentLoaded", () => {
-    document.body.addEventListener("click", e => {
+    document.body.addEventListener("click", e => { //delegated event listener
         if (e.target.matches("[data-link]")) {
             e.preventDefault();
             navigateTo(e.target.href);
@@ -71,9 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function giveFunctionality() {
     let buttonID = document.getElementById("logInButton");
-    if (buttonID) {
+    if (buttonID) { //if login button is clicked
         buttonID.addEventListener("click", helloWorld);
-    }
+    } 
 }
 
 function helloWorld(){
