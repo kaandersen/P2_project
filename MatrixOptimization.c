@@ -15,7 +15,7 @@ PROGRAM DESCRIPTION
 
 /* Constant Variables */
 #define GROUPS_MAX_SIZE 10
-
+#define GROUP_REDUCTION_ON 0 /* 1 for true, 0 for false */
 
 /* Structs */
 
@@ -48,17 +48,24 @@ void reduceGroup(group* currentGroup, group** endGroup);
 
 
 
-int*** applyOptimization(int** listOfStudents, group* listOfGroups, int* listOfQuestionTypes, int amountOfQuestions, int amountOfGroups);
+int*** applyOptimization(int** listOfStudents, group* listOfGroups, int amountOfGrups, int* listOfQuestionTypes, int amountOfQuestions, int maxPersonRoom, int* roomTypes, int** inUseRooms);
+
 
 int getCompatibility(int* studentID1Answers, int* studentID2Answers, int amountOfQuestion, int* listOfQuestionTypes);
+void getRoommates(int*** listOfRoommates, int** listOfAllStudents, int* listOfGroupStudents, int amountOfGroupStudents, int amountOfQuestions, int* listOfQuestionTypes, int* roomTypes, int maxPersonRoom, int* inUseRooms);
+int getRoomSize(int amountOfGroupstudents, int* roomTypes, int maxPersonRoom);
+
+int getGroupCompatibility(int* roomArray, int sizeOfRoom,int** compatibilityArray,int amountOfQuestions);
 void fillCompatibilityArray(int** compatibilityArray,int** listOfAllStudents,int* listOfGroupStudents,int amountOfGroupStudents,int amountOfQuestions,int* listOfQuestionTypes);
-void getRoommates(int*** listOfRoommates, int** listOfAllStudents, int* listOfGroupStudents, int amountOfGroupStudents, int amountOfQuestions, int* listOfQuestionTypes);
+void fillUpGroup(int* roomArray,int** compatibilityArray,int sizeOfCompatibilityArray, int amountOfGroupStudents, int roomSize, int amountOfQuestions, int* listOfGroupStudents);
+void clearRow(int clearValue, int** compatibilityArray,int compatibilityArraySize);
+void getPairings(int** listOfRooms,int sizeOfRoom,int** compatibilityArray, int sizeOfCompatibilityArray, int* inUseRooms, int amountOfQuestions,int* listOfGroupStudents);
 
 
 
 
-void createOutput(char* outputFile, int*** listOfRoommates, int* listOfRoomTypes, int maxRooms);
-
+void createOutput(char* outputFile, char* outputDataFile,int*** listOfRoommates, int* listOfRoomTypes, int maxRooms, int amountOfQuestions);
+void storeSatisfaction(int* scoreTracker, int maxScore, int satisfaction);
 
 
 
@@ -66,36 +73,57 @@ void createOutput(char* outputFile, int*** listOfRoommates, int* listOfRoomTypes
 
 /* Helper functions */
 void checkMallocSuccess(void* list);
-
+void freeValues(int** listOfStudents,int* roomTypes,int* listOfQuestionTypes,int* listOfOverrulingQuestions,int amountOfStudents);
 
 int main(){
     /* Declaring variables */
     int amountOfGroups, amountOfQuestions, amountOfStudents;
     int** listOfStudents;     /* 2 Dimensional array with all students-ID's followed by their answers */
     int maxPersonRoom;       /* Max amount of persons in a room */
-    int* roomtypes;          /* Array with amount of rooms with different amount of people capacity, spot 0 represents 1 person rooms, 1 represents 2 person rooms etc. */
+    int* roomTypes;          /* Array with amount of rooms with different amount of people capacity, spot 0 represents 1 person rooms, 1 represents 2 person rooms etc. */
     int* listOfQuestionTypes; /* List of question types */
     int* listOfOverrulingQuestions;  /* List of questions that are overruling */
+    int* inUseRooms;                /* List over how many of each rooms are being used */
     getQuestionnaireInfoTemp("input1.txt", &amountOfStudents, /* Reads from the input file */ 
                     &amountOfQuestions, &listOfQuestionTypes, &listOfOverrulingQuestions,  /* Question related*/
-                    &maxPersonRoom, &roomtypes  /* Get roomtypes in an array */);
+                    &maxPersonRoom, &roomTypes  /* Get roomtypes in an array */);
     srand(time(NULL));  /* For random students answers */
+
+
     getStudentAnswersTemp("input2.txt", &listOfStudents, amountOfStudents, amountOfQuestions);
     
     group* listOfGroups = generateGroups(listOfStudents, amountOfStudents, listOfOverrulingQuestions, amountOfQuestions, listOfQuestionTypes, &amountOfGroups);      
      /*Generates dynamic associative array to refer to which student-IDs are in groups */
 
-    int*** listOfRoommates = applyOptimization(listOfStudents, listOfGroups, listOfQuestionTypes, amountOfQuestions, amountOfGroups);   /* The hard part */
+    int*** listOfRoommates = applyOptimization(listOfStudents, listOfGroups, amountOfGroups, listOfQuestionTypes, amountOfQuestions, maxPersonRoom, roomTypes, &inUseRooms);   /* The hard part */
 
-    //createOutput("outputFile", listOfRoommates, roomTypes, maxPersonRoom) /* Prints the results */
+    printf("\n\nSuccessfully created greedy list!!!!");
+
+    freeValues(listOfStudents, roomTypes, listOfQuestionTypes, listOfOverrulingQuestions, amountOfStudents);
+
+    createOutput("P2/output.txt", "P2/outputData.txt", listOfRoommates, inUseRooms, maxPersonRoom, amountOfQuestions); /* Prints the results */
+
+
+    printf("Why");
 
     return EXIT_SUCCESS;
-}
+}   
 
+void freeValues(int** listOfStudents,int* roomTypes,int* listOfQuestionTypes,int* listOfOverrulingQuestions,int amountOfStudents){
+    int i;
+    free(roomTypes);
+    free(listOfQuestionTypes);
+    free(listOfOverrulingQuestions);
+
+    for (i=0;i<amountOfStudents;i++){
+        free(listOfStudents[i]);
+    }
+    free(listOfStudents);
+}
 
 void getQuestionnaireInfoTemp(char* inputFile, int* amountOfStudents, int* amountOfQuestions, int** listOfQuestionTypes, int** listOfOverrulingQuestions,int* maxPersonRoom, int** roomtypes){
 
-    *amountOfStudents = 50;
+    *amountOfStudents = 100;
     *amountOfQuestions = 5;
 
     *listOfQuestionTypes = (int*)malloc(*amountOfQuestions*sizeof(int));
@@ -112,7 +140,12 @@ void getQuestionnaireInfoTemp(char* inputFile, int* amountOfStudents, int* amoun
     /* Create room list, just ignore this section for now */ 
     *maxPersonRoom=2;        /* Serves as a constant variable */
     *roomtypes = (int*)malloc(*maxPersonRoom*sizeof(int));
-    (*roomtypes)[1]=*amountOfStudents/2;    /* Only 2-person rooms */
+    for (i=0; i<*maxPersonRoom;i++){
+        (*roomtypes)[i]=0;                /* Sets a base value for testing */
+    }
+    (*roomtypes)[1]=60;    /* Only 2-person rooms */
+
+
 }
 
 void getQuestionnaireInfo(char* inputFile, int* amountOfStudents, int* amountOfQuestions, int** listOfQuestionTypes, int** listOfOverrulingQuestions,int* maxPersonRoom, int** roomtypes){
@@ -270,15 +303,16 @@ group* generateGroups(int** listOfStudents, int amountOfStudents, int* listOfOve
 
 
     /* Check for too large groups */   
-    pointer = output;
-    for (i=0; i<*amountOfGroups; i++){         /* Checks the current groups */
-        if ((pointer->amountOfStudents)>GROUPS_MAX_SIZE){
-            /* Oh fuck */
-            //printf("\nGroup amount of students: %d", pointer->amountOfStudents);
-            reduceGroup(pointer, &endPointer);
-        }
+    if (GROUP_REDUCTION_ON==1){
+        pointer = output;
+        for (i=0; i<*amountOfGroups; i++){         /* Checks the current groups */
+            if ((pointer->amountOfStudents)>GROUPS_MAX_SIZE){
+                /* Oh fuck */
+                reduceGroup(pointer, &endPointer);
+            }
 
-        pointer=pointer->nextGroup;
+            pointer=pointer->nextGroup;
+        }
     }
 
     int count=0;
@@ -294,14 +328,14 @@ group* generateGroups(int** listOfStudents, int amountOfStudents, int* listOfOve
 
     /* For funsies/testing, delete later */
     pointer = output;
-    int woosh = false;
+    int woosh = true;
     while (pointer!=NULL && woosh==true)
     {
         printf("\nGroup amount of students: %d", pointer->amountOfStudents);
         pointer=pointer->nextGroup;
     }
     printf("\n\nAmount of groups: %d  \n\n",*amountOfGroups);        
-    /* For funsies, delete later */
+    /* For funsies, delete later */ 
     
     
     return output;
@@ -372,25 +406,59 @@ void addStudent(int studentID, group* groupPointer){
 
 
 
-int*** applyOptimization(int** listOfStudents, group* listOfGroups, int* listOfQuestionTypes, int amountOfQuestions, int amountOfGroups){
+int*** applyOptimization(int** listOfStudents, group* listOfGroups, int amountOfGrups, int* listOfQuestionTypes, int amountOfQuestions, int maxPersonRoom, int* roomTypes, int** inUseRooms){
 
-    int i;
-    int*** listOfRoommates =  (int***)malloc(amountOfGroups*sizeof(int**));      /* 2 dimensional array per room type */
+    int i, j;
+    int*** listOfRoommates =  (int***)malloc(maxPersonRoom*sizeof(int**));      /* 2 dimensional array per room type */
+    *inUseRooms = (int*)malloc(maxPersonRoom*sizeof(int)); /* Used to keep track of how many rooms are currently in use */
+    group* pointer;
+
     checkMallocSuccess(listOfRoommates);
 
-    for (i=0;i<amountOfGroups;i++){     /* Creates roommates from each group, and adds them to listOfRoommates*/
-        getRoommates(listOfRoommates, listOfStudents, listOfGroups->studentIDs, listOfGroups->amountOfStudents, amountOfQuestions, listOfQuestionTypes);
-        listOfGroups=listOfGroups->nextGroup;
+
+    for (i=0;i<maxPersonRoom;i++){                                              /* Makes space for rooms */
+        listOfRoommates[i]=(int**)malloc(roomTypes[i]*sizeof(int*));
+        checkMallocSuccess(listOfRoommates[i]);
+
+        for (j=0; j<roomTypes[i]; j++){                                         /* Makes space for students in rooms */
+            listOfRoommates[i][j]=(int*)malloc((i+1)*sizeof(int));  /* Space 0 is reserved for compatibility score */
+            checkMallocSuccess(listOfRoommates[i][j]);
+        }   /* Should call malloc success but would take a whileee */
     }
 
+    for (i=0;i<maxPersonRoom;i++){
+        (*inUseRooms)[i]=0;                /* Set to default zero in use */
+    }
+
+        /* ---------- actual algorithm ----------- */
 
 
-    int*** dummyOutput;
-    return dummyOutput;    
+    for (i=0;i<amountOfGrups;i++){     /* Creates roommates from each group, and adds them to listOfRoommates*/
+        getRoommates(listOfRoommates, listOfStudents, listOfGroups->studentIDs, listOfGroups->amountOfStudents, amountOfQuestions, listOfQuestionTypes, roomTypes, maxPersonRoom, *inUseRooms);
+    
+
+        /* Free all values */
+        printf("GetRoommate Success");
+        free(listOfGroups->studentIDs);
+        /* free code should also be used but does not work for reduced groups where it will crash the program, so kinda iffyyy */
+        pointer = listOfGroups; /* Used to get rid of actual group holding thingy */
+
+        /* Go next group*/
+        listOfGroups=listOfGroups->nextGroup;
+
+        free(pointer);
+    }
+
+    
+    return listOfRoommates;    
 }
 
-void getRoommates(int*** listOfRoommates, int** listOfAllStudents, int* listOfGroupStudents, int amountOfGroupStudents, int amountOfQuestions, int* listOfQuestionTypes){
+void getRoommates(int*** listOfRoommates, int** listOfAllStudents, int* listOfGroupStudents, int amountOfGroupStudents, int amountOfQuestions, int* listOfQuestionTypes, int* roomTypes, int maxPersonRoom, int* inUseRooms){
     int i, j;
+
+    int roomSize;
+    int compatibilityArraySize = amountOfGroupStudents;
+
     int** compatibilityArray = (int**)malloc(amountOfGroupStudents*sizeof(int*));
     checkMallocSuccess(compatibilityArray);
     for (i=0;i<amountOfGroupStudents;i++){
@@ -399,8 +467,6 @@ void getRoommates(int*** listOfRoommates, int** listOfAllStudents, int* listOfGr
     }
 
     fillCompatibilityArray(compatibilityArray, listOfAllStudents, listOfGroupStudents, amountOfGroupStudents, amountOfQuestions, listOfQuestionTypes);
-
-    
     /* prints compatibility array, remove later */
 
     for (i=0;i<amountOfGroupStudents;i++){
@@ -411,14 +477,254 @@ void getRoommates(int*** listOfRoommates, int** listOfAllStudents, int* listOfGr
     }
     printf("\n\n\n");
 
+
+
+    while (amountOfGroupStudents>0){
+           /* Find appropriate room size */
+        roomSize = getRoomSize(amountOfGroupStudents, roomTypes, maxPersonRoom);
+
+            /* Find optimal pair for room size */
+
+        if (roomSize>=0){
+            getPairings(listOfRoommates[roomSize],roomSize,compatibilityArray,compatibilityArraySize, inUseRooms, amountOfQuestions, listOfGroupStudents);
+            amountOfGroupStudents -= roomSize+1;
+            inUseRooms[roomSize] += 1;
+        }
+        else {  /* If need to fill up group with artificial people, this is the last group */
+
+            /* Find remaining students */
+            roomSize = roomSize * -1; /* Reverts roomsize from minus */
+            fillUpGroup(listOfRoommates[roomSize][inUseRooms[roomSize]],compatibilityArray, compatibilityArraySize, amountOfGroupStudents, roomSize, amountOfQuestions, listOfGroupStudents);
+          
+
+            amountOfGroupStudents = 0;
+            inUseRooms[roomSize] += 1;
+
+
+        }   
+        /* Remove later */
+        /* Remove later */
+        /* Remove later */
+        /* Remove later */
+        /* Remove later */
+        /* Remove later */
+        /* Remove later */
+        /* Remove later */
+        /* Remove later */
+        /* Remove later */
+
+        for (i=0;i<compatibilityArraySize;i++){
+            printf("\n");
+            for (j=0;j<compatibilityArraySize;j++){
+                if (compatibilityArray[i][j]!=-1){
+                    printf(" %2d -",compatibilityArray[i][j]);
+                }
+                else{
+                    printf("    -");
+                }
+            }
+        }
+        printf("\n\n\n");
+        /* Remove later */
+        /* Remove later */
+        /* Remove later */
+        /* Remove later */
+        /* Remove later */
+        /* Remove later */
+        /* Remove later */
+
+    }
+
+
+
+
     /* Free array */
 
-    for (i=0;i<amountOfGroupStudents;i++){
+    for (i=0;i<compatibilityArraySize;i++){
         free(compatibilityArray[i]);
     }
     free(compatibilityArray);
 
 }
+
+
+void fillUpGroup(int* roomArray,int** compatibilityArray,int sizeOfCompatibilityArray, int amountOfGroupStudents, int roomSize, int amountOfQuestions, int* listOfGroupStudents){
+    
+    int i;
+    int* endPair = (int*)malloc((amountOfGroupStudents)*sizeof(int));    /* Keeps track of end pair position in compatibility array NOT THEIR ID */
+   
+    int count=0;
+
+
+    for (i=0; i<sizeOfCompatibilityArray; i++){
+        if (compatibilityArray[i][i]!=-1){
+            endPair[count]=i;
+            count++;
+        }
+    }
+    /* Add to actual room array with student IDs */
+    for (i=0; i<amountOfGroupStudents; i++){
+        roomArray[i+1]=listOfGroupStudents[endPair[i]];
+    }
+    /* Compatibility */
+    roomArray[0]=getGroupCompatibility(endPair, (count-1), compatibilityArray, amountOfQuestions);
+
+
+    /* Add filler students */
+    for (i; i<roomSize+1; i++){
+        roomArray[i+1]= -1; /* Adds filler */
+    }
+
+    free(endPair);
+}
+
+void getPairings(int** listOfRooms,int sizeOfRoom,int** compatibilityArray, int sizeOfCompatibilityArray, int* inUseRooms, int amountOfQuestions,int* listOfGroupStudents){
+    int highestChoiceValue=0;
+    int currentPickValue;
+    int amountOfCurrentPicks;
+
+
+    int* endPair = (int*)malloc((sizeOfRoom+1)*sizeof(int));    /* Keeps track of end pair position in compatibility array NOT THEIR ID */
+    checkMallocSuccess(endPair);
+    int i, j, done;
+
+    if (sizeOfRoom==0){/* If only 1 person-room, in this scenario there are only 1 person rooms left */
+        /* Find any avaliable person */
+        done = 0;
+        for (i=1; i<sizeOfCompatibilityArray && done==0;i++){
+            if (compatibilityArray[i][i]!=-1){  /* Checks if person is already picked, picked people have -1 */
+                done=1;
+                endPair[0]=i;
+            }
+        }
+
+    }
+
+    /* Find first pairings */  
+    else {
+        for (i=0; i<sizeOfCompatibilityArray;i++){
+            for (j=0; j<i;j++){
+                if (compatibilityArray[i][j]>highestChoiceValue){    /* Check through all options */
+                    highestChoiceValue=compatibilityArray[i][j];     /* If above previous highest value set to new max */
+                    endPair[0]=i;
+                    endPair[1]=j;
+                }
+            }
+        }
+
+
+        /* Find additional pairings for rooms sized 3 and higher*/
+        if (sizeOfRoom>1){
+            highestChoiceValue=0;
+
+            for (amountOfCurrentPicks=2; amountOfCurrentPicks<sizeOfRoom+1;amountOfCurrentPicks++){
+                for (i=0;i<sizeOfCompatibilityArray;i++){
+                    currentPickValue=0;
+                    
+                    for (j=0;j<amountOfCurrentPicks;j++){   /* Look through all possible people */
+                        if (i==j){  /* If already in group we go to next student */
+                            currentPickValue=-1; /* Makes it impossible to be assigned */
+                            j=amountOfCurrentPicks; /* Stops loop */
+                        }
+                        else {
+                            currentPickValue += compatibilityArray[i][j];
+                        }
+                    }
+                    if (currentPickValue>highestChoiceValue){  /* If new highest combination */
+                        highestChoiceValue=currentPickValue;
+                        endPair[amountOfCurrentPicks]=i;    
+                    }
+                }
+            }
+            
+        }
+    }
+    /* Assign pairings to actual roommate array HERE WE APPLY STUDENT ID*/
+    for (i=0; i<sizeOfRoom+1; i++){
+        listOfRooms[inUseRooms[sizeOfRoom]][i+1]=listOfGroupStudents[endPair[i]];
+    }   
+    /* Get compatibility */
+    listOfRooms[inUseRooms[sizeOfRoom]][0]=getGroupCompatibility(endPair,sizeOfRoom, compatibilityArray,amountOfQuestions);
+
+
+    /* Clear values in compatibility array, which means setting their values to 0 */
+    for (i=0; i<sizeOfRoom+1; i++){
+        clearRow(endPair[i],compatibilityArray, sizeOfCompatibilityArray);
+    }
+
+    /* free values */
+    free(endPair);
+}
+
+int getGroupCompatibility(int* roomArray, int sizeOfRoom,int** compatibilityArray,int amountOfQuestions){
+    int i, j;
+    int compatibility=0; /* Used to keep track of amased compatibility */
+    if (sizeOfRoom==0){ /* If single person room */
+        return (amountOfQuestions*5);   /* Return max score */
+    }
+
+    for (j=0;j<sizeOfRoom+1;j++){
+        for (i=j+1;i<=sizeOfRoom;i++){ 
+            compatibility += compatibilityArray[roomArray[i]][roomArray[j]];  /* Add compatibilities together */
+        }
+    }
+    compatibility = compatibility/((sizeOfRoom)*(sizeOfRoom+1)/2);    /* Reduce by amount of compatibility scores */
+
+    return compatibility;
+}
+
+void clearRow(int clearValue, int** compatibilityArray,int compatibilityArraySize){
+    int i;
+
+    for (i=0;i<compatibilityArraySize;i++){
+        compatibilityArray[clearValue][i]=-1;
+        compatibilityArray[i][clearValue]=-1;
+    }
+}
+
+
+
+int getRoomSize(int amountOfGroupstudents, int* roomTypes, int maxPersonRoom){
+    int i;
+    int lowestAvailableRoom = maxPersonRoom; /* Variable meant to keep track of lowest available room */
+
+    for (i=maxPersonRoom-1;i>=0;i--){   /* Counting down to size 0 rooms */
+        
+        if (roomTypes[i]>0){ /* If any rooms of this size avaliable */
+
+            if (amountOfGroupstudents>=(i+1)){  /* If enough students to fill out room */
+                roomTypes[i] -= 1; /* Update amount of rooms */
+                return(i);
+            }
+            else {  /* Else mark down as lowest available room */
+                lowestAvailableRoom=i;        
+            }
+        }
+
+    }
+
+    /* In cases where i runs out of room options */
+
+    if (lowestAvailableRoom!=maxPersonRoom){    /* If there is an available room left */
+
+
+        roomTypes[lowestAvailableRoom] -= 1; /* Update amount of rooms */
+
+        /* Need a way to get all remaining students into a single group and fill out this group */
+        /* Returns a minus value to symbol we need to fill up remaining */
+
+        return (lowestAvailableRoom * -1);
+        
+    }
+
+    else {  /* No rooms left */
+        printf("\nProgram error, no more rooms avaliable. Bye!");
+        exit(EXIT_FAILURE);
+    }
+    return i; /* Filler */
+}
+
+
 
 void fillCompatibilityArray(int** compatibilityArray,int** listOfAllStudents,int* listOfGroupStudents,int amountOfGroupStudents,int amountOfQuestions,int* listOfQuestionTypes){
     int i;  /*Vertical */
@@ -434,9 +740,9 @@ void fillCompatibilityArray(int** compatibilityArray,int** listOfAllStudents,int
         compatibilityArray[i][j]=0; /* Fill diagonal with zeroes */
     }
 
-    /* Fill diagonal with zeroes */
 
 }   
+
 
 
 int getCompatibility(int* studentID1Answers, int* studentID2Answers, int amountOfQuestion, int* listOfQuestionTypes){
@@ -480,33 +786,83 @@ int getCompatibility(int* studentID1Answers, int* studentID2Answers, int amountO
 ----------------------------*/
 
 
-void createOutput(char* outputFile, int*** listOfRoommates, int* listOfRoomTypes, int maxRooms){
+void createOutput(char* outputFile, char* outputDataFile, int*** listOfRoommates, int* inUseRooms, int maxRooms, int amountOfQuestions){
     int i, j, x=1, y;        /* x counts number of current room, starting from 1 */
     double averageSatisfaction = 0;         /* Sets to zero for now */
+
+
+    int* scoreTracker = (int*)malloc(10*sizeof(int));   /* Used to track how many rooms have different scores */
+    checkMallocSuccess(scoreTracker);
+
+    for (i=0;i<10;i++){
+        scoreTracker[i]=0;  /* Sets score to 0 */
+    }
+
+    int maxScore = amountOfQuestions * 5;
+
     FILE *fp = fopen(outputFile, "w");
     if (fp != NULL){
         for (j=0;j<maxRooms;j++){ 
-            for (i = 0; i < listOfRoomTypes[j]; i++){
-                fprintf(fp, "Room %d: %d ",x, listOfRoommates[j][i][1]);
+            for (i = 0; i < inUseRooms[j]; i++){
+                fprintf(fp, "Room %3d: %3d ",x, listOfRoommates[j][i][1]);
                 for (y=1;y<(j+1);y++){
-                    fprintf(fp, "- %d ", listOfRoommates[j][i][y+1]);
+                    if (listOfRoommates[j][i][y+1]!=-1){
+                        fprintf(fp, "- %3d ", listOfRoommates[j][i][y+1]);
+                    }
                 }
-                fprintf(fp, "| Satisfaction: %d \n", listOfRoommates[j][i][0]); /* 0 is reserved for satisfaction value */
-                averageSatisfaction += listOfRoommates[j][i][0];
+                fprintf(fp, "| Satisfaction: %4d%%. \n", (listOfRoommates[j][i][0]*100)/maxScore); /* 0 is reserved for satisfaction value */
+                averageSatisfaction += (listOfRoommates[j][i][0]*100)/maxScore;
                 x++;    /* Counts amount of rooms */
+                storeSatisfaction(scoreTracker, maxScore, listOfRoommates[j][i][0]);
             }
         }
-        averageSatisfaction/x;
-        fprintf(fp, "\nAverageSatisfaction: %lf \n", averageSatisfaction);
-        
+
     }
     else {
         printf("\n Could not find output file.\n");
         exit(EXIT_FAILURE);
     }
+    
+    fclose(fp); /*Closes file */
+
+
+    averageSatisfaction = averageSatisfaction/x;    /* reduces total satisfaction by amount of rooms */
+
+    /* Writes data output */
+
+    fp = fopen(outputDataFile, "w");
+    if (fp != NULL){
+        
+        fprintf(fp, "\nAverageSatisfaction: %lf%% \n", averageSatisfaction);
+
+        for (i=0;i<10;i++){ /* Prins satisfaction rates */
+
+
+            fprintf(fp, "\nRooms with satisfaction: %3d%% - %3d%% | %3d \n", i*10, (i+1)*10, scoreTracker[i]);
+
+        }
+
+    }
+    else {
+        printf("\n Could not find output file.\n");
+        exit(EXIT_FAILURE);
+    }
+    fclose(fp); /*Closes file */
+
+    free(scoreTracker);
 }
 
+void storeSatisfaction(int* scoreTracker, int maxScore, int satisfaction){
 
+    int percentSatisfaction = ceil((double)satisfaction*10/maxScore);    /* finds amounts from 1-10 */
+
+    if (percentSatisfaction==0){    /* Should very very rarely happen, but if they literally are direct opposites */
+        percentSatisfaction++;
+    }
+
+    scoreTracker[percentSatisfaction-1] += 1;     /* Counter for amount of rooms within that range */
+
+}
 
 
 
