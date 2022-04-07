@@ -33,7 +33,7 @@ function createNewRoomSize() {
     label.innerHTML = "Amount of "+ counterString  +" person rooms:";
 
     let linebreak = document.createElement("br");
-    let form = document.getElementById("dataForm");
+    let form = document.getElementById("roomDefiner"); //changed name so that it affects the fieldset instead of the form
     form.lastElementChild.parentNode.insertBefore(label, form.lastElementChild);
     form.lastElementChild.parentNode.insertBefore(input, form.lastElementChild);
     form.lastElementChild.parentNode.insertBefore(linebreak, form.lastElementChild);
