@@ -16,6 +16,9 @@ export default class extends AbstractView {
                 We have therefore created an opimization algorithm that allocates students based on certain traits. 
                 These traits will be extracted based on the student answers that the factulty will be able to customize themseleves. 
             </p>
+
+            <h3>Contact</h3>
+            <p>Sample@mail.com</p>
             
 
         `;
