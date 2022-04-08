@@ -19,11 +19,17 @@ function loadPairrings() {
     p.appendChild(ul);
 
     let pairringsString = JSON.parse(localStorage.pairs)
-    let pairrings = pairringsString.split('.');
-
-    pairrings.forEach(element => {
-        let li = document.createElement("li");
-        li.appendChild(document.createTextNode(element));
-        ul.appendChild(li); 
+    //let pairrings = pairringsString.split('.');
+    fetch("/data.txt").then(response => response.text()).then(data => {
+        let pairrings = data.split('.');
+        pairrings.forEach(element => {
+            let li = document.createElement("li");
+            li.appendChild(document.createTextNode(element));
+            ul.appendChild(li); 
+        });
     });
 }
+
+/*Tjek at antal rum pladser passer med antal studerende
+
+Input validering for tal. */

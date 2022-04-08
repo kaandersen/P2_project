@@ -19,4 +19,8 @@ app.get("/views/StudentID.txt", (req, res) => {
     res.sendFile(path.resolve(__dirname, "HuginsStuff", "frontend", "static", "js", "views", "StudentID.txt"))
 })
 
+app.get("/data.txt", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "NicklasStuff", "output.txt"))
+})
+
 app.listen(process.env.PORT || 5000, () => console.log("Server running at http://localhost:5000/"));
