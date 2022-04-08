@@ -15,10 +15,10 @@ export default class extends AbstractView {
         
             <form id="loginRedirectForm">
             <p id="LoginredirectP">
-                <button type="button" id="redirectStudent">Student login</button>
+                <a href="./student" target="_parent"> <button type="button" id="redirectStudent">Student login </button></a>
                 <br>
                 <br>
-                <button type="button" id="redirectAdmin">Admin login</button>
+                <a href="./admin" target="_parent"><button type="button" id="redirectAdmin">Admin login</button></a>
             </p>
             </form>
         `;
