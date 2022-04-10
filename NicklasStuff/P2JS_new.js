@@ -6,7 +6,7 @@ var counter = 1;
 function giveFunctionality() {
     let buttonID1 = document.getElementById("goforth");
     if (buttonID1) {
-        buttonID1.addEventListener("click", collectData);
+        buttonID1.addEventListener("click", validateData);
     }
     let buttonID2 = document.getElementById("createNewSize");
     if (buttonID2) {
@@ -42,12 +42,22 @@ function createNewRoomSize() {
 
 //Load the previously saved data and logs it in the console, to check saving capability.
 function loadData() {
-    console.log(JSON.parse(localStorage.numberOfRooms));
+    console.log("Amount of students: " + JSON.parse(localStorage.numberOfStudents));
+    console.log("Amount of rooms: " + JSON.parse(localStorage.numberOfRooms));
     let numberOfRooms = JSON.parse(localStorage.numberOfRooms).split(',').map(Number);
     numberOfRooms.pop();
     numberOfRooms.unshift(0);
     console.log(numberOfRooms);
     window.removeEventListener("mousemove", loadData);
+}
+
+function validateData() {
+    if (checkIfStringHasOnlyDigits(document.getElementById("#students").value) && checkRoomInputs()) {
+        collectData();
+        window.location.href="./P2HTML_continue.html";
+    } else {
+        alert("Something is wrong with one of the inputs");
+    }
 }
 
 //collects data from input fields when button is pressed and saves it to the localStorage.
@@ -58,8 +68,27 @@ function collectData() {
         indexString = index.toString(10);
         myString += document.getElementById("#"+indexString+"rooms").value+",";
     }
-    console.log(myString);
     localStorage.numberOfRooms = JSON.stringify(myString);
+}
 
-    window.location.href="./P2HTML_continue.html";
+function checkIfStringHasOnlyDigits(_string){
+    if(_string.match(/^[0-9]+$/) != null)
+    {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function checkRoomInputs() {
+    let myString = "";
+    for (let index = 1; index <= counter; index++) {
+        indexString = index.toString(10);
+        myString += document.getElementById("#"+indexString+"rooms").value;
+    }
+    if (checkIfStringHasOnlyDigits(myString)) {
+        return true;
+    } else {
+        return false;
+    }
 }
