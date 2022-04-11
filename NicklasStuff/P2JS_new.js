@@ -51,10 +51,15 @@ function loadData() {
     window.removeEventListener("mousemove", loadData);
 }
 
+//Validates the input data, if everything is ok, then it goes ahead, if not it alerts the user to the error.
 function validateData() {
     if (checkIfStringHasOnlyDigits(document.getElementById("#students").value) && checkRoomInputs()) {
-        collectData();
-        window.location.href="./P2HTML_continue.html";
+        if (checkSpaceForStudents()) {
+            collectData();
+            window.location.href="./P2HTML_continue.html";
+        } else {
+            alert("There are more students than there is space for, that is not okay.");
+        }
     } else {
         alert("Something is wrong with one of the inputs");
     }
@@ -71,6 +76,7 @@ function collectData() {
     localStorage.numberOfRooms = JSON.stringify(myString);
 }
 
+//Checks if a given string only contains digits, used for validation of input fields.
 function checkIfStringHasOnlyDigits(_string){
     if(_string.match(/^[0-9]+$/) != null)
     {
@@ -80,6 +86,7 @@ function checkIfStringHasOnlyDigits(_string){
     }
 }
 
+//Checks each of the input fields for room types to see if they contain anything other than digits. 
 function checkRoomInputs() {
     let myString = "";
     for (let index = 1; index <= counter; index++) {
@@ -87,6 +94,25 @@ function checkRoomInputs() {
         myString += document.getElementById("#"+indexString+"rooms").value;
     }
     if (checkIfStringHasOnlyDigits(myString)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+//Checks if there are more students than there is room for them, or the other way around. 
+function checkSpaceForStudents() {
+    let students = document.getElementById("#students").value;
+    let myString = "";
+    for (let index = 1; index <= counter; index++) {
+        indexString = index.toString(10);
+        myString += document.getElementById("#"+indexString+"rooms").value*index+",";
+    }
+    let numberOfRooms = myString.split(',').map(Number);
+    numberOfRooms.pop();
+    numberOfRooms.unshift(0);
+
+    if (students <= numberOfRooms.reduce((a, b) => a + b, 0)) {
         return true;
     } else {
         return false;
