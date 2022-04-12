@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Questionaire</title>
+    <link rel="stylesheet" href="/public/newStyle.css" />
+  </head>
+  <body>
+    <header></header>
+
+    <main class="page-container">
+      <div class="questionaire-container" id="GFG">
+        <h1 class="page-heading">Questionaire Page</h1>
+
+        <div class="header">
+          <input
+            type="text"
+            style="height: 35px; width: 450px"
+            id="fileName-input"
+            placeholder="Roommate survey for x..."
+          />
+          <div class="button-container">
+            <button
+              class="button-blue"
+              id="SaveButton"
+              onclick="createCsvFileFromQuestionArray()"
+            >
+              Save
+            </button>
+            <button class="button-blue" id="Exit">Exit</button>
+          </div>
+        </div>
+
+      <div class="student-number-container">
+          <div class="student-number-header">Amounts of students</div>
+        <input class="student-number-content" placeholder="Enter number of students..">
+      </div>
+
+     <!-- <div id="rooms-container" class="rooms-class-container">
+        <div class="rooms-main-header">Define rooms</div>
+        <button class="button-white mt-5" onclick="onNewRoomAdd()">+</button>
+      </div>-->
+
+      <div id="questions-container"></div>
+        <button class="button-blue mt-5" onclick="onNewQuestionAdd()">+</button>
+      </div>
+    </main>
+    <script>
+      getCsvData();
+
+      async function getCsvData() {
+        const response = await fetch("/public/Questionaire.csv");
+        const CSVdata = await response.text();
+        console.log(CSVdata);
+      }
+
+      document.getElementById("Exit").onclick = function () {
+        location.href = "/Homepage";
+    };
+    </script>
+
+    <script src="/public/newScript.js"></script>
+    <script src="/public/csv.js"></script>
+    <!-- <script>
+        onload=fetch("./Questionaire.csv").then(res => {
+            return res.text()
+        }).then(data => {
+            console.log(data);
+        })
+    </script> -->
+    <!--  <script data-main="scripts/app" src="scripts/require.js"></script> -->
+  </body>
+</html>

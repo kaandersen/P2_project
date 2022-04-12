@@ -1,0 +1,32 @@
+//Npm kommandoer der bruges til programmet
+npm run devStart 
+npm install csv-parser
+npm i --save-dev nodemon
+
+
+
+
+
+
+//Noter til mig selv
+1. Overruling 
+2. Spørgsmålsnr
+
+
+
+Lav 3 seperarede filer
+1 fil. skal indeholde
+1.1 amount of questions (Elias)
+1.2 List of question types (Elias)
+2.3 List of which questions are overruling (Elias)
+
+2. fil gemmer elevernes svar
+
+3. fil skal sætte antallet lig nogle variable, som kan overføres til Frederiks algoritme
+
+
+
+For at opbevare alt data i en fil når elever udfylder formularen.
+- Der skal laves 2 headers (1 til Titel med ID og en til svarene (Spørgsmål og svar med ID)) Svarene skal nestes indunder hver titel Header
+
+
