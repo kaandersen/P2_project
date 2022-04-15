@@ -8,10 +8,20 @@ export default class extends AbstractView {
 
     async getHtml() {
         return `
-            <h1>Student logIn</h1>
-            <label for="studentID">Student ID:</label>
-            <input type="text" id="logInID" value="">
-            <button type="button" id="logInButton">Log in</button>
+        <div class="container">
+            <h1>Student login</h1>
+            <div class="loginCard">
+                <form>
+                    <div class="input-container">
+                        <label for="studentID">Student ID</label>
+                        <input type="text" id="logInID" value="">
+                    </div>
+                    <div class="button-container">
+                        <button type="button" id="logInButton">Go</button>
+                        </div>
+                </form>
+            </div>
+        </div>
         `;
     }
 }

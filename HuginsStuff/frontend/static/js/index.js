@@ -70,9 +70,11 @@ document.addEventListener("DOMContentLoaded", () => {
     router();
 });
 
+
+//if login button is clicked on either page
 function giveFunctionality() {
     let buttonID = document.getElementById("logInButton");
-    if (buttonID) { //if login button is clicked
+    if (buttonID) { 
         buttonID.addEventListener("click", helloWorld);
     } 
 }
