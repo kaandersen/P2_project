@@ -1,0 +1,144 @@
+body{
+    margin: 0; 
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 2 ;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: 30px 1fr 30px ;
+
+    box-sizing: border-box;
+}
+
+.header{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    background-color: #181818;
+}
+
+.footer{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+
+    background-color: #181818;
+}
+
+.navigation{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+
+    background: #2a2a2a;
+}
+
+.nav__link {
+    display: block;
+    padding: 18px 18px;
+    text-decoration: none;
+    color: #eeeeee;
+    font-weight: 500;
+}
+
+.nav__link:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.main-content{
+    padding: 10px 20px 10px 20px;
+}
+
+.intro-container p{
+    font-size: 20px;
+}
+
+/* ------------- redirectForm.html ------------- */
+.choice-container{
+    border: 2px solid #4c5974;
+    max-width: 600px;
+    width: 100%;
+    padding: 50px 25px 50px 25px;
+    /* height: 400px; */
+}
+
+.link {
+    display: block;
+    padding: 18px 18px;
+    text-decoration: none;
+    color: #eeeeee;
+    font-weight: 500;
+    background-color: #2a2a2a;
+    text-align: center;
+}
+
+.link:hover {
+    background: #d3d3d3;
+    color: #2a2a2a;
+}
+
+/* ------------- new.html ------------- */
+#dataForm{
+    background-color: #b8cbf0;
+    width: 700px;
+    /* Rounds out the corners of fieldset */
+    border-radius: 1em;  
+    padding: 40px 20px 20px 20px;
+}
+
+#NumStudents, #roomDefiner{
+    /*centers the content in the form*/
+    margin: 0 auto; 
+    padding: 1em;
+    border: 1px solid rgb(245, 245, 245);
+    width: 600px;
+    background: #e9ecf1;
+    /* Rounds out the corners of fieldset */
+    /* border-radius: 1em;  */ 
+}
+
+#goNext {
+    /* centers the submit button*/
+    text-align: center;
+}
+
+.roomData{
+    /* increases the space between the room size input fields */
+    margin: 15px;
+}
+
+#createNewSize{
+    padding: 10px; 
+}
+
+/* button <p> */
+#goNext :hover{ 
+    /* animation for howeing over the "go" button */
+    border: 2px solid #4c5974; 
+    color: rgb(0, 0, 0);
+    background: #f5f1f1;
+}
+
+/* button itself*/
+#goforth{
+    padding: 20px; 
+    border: 2px solid #e3e3e3;
+    color: rgb(255, 255, 255);
+    background: #2a2a2a;
+    transition: 0.2s ease-in-out;
+}
+
+
+
+
+
