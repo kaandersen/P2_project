@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
 
 app.get("/Nicklas", (req, res) => {
     app.use(express.static(path.resolve(__dirname, "NicklasStuff")));
-    res.sendFile(path.resolve(__dirname, "NicklasStuff", "P2HTML_from.html"));
+    res.sendFile(path.resolve(__dirname, "NicklasStuff", "redirectFrom.html"));
 })
 
 app.get("/views/StudentID.txt", (req, res) => {
