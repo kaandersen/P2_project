@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User direct Page</title>
+    <script src="redirectFrom.js"></script>
+  </head>
+  <body>
+    <style>
+      
+      body{
+        --nav-width: 200px;
+        margin: 0 0 0 var(--nav-width);
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 2 ;
+      }
+
+      .nav {
+        position: fixed;
+        /* top: 2rem; */
+        left: 0;
+        width: 150px;
+        height: 100vh;
+        background: #2a2a2a;
+        overflow-y: auto ;
+        padding-top: 20px;
+      }
+
+      .nav__link {
+        display: block;
+        padding: 18px 18px;
+        text-decoration: none;
+        color: #eeeeee;
+        font-weight: 500;
+      }
+
+      .nav__link:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .bottom-container{
+        position: fixed;
+        bottom:0;
+        left:0;
+        width: 100%;
+        height: 30px;
+        background-color: #181818;
+        border: 20px;
+      }
+
+      .top-container{
+        position: fixed;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 30px;
+        background-color: #181818;
+        /* --gap: 2rem;
+        margin: 0 0 var(--gap) 0; */
+      }
+      
+      .container{
+        position: relative;
+        margin: 0 auto;
+      }
+
+      .content-container{
+        padding-top: 40px;
+
+      }
+      .intro-container p{
+        font-size: 20px;
+      }
+
+      .choice-container{
+        border: 2px solid #4c5974;
+        max-width: 600px;
+        width: 100%;
+        padding: 50px 25px 50px 25px;
+        /* height: 400px; */
+      }
+
+      .link {
+        display: block;
+        padding: 18px 18px;
+        text-decoration: none;
+        color: #eeeeee;
+        font-weight: 500;
+        background-color: #2a2a2a;
+        text-align: center;
+      }
+
+      .link:hover {
+        background: #d3d3d3;
+        color: #2a2a2a;
+      }
+
+    </style>
+
+    <nav class="nav">
+      <a href="./redirectFrom.html" class="nav__link" data-link>Front Page</a>
+      <a href="./P2HTML_finish.html" class="nav__link" data-link>Status</a>
+      <a href="./P2HTML_showOutput.html" class="nav__link" data-link>Results</a>
+    </nav>
+
+    <div class="container">
+
+      <div class="top-container"></div>
+
+      <div class="content-container">
+
+        <div class="intro-container">
+
+          <h1>Welcome Admin!</h1>
+
+          <p>Get started by either creating a <em>new</em> student questionnaire, or edit an <em>existing</em></p>
+
+        </div>
+
+        <div class="choice-container">
+
+          <form id="choice-form">
+            <a href="./P2HTML_new.html" title="Create new" id="new" class="link">Create new questionnaire</a>
+            <br>
+            <br>
+            <a href="./P2HTML_continue.html" title="Continue" id="continue" class="link">Continue working on questionnaire</a>
+            
+          </form>
+
+        </div>
+
+      </div>
+    
+      <div class="bottom-container"></div>
+
+    </div>
+  </body>
+</html>
