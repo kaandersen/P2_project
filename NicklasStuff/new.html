@@ -24,11 +24,11 @@
             <div class="intro-container">
                 <h1>New questionnaire</h1>
                 <p>Welcome to the first step in the questionnaire creation process.</p>
-                <p>Get started by following the steps bellow</p>
+                <p>Get started with the steps bellow:</p>
                 <p>
                     <ol>
-                        <li>Enter the amount of students to be allocated into rooms</li>
-                        <br>
+                        <li>Give the Questionnaire a Title</li><br>
+                        <li>Enter the amount of students to be allocated into rooms</li><br>
                         <li>Define the amount of rooms available <em>(note: there cannot be less space in rooms combined than # of students)</em></li>
                     </ol>
                 </p>
@@ -36,23 +36,25 @@
 
             <form action="/action_page.php" id="dataForm">
 
-                <!-- POSSIBLY ADD THE ABILITY TO NAME THE QUESTIONNAIRE HERE, IN CASE SOMEONE HAS MORE THAN ONE, WHICH IS LIKELY -->
+                <!-- POSSIBLY ADD THE ABILITY TO NAME THE QUESTIONNAIRE HERE, IN CASE SOMEONE HAS MORE THAN ONE QUESTIONNAIRE, WHICH IS LIKELY -->
+                <fieldset id="QuestionnaireName">
+                    <label for="questName">Questionnaire title: </label>
+                    <input type="text" id="questName" name="questName" class="text-field" placeholder="Title">
+                </fieldset> <br>
 
                 <!-- seperates Numstudents from the rest of the form -->
                 <fieldset id="NumStudents">
 
                     <label for="fname">Total amount of students:</label>
-                    <input type="text" id="#students" name="#students" value="0">
+                    <input type="text" id="#students" name="#students" value="0" class="text-field">
 
-                </fieldset>
-
-                <br>
+                </fieldset><br>
 
                 <!-- This is expanded as more room sizes are added by the user -->
                 <fieldset id="roomDefiner">
 
                     <label for="lname">Amount of 1 person rooms:</label>
-                    <input type="text" id="#1rooms" name="#1rooms" value="0" class="roomData">
+                    <input type="text" id="#1rooms" name="#1rooms" value="0" class="roomData" class="text-field">
                     <br>
                     <input type="button" value="Add additional room size" id="createNewSize">
 
