@@ -4,12 +4,34 @@
     <meta charset="utf-8">
     <title>Finish questionnaire</title>
     <script src="P2JS_finish.js"></script>
+    <link rel="stylesheet" href="interface.css">
   </head>
   <body>
-    <form action="/action_page.php">
-      <input type="button" value="Set the questionnaire to 'Finished'" id="finished"><br>
-      <input type="button" value="Set the questionnaire to 'Editable'" id="editable"><br>
-      <a href="./P2HTML_continue.html">Go Back</a>
-    </form>
+    
+
+    <div class="container">
+
+      <div class="header"></div>
+
+      <div class="navigation">
+          <a href="./redirectFrom.html" class="nav__link" data-link>Front Page</a>
+          <a href="./P2HTML_finish.html" class="nav__link" data-link>Status</a>
+          <a href="./P2HTML_showOutput.html" class="nav__link" data-link>Results</a>
+      </div>
+
+        <div class="main-content">
+
+          <form action="/action_page.php">
+            <input type="button" value="Set the questionnaire to 'Finished'" id="finished"><br>
+            <input type="button" value="Set the questionnaire to 'Editable'" id="editable"><br>
+            <a href="./P2HTML_continue.html">Go Back</a>
+          </form>
+
+        </div>
+
+      <div class="footer"></div>
+
+    </div>
+
   </body>
 </html>
