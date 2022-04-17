@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>New questionnaire page</title>
+    <link rel="stylesheet" href="interface.css">
+    <script src="P2JS_new.js"></script>
+
+  </head>
+  <body>
+
+    <div class="container">
+
+        <div class="header"></div>
+
+        <div class="navigation">
+            <a href="./redirectFrom.html" class="nav__link" data-link>Front Page</a>
+            <a href="./P2HTML_finish.html" class="nav__link" data-link>Status</a>
+            <a href="./P2HTML_showOutput.html" class="nav__link" data-link>Results</a>
+        </div>
+
+        <div class="main-content">
+
+            <div class="intro-container">
+                <h1>New questionnaire</h1>
+                <p>Welcome to the first step in the questionnaire creation process.</p>
+                <p>Get started by following the steps bellow</p>
+                <p>
+                    <ol>
+                        <li>Enter the amount of students to be allocated into rooms</li>
+                        <br>
+                        <li>Define the amount of rooms available <em>(note: there cannot be less space in rooms combined than # of students)</em></li>
+                    </ol>
+                </p>
+            </div>
+
+            <form action="/action_page.php" id="dataForm">
+
+                <!-- POSSIBLY ADD THE ABILITY TO NAME THE QUESTIONNAIRE HERE, IN CASE SOMEONE HAS MORE THAN ONE, WHICH IS LIKELY -->
+
+                <!-- seperates Numstudents from the rest of the form -->
+                <fieldset id="NumStudents">
+
+                    <label for="fname">Total amount of students:</label>
+                    <input type="text" id="#students" name="#students" value="0">
+
+                </fieldset>
+
+                <br>
+
+                <!-- This is expanded as more room sizes are added by the user -->
+                <fieldset id="roomDefiner">
+
+                    <label for="lname">Amount of 1 person rooms:</label>
+                    <input type="text" id="#1rooms" name="#1rooms" value="0" class="roomData">
+                    <br>
+                    <input type="button" value="Add additional room size" id="createNewSize">
+
+                </fieldset>
+
+                <!--button for next action-->
+                <p id="goNext">
+                    <input type="button" value="Create new questionnaire" id="goforth" >
+                </p>
+                
+            </form>
+
+        </div>
+
+        <div class="footer"></div>
+    </div>
+
+
+    
+
+  </body>
+</html>
