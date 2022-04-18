@@ -11,9 +11,10 @@ body{
     display: grid;
 
     grid-template-columns: 150px 1fr;
-    grid-template-rows: 30px 1fr 30px ;
+    grid-template-rows: 50px 1fr 30px ;
 
     box-sizing: border-box;
+    
 }
 
 .header{
@@ -23,7 +24,11 @@ body{
     grid-row-end: 2;
 
     background-color: #181818;
+
+    z-index: auto;
+    box-shadow: 0 2px 4px rgb(12 12 12 / 38%);
 }
+
 
 .footer{
     grid-column-start: 1;
@@ -138,6 +143,7 @@ body{
     transition: 0.2s ease-in-out;
 }
 
+/* ------------- Textfield customization ------------- */
 .text-field, .roomData{
     font: inherit;
     padding: 10px 15px;
