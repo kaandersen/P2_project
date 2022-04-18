@@ -115,10 +115,10 @@
       }
 
       #choices-form{
-        width: 300px;
+        width: 400px;
       }
 
-      #Save, #Delete{
+      #Save, #Delete, #Publish{
         padding: 20px; 
         border: 2px solid #e3e3e3;
         color: rgb(255, 255, 255);
@@ -128,14 +128,14 @@
         margin: 10px;
       }
 
-      #Save:hover, #Delete:hover{ 
+      #Save:hover, #Delete:hover, #Publish:hover{ 
         border: 2px solid #89a6ff;
         background: #2a2a2a;
         box-shadow: 0 6px #89a6ff;
         transform: translateY(-4px);
       }
 
-      #Save:active, #Delete:active {
+      #Save:active, #Delete:active, #Publish:active {
         border: 2px solid #e3e3e3;
         color: rgb(255, 255, 255);
         background: #2a2a2a;
@@ -167,11 +167,19 @@
 
             <div class="choices">
               <form action="/action_page.php" id="choices-form">
+                
+
+                <!-- ADD A SAVE BUTTON HERE SO THAT THERE ISN'T A SAVE BUTTON IN EVERY TABLE ROW -->
+                <input type="button" value="Save" id="Save">
+                
+                <input type="button" value="Publish" id="Publish">
+
+
                 <!-- CONSIDER ADDING A "DELETE" OPTION HERE-->
                 <input type="button" value="Delete" id="Delete">
 
-                <!-- ADD A SAVE BUTTON HERE SO THAT THERE ISN'T A SAVE BUTTON IN EVERY TABLE ROW -->
-                <input type="button" value="Save" id="Save"><br>
+
+                
 
                 <!-- CONSIDER GETTING RID OF THE OPTIONS BELLOW -->
                 <!-- <input type="button" value="Set the questionnaire to 'Finished'" id="finished"><br>
