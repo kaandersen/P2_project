@@ -23,7 +23,7 @@ function checkForQuestionnaire() {
         linkText = document.createTextNode("Create new questionnaire");
         a.appendChild(linkText);
         a.title = "Create new";
-        a.href = "./P2HTML_new.html";
+        a.href = "./new.html";
         document.body.appendChild(a);
     }
 }

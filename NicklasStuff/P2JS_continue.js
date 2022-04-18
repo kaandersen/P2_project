@@ -18,7 +18,7 @@ function checkForQuestionnaire() {
     let linkText1 = document.createTextNode("Change done state");
     a1.appendChild(linkText1);
     a1.title = "Change state";
-    a1.href = "./P2HTML_finish.html";
+    a1.href = "./StatusPage.html";
     document.body.appendChild(a1);
 
     document.body.appendChild(document.createElement("br"));
