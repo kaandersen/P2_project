@@ -10,13 +10,16 @@ function loadPairrings() {
     localStorage.pairs = JSON.stringify(myString);
     //let pairString = JSON.parse(localStorage.pair);
 
-    //Creates a link to continue working based on the existance of a questionnaire. 
+    //Creates a link to continue working based on the existance of a questionnaire???
 
     let p = document.createElement('p');
     document.body.appendChild(p);
 
     let ul = document.createElement("ul");
+    ul.id = "outputList"; //id for css use
     p.appendChild(ul);
+
+    let counter = 0;
 
     let pairringsString = JSON.parse(localStorage.pairs)
     //let pairrings = pairringsString.split('.');
@@ -24,12 +27,20 @@ function loadPairrings() {
         let pairrings = data.split('.');
         pairrings.forEach(element => {
             let li = document.createElement("li");
+            
+            if(counter%2 == 0){
+                li.id = "evenListItem";
+            } else{
+                li.id = "oddListItem";
+            }
+
+
             li.appendChild(document.createTextNode(element));
             ul.appendChild(li); 
+            counter ++;
         });
     });
+
+    //appends the ul list to the assigned container
+    document.getElementById("outputContent").appendChild(p);
 }
-
-/*Tjek at antal rum pladser passer med antal studerende
-
-Input validering for tal. */
