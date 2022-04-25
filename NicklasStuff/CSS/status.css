@@ -201,7 +201,7 @@ input[type=text] {
     width: 400px;
 }
 
-#Save, #Delete, #Publish{
+#Save, #Delete, #Publish, #Unpublish{
     padding: 20px; 
     border: 2px solid #e3e3e3;
     color: rgb(255, 255, 255);
@@ -211,14 +211,14 @@ input[type=text] {
     margin: 10px;
 }
 
-#Save:hover, #Delete:hover, #Publish:hover{ 
+#Save:hover, #Delete:hover, #Publish:hover, #Unpublish:hover{ 
     border: 2px solid #89a6ff;
     background: #2a2a2a;
     box-shadow: 0 6px #89a6ff;
     transform: translateY(-4px);
 }
 
-#Save:active, #Delete:active, #Publish:active {
+#Save:active, #Delete:active, #Publish:active, #Unpublish:active {
     border: 2px solid #e3e3e3;
     color: rgb(255, 255, 255);
     background: #2a2a2a;

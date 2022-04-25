@@ -28,6 +28,7 @@ function store(identifier) {
         localStorage.doneFlag = JSON.stringify(done);
     }
 }
+
 /**
  * This function related to the search bar 
  */
@@ -52,3 +53,4 @@ function searchQuestionnaire() {
         }
     }
 }
+
