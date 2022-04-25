@@ -18,9 +18,11 @@ export default class extends AbstractView {
             <div class="purposeContainer">
                 <h3>The Purpose of the project</h3> 
 
-                <p id="longText"> The purpose of this project is (BS incoming) to help allocate students into dorm rooms at universities, with a higher satisfaction rate in mind. 
-                    We have therefore created an opimization algorithm that allocates students based on certain traits. 
-                    These traits will be extracted based on the student answers that the factulty will be able to customize themseleves. 
+                <p id="longText"> The purpose of this project is to help allocate students into dorm rooms at universities, with a higher satisfaction rate in mind. 
+                    We have therefore implemented an opimization algorithm that allocates students based on certain traits. 
+                    These traits will be extracted based on the student answers to a questionnaire, that the factulty will be able to customize themselves. 
+
+                    This implementation is meant to save resources at the administration office, and hopefully reduce the need for room changes during the semester.
                 </p>
 
             </div>
