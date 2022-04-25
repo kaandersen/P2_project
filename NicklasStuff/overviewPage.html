@@ -42,27 +42,45 @@
             </div>
 
             <div class="choices">
-              <form action="/action_page.php" id="choices-form">
+              <!-- <form action="/action_page.php" id="choices-form"> -->
                 
                 <!-- ADD A SAVE BUTTON HERE SO THAT THERE ISN'T A SAVE BUTTON IN EVERY TABLE ROW -->
                 <!-- <input type="button" value="Save" id="Save" title="Save changes"> -->
 
-                <input type="button" value="Publish" id="Publish" title="Publish Selected">
+                <!-- <input type="button" value="Publish" id="Publish" title="Publish Selected"> -->
 
-                <input type="button" value="Unpublish" id="Unpublish" title="Unpublish Selected">
+                <!-- <input type="button" value="Unpublish" id="Unpublish" title="Unpublish Selected"> -->
 
                 <!-- CONSIDER ADDING A "DELETE" OPTION HERE-->
-                <input type="button" value="Delete" id="Delete" title="Delete Selected">
+                <!-- <input type="button" value="Delete" id="Delete" title="Delete Selected"> -->
 
                 <!-- CONSIDER GETTING RID OF THE OPTIONS BELLOW -->
                 <!-- <input type="button" value="Set the questionnaire to 'Finished'" id="finished"><br>
                 <input type="button" value="Set the questionnaire to 'Editable'" id="Editable"><br> -->
-              </form>
+              <!-- </form> -->
             </div>
             
             <div class="questionnaire-grid-container">
 
               <div class="questionnaire-grid">
+                <div class="choices2">
+                  <form action="/action_page.php" id="choices-form">
+                    
+                    <!-- ADD A SAVE BUTTON HERE SO THAT THERE ISN'T A SAVE BUTTON IN EVERY TABLE ROW -->
+                    <!-- <input type="button" value="Save" id="Save" title="Save changes"> -->
+    
+                    <input type="button" value="Publish" id="Publish" title="Publish Selected">
+    
+                    <input type="button" value="Unpublish" id="Unpublish" title="Unpublish Selected">
+    
+                    <!-- CONSIDER ADDING A "DELETE" OPTION HERE-->
+                    <input type="button" value="Delete" id="Delete" title="Delete Selected">
+    
+                    <!-- CONSIDER GETTING RID OF THE OPTIONS BELLOW -->
+                    <!-- <input type="button" value="Set the questionnaire to 'Finished'" id="finished"><br>
+                    <input type="button" value="Set the questionnaire to 'Editable'" id="Editable"><br> -->
+                  </form>
+                </div>
                 <div class="searchbar-container">
 
                   <input id="searchbar" onkeyup="searchQuestionnaire()" type="text" name="search" placeholder="Search questionnaire by title..">
@@ -72,18 +90,15 @@
                 <div class="quest-table-container">
                   <table class="quest-table" id="quest-table">
                     <thead class="quest-table-head">
-                      <th>Select</th>
                       <th>Name</th>
                       <th>Work Status</th>
                       <th>Edit</th>
                       <th>Published Status</th>
+                      <th>Select</th>
                     </thead>
 
                     <tbody>
                       <tr>
-                        <td>
-                          <input type="checkbox" name="selected" id="Selection">
-                        </td>
                         <td>
                           Sample
                         </td>
@@ -99,11 +114,12 @@
                         <td>
                           Unpublished
                         </td>
+                        <td>
+                          <input type="checkbox" name="selected" id="Selection">
+                        </td>
                       </tr>
                       <tr>
-                          <td>
-                            <input type="checkbox" name="selected" id="">
-                          </td>
+                          
                           <td>
                             Aalborg uni 2019
                           </td>
@@ -119,11 +135,12 @@
                           <td>
                             Unpublished
                           </td>
-                      </tr>
-                      <tr>
                           <td>
                             <input type="checkbox" name="selected" id="">
                           </td>
+                      </tr>
+                      <tr>
+                          
                           <td>
                             Aarhus uni 2020
                           </td>
@@ -139,11 +156,12 @@
                           <td>
                             Unpublished
                           </td>
-                      </tr>
-                      <tr>
                           <td>
                             <input type="checkbox" name="selected" id="">
                           </td>
+                      </tr>
+                      <tr>
+                          
                           <td>
                             Odense uni 2021
                           </td>
@@ -159,11 +177,12 @@
                           <td>
                             Unpublished
                           </td>
-                      </tr>
-                      <tr>
                           <td>
                             <input type="checkbox" name="selected" id="">
                           </td>
+                      </tr>
+                      <tr>
+                          
                           <td>
                             Kobenhavn uni 2022
                           </td>
@@ -178,6 +197,9 @@
                           </td>
                           <td>
                             Published
+                          </td>
+                          <td>
+                            <input type="checkbox" name="selected" id="">
                           </td>
                       </tr>
 

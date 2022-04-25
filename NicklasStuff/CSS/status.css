@@ -177,7 +177,7 @@ input[type=text] {
 
 .quest-table{
     border-collapse: collapse; /* Collapse borders */
-    width: 80%; 
+    width: 71.5%; /* weird percentage to allign table boarder with buttons*/ 
     border: 1px solid #ddd; /* Add a grey border */
     font-size: 18px; /* Increase font-size */
 }
@@ -209,6 +209,8 @@ input[type=text] {
     transition: 0.1s ease-in-out;
     width: 100px;
     margin: 10px;
+    margin-left: 12px;
+    margin-right: 12px;
 }
 
 #Save:hover, #Delete:hover, #Publish:hover, #Unpublish:hover{ 
