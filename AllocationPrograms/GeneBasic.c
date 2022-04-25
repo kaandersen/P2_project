@@ -112,7 +112,7 @@ int main(){
 
     int*** listOfRoommates = applyOptimization(listOfStudents, listOfGroups, amountOfGroups, listOfQuestionTypes, amountOfQuestions, maxPersonRoom, roomTypes, &inUseRooms, &beginningTotalValue, listOfIterationValues);   /* The hard part */
 
-    printf("\n\nSuccessfully created greedy list!!!!");
+    printf("\n\nSuccessfully created roommate list!!!!");
 
     /* free values */
     freeValues(listOfStudents, roomTypes, listOfQuestionTypes, listOfOverrulingQuestions, amountOfStudents);
@@ -120,10 +120,10 @@ int main(){
     printf("\n\nSuccessfully Freed values");
 
     /* Print output */  
-    createOutput("P2/output.txt", "P2/outputData.txt", "P2/outputGene.txt", listOfRoommates, inUseRooms, maxPersonRoom, amountOfQuestions, beginningTotalValue, listOfIterationValues); /* Prints the results */
+    createOutput("AllocationPrograms/output.txt", "AllocationPrograms/outputData.txt", "AllocationPrograms/outputGene.txt", listOfRoommates, inUseRooms, maxPersonRoom, amountOfQuestions, beginningTotalValue, listOfIterationValues); /* Prints the results */
 
 
-    printf("Why");
+    printf("Successfully Finished Program");
 
     return EXIT_SUCCESS;
 }   

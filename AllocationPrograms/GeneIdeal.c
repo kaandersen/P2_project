@@ -121,7 +121,7 @@ int main(){
     printf("\n\nSuccessfully Freed values");
 
     /* Print output */  
-    createOutput("P2/output.txt", "P2/outputData.txt", "P2/outputGene.txt", listOfRoommates, inUseRooms, maxPersonRoom, amountOfQuestions, beginningTotalValue, listOfIterationValues); /* Prints the results */
+    createOutput("AllocationPrograms/output.txt", "AllocationPrograms/outputData.txt", "AllocationPrograms/outputGene.txt", listOfRoommates, inUseRooms, maxPersonRoom, amountOfQuestions, beginningTotalValue, listOfIterationValues); /* Prints the results */
 
 
     printf("\nFinished program successfully\n");

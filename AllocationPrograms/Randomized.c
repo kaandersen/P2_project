@@ -97,13 +97,13 @@ int main(){
 
     int*** listOfRoommates = applyOptimization(listOfStudents, listOfGroups, amountOfGroups, listOfQuestionTypes, amountOfQuestions, maxPersonRoom, roomTypes, &inUseRooms);   /* The hard part */
 
-    printf("\n\nSuccessfully created optimized list!!!!");
+    printf("\n\nSuccessfully created randomized list!!!!");
 
     /* free values */
     //freeValues(listOfStudents, roomTypes, listOfQuestionTypes, listOfOverrulingQuestions, amountOfStudents);
 
     /* Print output */
-    createOutput("P2/output.txt", "P2/outputData.txt", listOfRoommates, inUseRooms, maxPersonRoom, amountOfQuestions); /* Prints the results */
+    createOutput("AllocationPrograms/output.txt", "AllocationPrograms/outputData.txt", listOfRoommates, inUseRooms, maxPersonRoom, amountOfQuestions); /* Prints the results */
 
 
     return EXIT_SUCCESS;
