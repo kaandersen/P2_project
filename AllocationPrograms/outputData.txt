@@ -1,0 +1,22 @@
+
+AverageSatisfaction: 94.840000 
+
+Rooms with satisfaction:   0% -  10% |   0 
+
+Rooms with satisfaction:  10% -  20% |   0 
+
+Rooms with satisfaction:  20% -  30% |   0 
+
+Rooms with satisfaction:  30% -  40% |   0 
+
+Rooms with satisfaction:  40% -  50% |   1 
+
+Rooms with satisfaction:  50% -  60% |   1 
+
+Rooms with satisfaction:  60% -  70% |   0 
+
+Rooms with satisfaction:  70% -  80% |   5 
+
+Rooms with satisfaction:  80% -  90% |  97 
+
+Rooms with satisfaction:  90% - 100% | 396 
