@@ -88,6 +88,6 @@ function helloWorld(){
         console.log(inputvalue);
     }
     if (location.pathname == "/admin"){
-        location.pathname = "/Nicklas";
+        location.pathname = "/Admin";
     }
 }

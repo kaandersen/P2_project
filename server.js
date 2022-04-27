@@ -10,9 +10,9 @@ app.get("/", (req, res) => {
     res.sendFile(path.resolve(__dirname, "HuginsStuff","frontend", "index.html"));
 });
 
-app.get("/Nicklas", (req, res) => {
-    app.use(express.static(path.resolve(__dirname, "NicklasStuff")));
-    res.sendFile(path.resolve(__dirname, "NicklasStuff", "redirectFrom.html"));
+app.get("/Admin", (req, res) => {
+    app.use(express.static(path.resolve(__dirname, "Admin")));
+    res.sendFile(path.resolve(__dirname, "Admin", "redirectFrom.html"));
 })
 
 app.get("/views/StudentID.txt", (req, res) => {
@@ -20,7 +20,7 @@ app.get("/views/StudentID.txt", (req, res) => {
 })
 
 app.get("/data.txt", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "NicklasStuff", "output.txt"))
+    res.sendFile(path.resolve(__dirname, "Admin", "output.txt"))
 })
 
 app.listen(process.env.PORT || 5000, () => console.log("Server running at http://localhost:5000/"));
