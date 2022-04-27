@@ -90,4 +90,8 @@ function helloWorld(){
     if (location.pathname == "/adminLogin"){
         location.pathname = "/Admin";
     }
+
+    if (location.pathname == "/studentLogin"){
+        location.pathname = "/StudentHome";
+    }
 }
