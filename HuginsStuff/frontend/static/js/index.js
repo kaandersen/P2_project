@@ -27,7 +27,7 @@ const router = async () => {
     const routes = [
         { path: "/", view: FrontPage },
         { path: "/student", view: Student },
-        { path: "/admin", view: Admin }, 
+        { path: "/adminLogin", view: Admin }, 
         { path: "/about", view: About}
     ];
 
@@ -87,7 +87,7 @@ function helloWorld(){
         let inputvalue = document.getElementById("logInID").value;
         console.log(inputvalue);
     }
-    if (location.pathname == "/admin"){
+    if (location.pathname == "/adminLogin"){
         location.pathname = "/Admin";
     }
 }
