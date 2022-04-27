@@ -26,7 +26,7 @@ const navigateTo = url => {
 const router = async () => {
     const routes = [
         { path: "/", view: FrontPage },
-        { path: "/student", view: Student },
+        { path: "/studentLogin", view: Student },
         { path: "/adminLogin", view: Admin }, 
         { path: "/about", view: About}
     ];
@@ -80,7 +80,7 @@ function giveFunctionality() {
 }
 
 function helloWorld(){
-    if (location.pathname == "/student"){
+    if (location.pathname == "/studentLogin"){
         fetch("/views/StudentID.txt").then(response => response.text()).then(data => {
             console.log(data);
         });
