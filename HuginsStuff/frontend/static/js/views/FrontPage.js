@@ -11,7 +11,7 @@ export default class extends AbstractView {
         <div class="aboutcontainer">
             <h1>Questionnaire based Student allocation</h1>
             <p>
-                Welcome to the Questionnaire Based Student Allocation program of 2022.<br>
+                Welcome to the Questionnaire Based Student Allocation Program of 2022.<br>
                 
                 
                 
