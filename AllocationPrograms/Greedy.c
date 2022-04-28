@@ -646,7 +646,7 @@ In this scenario we want to find the highest possible combination with an algoir
 */
 
 void getPairings(int** listOfRooms,int sizeOfRoom,int** compatibilityArray, int sizeOfCompatibilityArray, int* inUseRooms, int amountOfQuestions,int* listOfGroupStudents){
-    int highestChoiceValue=0;
+    int highestChoiceValue=-1;
     int currentPickValue;
     int amountOfCurrentPicks;
 
@@ -806,7 +806,7 @@ void fillCompatibilityArray(int** compatibilityArray,int** listOfAllStudents,int
             compatibilityArray[j][i]=compatibilityArray[i][j]; /* Since it's mirrored */
 
         }
-        compatibilityArray[i][j]=0; /* Fill diagonal with zeroes */
+        compatibilityArray[i][j]=-1; /* Fill diagonal with zeroes */
     }
 
 

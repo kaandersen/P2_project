@@ -578,7 +578,7 @@ void fillUpGroup(int* roomArray,int** compatibilityArray,int sizeOfCompatibility
 }
 
 void getPairings(int** listOfRooms,int sizeOfRoom,int** compatibilityArray, int sizeOfCompatibilityArray, int* inUseRooms, int amountOfQuestions,int* listOfGroupStudents){
-    int highestChoiceValue=0;
+    int highestChoiceValue=-1;
     int currentPickValue;
     int amountOfCurrentPicks;
     int personalBest;
@@ -749,7 +749,7 @@ void fillCompatibilityArray(int** compatibilityArray,int** listOfAllStudents,int
             compatibilityArray[j][i]=compatibilityArray[i][j]; /* Since it's mirrored */
 
         }
-        compatibilityArray[i][j]=0; /* Fill diagonal with zeroes */
+        compatibilityArray[i][j]=-1; /* Fill diagonal with zeroes */
     }
 
 
