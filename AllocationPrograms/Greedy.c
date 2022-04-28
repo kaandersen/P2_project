@@ -806,7 +806,7 @@ void fillCompatibilityArray(int** compatibilityArray,int** listOfAllStudents,int
             compatibilityArray[j][i]=compatibilityArray[i][j]; /* Since it's mirrored */
 
         }
-        compatibilityArray[i][j]=-1; /* Fill diagonal with zeroes */
+        compatibilityArray[i][j]=-2; /* Fill diagonal with zeroes */
     }
 
 
