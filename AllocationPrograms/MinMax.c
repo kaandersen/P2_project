@@ -342,7 +342,7 @@ group* generateGroups(int** listOfStudents, int amountOfStudents, int* listOfOve
 }
 
 void reduceGroup(group* currentGroup, group** endGroup){                             /* Worried there will be an issue with student amounts just below a multiplication of maxStudentsPerGroup */
-    int amountOfNewGroups = ((1+currentGroup->amountOfStudents)/GROUPS_MAX_SIZE);   /*+1 to avoid getting 2 new groups at 40*/
+    int amountOfNewGroups = ((currentGroup->amountOfStudents)/GROUPS_MAX_SIZE)-1;   /*-1 cause there is also the starting group*/
     int studentsPerNewGroup = currentGroup->amountOfStudents/(amountOfNewGroups+1); /* +1 cause there is also the starting group */
     int i, j;
     for (i=0;i<amountOfNewGroups;i++){
