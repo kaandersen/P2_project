@@ -187,6 +187,18 @@ input[type=text] {
     padding: 12px; /* Add padding */
 }
 
+.quest-table #nameQuest{
+    width:350px;
+}
+
+.quest-table #nameEdit{
+    width:300px;
+}
+
+.quest-table #namePublish{
+    width: 400px;
+}
+
 .quest-table  tr {
     /* Add a bottom border to all table rows */
     border-bottom: 1px solid #ddd;
