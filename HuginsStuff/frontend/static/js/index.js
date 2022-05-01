@@ -26,8 +26,8 @@ const navigateTo = url => {
 const router = async () => {
     const routes = [
         { path: "/", view: FrontPage },
-        { path: "/student", view: Student },
-        { path: "/admin", view: Admin }, 
+        { path: "/studentLogin", view: Student },
+        { path: "/adminLogin", view: Admin }, 
         { path: "/about", view: About}
     ];
 
@@ -70,22 +70,52 @@ document.addEventListener("DOMContentLoaded", () => {
     router();
 });
 
+
+//if login button is clicked on either page
 function giveFunctionality() {
     let buttonID = document.getElementById("logInButton");
-    if (buttonID) { //if login button is clicked
+    if (buttonID) { 
         buttonID.addEventListener("click", helloWorld);
     } 
 }
 
+//redirects into the Admin or student folder after login
 function helloWorld(){
-    if (location.pathname == "/student"){
-        fetch("/views/StudentID.txt").then(response => response.text()).then(data => {
-            console.log(data);
-        });
-        let inputvalue = document.getElementById("logInID").value;
-        console.log(inputvalue);
+    let adminIDs = ["12345", "67891", "23456", "56789"];
+    let studentIDs = ["54321", "19876", "65432", "98765"];
+
+    let loginForm = document.getElementById("login-form");
+    let userID = loginForm.ID.value;
+
+    console.log(userID);
+
+    // if (location.pathname == "/studentLogin"){
+    //     if(userID == studentIDs[studentIDs.indexOf(userID)]){
+
+    //         fetch("/views/StudentID.txt").then(response => response.text()).then(data => {
+    //             console.log(data);
+    //         });
+    //         let inputvalue = document.getElementById("logInID").value;
+    //         console.log(inputvalue);    
+
+    //     } else{
+    //         alert("Incorrect student ID");
+    //     }
+
+    // }
+    if (location.pathname == "/adminLogin"){
+        if(userID == adminIDs[adminIDs.indexOf(userID)]){
+            location.pathname = "/Admin";
+        } else{
+            alert("Incorrect admin ID");
+        }
     }
-    if (location.pathname == "/admin"){
-        location.pathname = "/Nicklas";
+
+    if (location.pathname == "/studentLogin"){
+        if(userID == studentIDs[studentIDs.indexOf(userID)]){
+            location.pathname = "/StudentHome";
+        } else{
+            alert("Incorrect student ID");
+        }  
     }
 }

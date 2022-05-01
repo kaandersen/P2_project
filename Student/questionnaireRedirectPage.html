@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaires</title>
+    <!--            js FILE              -->
+    <script src="questionnaireRedirectPage.js"></script>
+    <!--            CSS FILE              -->
+    <link rel="stylesheet" href="./CSS/style.css">
+
+</head>
+<body>
+    <style>
+        .main-content{
+            display: grid;
+            width: 100vw;
+            height: 100vh; 
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 200px 1fr;
+            box-sizing: border-box;
+        }
+
+        .info{
+            grid-row: 1 / 2;
+            grid-column: 1/2;
+        }
+
+        .info-text{
+            border-style: solid;
+            border-color: rgba(207, 202, 202, 0.699);
+            text-size-adjust: 12px;
+            max-width:620px; 
+            padding: 10px;
+        }
+
+        .mid-content{
+            grid-row: 2 / 3;
+            grid-column: 1 / 2;
+
+            display: grid;
+            width: 100%;
+            height: 100%; 
+            grid-template-columns: 50px 1fr 50px;
+            grid-template-rows: 100px 1fr 100px;
+            box-sizing: border-box;
+        }
+
+        .affirmative-content{
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+
+            border-style: dashed;
+            border-radius: 2em;
+            border-color: rgba(207, 202, 202, 0.699);
+            text-align: center;
+        }
+
+        .redirection-to-quest-editor{
+            display: block;
+            padding: 18px 18px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            width: 100px;
+            background-color: #2a2a2a;
+            text-align: center;
+            border: 2px solid #2a2a2a;
+            transition: 0.1s ease-in-out;
+            margin: auto ;
+        }
+        .redirection-to-quest-editor:hover {
+            background: #d3d3d3;
+            border: 2px solid #89a6ff;
+            background: #2a2a2a;
+            box-shadow: 0 6px #89a6ff;
+            transform: translateY(-4px);
+        }
+        .redirection-to-quest-editork:active {
+            border: 2px solid #e3e3e3;
+            color: rgb(255, 255, 255);
+            background: #2a2a2a;
+            box-shadow: none;
+            transform: translateY(0px);
+        }
+
+        .text-content{
+            text-align: center;
+            font-size: 18px;
+        }
+
+
+    </style>
+
+    <div class="container">
+
+        <div class="header">
+            <div class="backButton">
+                <a href="/" title="Back to Front Page">
+                  <image src="./icons/arrow2.png">
+                  </a>
+            </div>
+        </div>
+  
+        <div class="navigation">
+            <a href="./StudentHomePage.html" class="nav__link" data-link>Home Page</a>
+            <a href="./questionnaireRedirectPage.html" class="nav__link" data-link>Questionnaires</a>
+        </div>
+  
+            <div class="main-content">
+                <div class="info">
+                    <h1>Available Questionnaires</h1>
+                    <div class="info-text">
+                        <p>This page will update as your administrator publishes a questionnaire.</p>
+                    </div>
+                    
+                </div>
+
+                <div class="mid-content">
+                    <div class="affirmative-content" id="content">
+
+
+
+
+                    </div>
+                    
+
+                </div>
+            
+  
+            </div>
+  
+        <div class="footer"></div>
+  
+      </div>
+</body>
+</html>

@@ -8,19 +8,19 @@ export default class extends AbstractView {
 
     async getHtml() {
         return `
+        <div class="aboutcontainer">
             <h1>Questionnaire based Student allocation</h1>
             <p>
-                Welcome to our questionnaire based student allocation program, please proceed:
+                Welcome to the Questionnaire Based Student Allocation Program of 2022.<br>
+                
+                
+                
+                
             </p>
+
+        </div>
         
-            <form id="loginRedirectForm">
-            <p id="LoginredirectP">
-                <a href="./student" target="_parent"> <button type="button" id="redirectStudent">Student login </button></a>
-                <br>
-                <br>
-                <a href="./admin" target="_parent"><button type="button" id="redirectAdmin">Admin login</button></a>
-            </p>
-            </form>
+            
         `;
     }
 }

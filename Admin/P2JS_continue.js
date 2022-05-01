@@ -1,5 +1,13 @@
 window.addEventListener("load", checkForQuestionnaire);
 
+
+/**
+ * 
+ * Karen: I would like it if this file / webpage was called "Editor" instead, as this is where the user will be customizing their questionnaire
+ * 
+*/
+
+
 //This function removes the functionality to edit your questionnaire, if it is set as done. 
 function checkForQuestionnaire() {
     //Checks for the done state of the questionnaire
@@ -10,7 +18,7 @@ function checkForQuestionnaire() {
     let linkText1 = document.createTextNode("Change done state");
     a1.appendChild(linkText1);
     a1.title = "Change state";
-    a1.href = "./P2HTML_finish.html";
+    a1.href = "./StatusPage.html";
     document.body.appendChild(a1);
 
     document.body.appendChild(document.createElement("br"));

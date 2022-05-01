@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Finish questionnaire</title>
+    <script src="overviewPage.js"></script>
+
+    <!--            CSS FILE              -->
+    <link rel="stylesheet" href="./CSS/status.css">
+
+  </head>
+  <body>
+    <style>
+      .editButton{
+        background-color: white;
+        width: 40px;
+      }
+    </style>
+    <div class="container">
+
+      <div class="header">
+        <div class="backButton">
+          <a href="/" title="Back to Front Page">
+            <image src="./icons/arrow2.png">
+            </a>
+        </div>
+      </div>
+
+      <div class="navigation">
+        <a href="./redirectFrom.html" class="nav__link" data-link>Front Page</a>
+        <a href="./overviewPage.html" class="nav__link" data-link>Overview Page</a>
+        <a href="./P2HTML_showOutput.html" class="nav__link" data-link>Results</a>
+      </div>
+
+        <div class="main-content">
+          <div class="medium-grid">
+            <div class="intstructions">
+              <h1>Status of your Questionnaires</h1> <br>
+              <p>When created, questionnaires are automatically marked as "Editing". <br><br>
+                In order to submit a questionnaire to Students, you first need to mark the questionnaire as "Finished"
+              </p>
+            </div>            
+            <div class="questionnaire-grid-container">
+
+              <div class="questionnaire-grid">
+                <div class="choices2">
+                  <form action="/action_page.php" id="choices-form">
+                    
+                    <!-- ADD A SAVE BUTTON HERE SO THAT THERE ISN'T A SAVE BUTTON IN EVERY TABLE ROW -->
+                    <!-- <input type="button" value="Save" id="Save" title="Save changes"> -->
+    
+                    <input type="button" value="Publish" id="Publish" title="Publish Selected" onclick="publish()">
+    
+                    <input type="button" value="Unpublish" id="Unpublish" title="Unpublish Selected" onclick="unpublish()">
+    
+                    <!-- CONSIDER ADDING A "DELETE" OPTION HERE-->
+                    <input type="button" value="Delete" id="Delete" title="Delete Selected">
+    
+                    <!-- CONSIDER GETTING RID OF THE OPTIONS BELLOW -->
+                    <!-- <input type="button" value="Set the questionnaire to 'Finished'" id="finished"><br>
+                    <input type="button" value="Set the questionnaire to 'Editable'" id="Editable"><br> -->
+                  </form>
+                </div>
+                <div class="searchbar-container">
+
+                  <input id="searchbar" onkeyup="searchQuestionnaire()" type="text" name="search" placeholder="Search questionnaire by title..">
+
+                </div>
+
+                <div class="quest-table-container">
+                  <table class="quest-table" id="quest-table">
+                    <thead class="quest-table-head">
+                      <th id="nameQuest">Name</th>
+                      <th id="nameEdit">Edit</th>
+                      <th id="namePublish">Published Status</th>
+                      <th>Select</th>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>
+                          Sample
+                        </td>
+                        <td>
+                          <button id="edit-sample" title="Edit questionnaire" class="editButton">Edit</button> <!--ADD LINK TO ELIAS' PAGES HERE-->
+                        </td>
+                        <td>
+                          Unpublished
+                        </td>
+                        <td>
+                          <input type="checkbox" name="selected" id="Selection">  
+                        </td>
+                      </tr>
+                      <tr>
+                          
+                          <td>
+                            Aalborg uni 2019
+                          </td>
+                          <td>
+                            <button id="edit-Aalborg-uni-2019" title="Edit questionnaire" class="editButton">Edit</button>
+                          </td>
+                          <td>
+                            Unpublished
+                          </td>
+                          <td>
+                            <input type="checkbox" name="selected" id="">
+                          </td>
+                      </tr>
+                      <tr>
+                          
+                          <td>
+                            Aarhus uni 2020
+                          </td>
+                          <td>
+                            <button id="edit-Aarhus-uni-2020" title="Edit questionnaire" class="editButton">Edit</button>
+                          </td>
+                          <td>
+                            Unpublished
+                          </td>
+                          <td>
+                            <input type="checkbox" name="selected" id="">
+                          </td>
+                      </tr>
+                      <tr>
+                          
+                          <td>
+                            Odense uni 2021
+                          </td>
+                          
+                          <td>
+                            <button id="edit-Odense-uni-2021" title="Edit questionnaire" class="editButton">Edit</button>
+                          </td>
+                          <td>
+                            Unpublished
+                          </td>
+                          <td>
+                            <input type="checkbox" name="selected" id="">
+                          </td>
+                      </tr>
+                      <tr>
+                          
+                          <td>
+                            Kobenhavn uni 2022
+                          </td>
+                          
+                          <td>
+                            <button id="edit-Kobenhavn-uni-2022" title="Edit questionnaire" class="editButton">Edit</button>
+                          </td>
+                          <td>
+                            Published
+                          </td>
+                          <td>
+                            <input type="checkbox" name="selected" id="">
+                          </td>
+                      </tr>
+
+
+
+                    </tbody>
+
+                  </table>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <div class="footer"></div>
+
+    </div>
+
+  </body>
+</html>

@@ -31,7 +31,7 @@ function createNewRoomSize() {
     let label = document.createElement("label");
     label.setAttribute = ("for","lname");
     label.id = "label#"+counterString+"rooms";
-    label.innerHTML = "Amount of "+ counterString  +" person rooms:";
+    label.innerHTML = "Amount of "+ counterString  +" person rooms: ";
 
     let linebreak = document.createElement("br");
     let form = document.getElementById("roomDefiner"); //changed name so that it affects the fieldset instead of the form
@@ -68,6 +68,14 @@ function validateData() {
 //collects data from input fields when button is pressed and saves it to the localStorage.
 function collectData() {
     let myString = "";
+
+    /* * 
+    *   
+    *   possibly add the ability to also save the name of the questionnairef from the first field. 
+    *   Related question: how are we naming the file containing the questionnaire  set up by the teacher
+    * 
+    * */
+
     localStorage.numberOfStudents = JSON.stringify(document.getElementById("#students").value);
     for (let index = 1; index <= counter; index++) {
         indexString = index.toString(10);
