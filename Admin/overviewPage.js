@@ -1,5 +1,10 @@
 window.addEventListener("mousemove", giveFunctionality);
 
+window.addEventListener('load', (event) => {
+    console.log('page is fully loaded');
+    loadLocalStorage();
+});
+
 //Gives functionality to the buttons and passes along identifiers to determine what button was pressed.
 function giveFunctionality() {
     console.log("Hi");
@@ -42,7 +47,7 @@ function searchQuestionnaire() {
 
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[1];
+        td = tr[i].getElementsByTagName("td")[0];
         if (td) {
             txtValue = td.textContent || td.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -54,3 +59,66 @@ function searchQuestionnaire() {
     }
 }
 
+/**
+ *  This function is meant to publish questionnaires
+ *  <input type="checkbox" name="selected" id="Selection">  
+ * */ 
+function publish(){
+    let rows = document.getElementsByTagName('tr'); //amounts of rows in table
+    let validations = new Array(rows.length);
+
+    for(let i=0; i < rows.length; i++){//run through all rows
+        let checkbox = rows[i].getElementsByTagName("input");
+        validations[i] = validate(checkbox);
+    }
+
+    for(let i=0; i < validations.length; i++){
+        if(validations[i] == true){
+            //change local storage variable to be published
+        }
+    }
+}
+
+/**
+ *  This function is meant to unpublish questionnaires
+ * */ 
+function unpublish(){
+    let rows = document.getElementsByTagName('tr'); //amounts of rows in table
+    let validations = new Array(rows.length);
+
+    for(let i=0; i < rows.length; i++){//run through all rows
+        let checkbox = rows[i].getElementsByTagName("input");
+        validations[i] = validate(checkbox);
+    }
+
+    for(let i=0; i < validations.length; i++){
+        if(validations[i] == true){
+            //change local storage variable to be unpublished
+        }
+    }
+
+}
+
+/**
+ * This function checks if  checkbox is selected or not
+ * @param {*} checkbox 
+ * @returns a boolean true or false
+ */
+function validate(checkbox){ 
+    if(checkbox.checked){
+        return true;
+    } else{
+        return false;
+    }
+}
+
+/**
+ * This functions should load the "unpulished/pulished" tags into the table on page load, by
+ * retrievning data from local storage....
+ */
+function loadLocalStorage(){
+    let rows = document.getElementsByTagName('tr'); //amounts of rows in table
+
+
+
+}
