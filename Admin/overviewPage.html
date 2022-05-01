@@ -39,27 +39,7 @@
               <p>When created, questionnaires are automatically marked as "Editing". <br><br>
                 In order to submit a questionnaire to Students, you first need to mark the questionnaire as "Finished"
               </p>
-            </div>
-
-            <div class="choices">
-              <!-- <form action="/action_page.php" id="choices-form"> -->
-                
-                <!-- ADD A SAVE BUTTON HERE SO THAT THERE ISN'T A SAVE BUTTON IN EVERY TABLE ROW -->
-                <!-- <input type="button" value="Save" id="Save" title="Save changes"> -->
-
-                <!-- <input type="button" value="Publish" id="Publish" title="Publish Selected"> -->
-
-                <!-- <input type="button" value="Unpublish" id="Unpublish" title="Unpublish Selected"> -->
-
-                <!-- CONSIDER ADDING A "DELETE" OPTION HERE-->
-                <!-- <input type="button" value="Delete" id="Delete" title="Delete Selected"> -->
-
-                <!-- CONSIDER GETTING RID OF THE OPTIONS BELLOW -->
-                <!-- <input type="button" value="Set the questionnaire to 'Finished'" id="finished"><br>
-                <input type="button" value="Set the questionnaire to 'Editable'" id="Editable"><br> -->
-              <!-- </form> -->
-            </div>
-            
+            </div>            
             <div class="questionnaire-grid-container">
 
               <div class="questionnaire-grid">
@@ -69,9 +49,9 @@
                     <!-- ADD A SAVE BUTTON HERE SO THAT THERE ISN'T A SAVE BUTTON IN EVERY TABLE ROW -->
                     <!-- <input type="button" value="Save" id="Save" title="Save changes"> -->
     
-                    <input type="button" value="Publish" id="Publish" title="Publish Selected">
+                    <input type="button" value="Publish" id="Publish" title="Publish Selected" onclick="publish()">
     
-                    <input type="button" value="Unpublish" id="Unpublish" title="Unpublish Selected">
+                    <input type="button" value="Unpublish" id="Unpublish" title="Unpublish Selected" onclick="unpublish()">
     
                     <!-- CONSIDER ADDING A "DELETE" OPTION HERE-->
                     <input type="button" value="Delete" id="Delete" title="Delete Selected">
@@ -90,10 +70,9 @@
                 <div class="quest-table-container">
                   <table class="quest-table" id="quest-table">
                     <thead class="quest-table-head">
-                      <th>Name</th>
-                      <th>Work Status</th>
-                      <th>Edit</th>
-                      <th>Published Status</th>
+                      <th id="nameQuest">Name</th>
+                      <th id="nameEdit">Edit</th>
+                      <th id="namePublish">Published Status</th>
                       <th>Select</th>
                     </thead>
 
@@ -103,31 +82,19 @@
                           Sample
                         </td>
                         <td>
-                          <select name="Status" id="Status">
-                            <option value="Editing">Editing</option>
-                            <option value="Finished">Finished</option>
-                          </select>
-                        </td>
-                        <td>
-                          <button id="edit-sample" title="Edit questionnaire" class="editButton">Edit</button>
+                          <button id="edit-sample" title="Edit questionnaire" class="editButton">Edit</button> <!--ADD LINK TO ELIAS' PAGES HERE-->
                         </td>
                         <td>
                           Unpublished
                         </td>
                         <td>
-                          <input type="checkbox" name="selected" id="Selection">
+                          <input type="checkbox" name="selected" id="Selection">  
                         </td>
                       </tr>
                       <tr>
                           
                           <td>
                             Aalborg uni 2019
-                          </td>
-                          <td>
-                            <select name="Status" id="Status">
-                              <option value="Editing">Editing</option>
-                              <option value="Finished">Finished</option>
-                            </select>
                           </td>
                           <td>
                             <button id="edit-Aalborg-uni-2019" title="Edit questionnaire" class="editButton">Edit</button>
@@ -145,12 +112,6 @@
                             Aarhus uni 2020
                           </td>
                           <td>
-                            <select name="Status" id="Status">
-                              <option value="Editing">Editing</option>
-                              <option value="Finished">Finished</option>
-                            </select>
-                          </td>
-                          <td>
                             <button id="edit-Aarhus-uni-2020" title="Edit questionnaire" class="editButton">Edit</button>
                           </td>
                           <td>
@@ -165,12 +126,7 @@
                           <td>
                             Odense uni 2021
                           </td>
-                          <td>
-                            <select name="Status" id="Status">
-                              <option value="Editing">Editing</option>
-                              <option value="Finished">Finished</option>
-                            </select>
-                          </td>
+                          
                           <td>
                             <button id="edit-Odense-uni-2021" title="Edit questionnaire" class="editButton">Edit</button>
                           </td>
@@ -186,12 +142,7 @@
                           <td>
                             Kobenhavn uni 2022
                           </td>
-                          <td>
-                            <select name="Status" id="Status">
-                              <option value="Editing">Editing</option>
-                              <option value="Finished">Finished</option>
-                            </select>
-                          </td>
+                          
                           <td>
                             <button id="edit-Kobenhavn-uni-2022" title="Edit questionnaire" class="editButton">Edit</button>
                           </td>
