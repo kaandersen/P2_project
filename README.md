@@ -5,6 +5,7 @@ Setup server - in terminal:
 npm init -y
 npm i express 
 npm i csv-parser
+npm i --save-dev nodemon
 npm i body-parser
 npm i csv-writer
 

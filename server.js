@@ -45,11 +45,6 @@ app.get("/EliasStuff/public", (req, res) => {
     app.use("/EliasStuff/public", express.static(path.resolve(__dirname, "EliasStuff", "public")));
 });
 
-app.get("/Homepage", (req, res) => {
-  app.use(express.static(path.resolve(__dirname, "EliasStuff", "public")));
-  res.sendFile(path.resolve(__dirname, "EliasStuff", "public", "index.html"));
-});
-
 console.log("HIs3llæ!!");
 
 const csvparser = require("./EliasStuff/public/csv.js");
@@ -59,8 +54,6 @@ app.post("/writetocsv", (req, res) => {
   const data = req.body.questionsArray;
   const fileName = req.body.fileName;
   console.log("V ",fileName);
-
-
 
   const WritingToCsv = require("csv-writer").createObjectCsvWriter;
   const csvObject = WritingToCsv({
