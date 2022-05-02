@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/EliasStuff/public/newStyle.css" />
+    <title>HomePage</title>
+</head>
+<body>
+    <header></header>
+
+    <main class="page-container">
+        <div class="questionaire-container" id="GFG">
+          <h1 class="page-heading">Start page</h1>
+          <div class="header">
+            <button class="button-blue" id="create" onclick="createQuestionaire();">Create</button>
+
+            <div class="button-container" id="btn-container">
+              <div class="button-list-wrapper" id="btn-list-wrapper"></div>
+              <div class="Button-edit-list-wrapper" id="btn-edit-list-wrapper"></div>
+            </div>
+          </div>
+
+        <div id="questions-container"></div>
+        </div>
+
+    </main>
+
+    <script>
+        getCsvData();
+
+        async function getCsvData() {
+        const response = await fetch("EliasStuff/public/Questionaire.csv");
+        const CSVdata = await response.text();
+        console.table(CSVdata);
+}
+    </script>
+    <script src="Homepage.js"></script>
+
+
+</body>
+</html>

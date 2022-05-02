@@ -35,6 +35,12 @@ body {
   gap: 20px;
 }
 
+.button-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .button-blue {
   background-color: var(--blue);
   color: #fff;
@@ -190,44 +196,6 @@ body {
 
 .yes-no-wrapper p {
   margin: 0;
-}
-
-
-
-
-/*style for amount of students*/
-
-.student-number-container{
-  min-height: 100px;
-  width: 25%;
-  background-color: var(--blue);
-  border: 1px solid var(--blue);
-  padding: 5px;
-  position: relative;
-  border-style: solid;
-  float: right;
-  top: 30px;
-}
-
-.student-number-header {
-  min-height: 40px;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 7px solid var(--blue);
-  flex: 1;
-  color: black;
-}
-
-.student-number-content {
-  min-height: 70px;
-  width: 100%;
-  background-color: white;
-  border: 7px solid var(--blue);
-  padding: 5px;
-  position: relative;
-  border-style: solid;
 }
 
 
