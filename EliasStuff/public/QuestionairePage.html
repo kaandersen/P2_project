@@ -12,16 +12,9 @@
 
     <main class="page-container">
       <div class="questionaire-container" id="GFG">
-        <h1 class="page-heading">Questionaire Page</h1>
-
+        <h1 class="page-heading">Create Questionaire</h1>
         <div class="header">
-          <input
-            type="text"
-            style="height: 35px; width: 450px"
-            id="fileName-input"
-            placeholder="Roommate survey for x..."
-          />
-          <div class="button-container">
+          <div class="button-container" id="btn-container">
             <button
               class="button-blue"
               id="SaveButton"
@@ -29,14 +22,11 @@
             >
               Save
             </button>
-            <button class="button-blue" id="Exit">Exit</button>
+        <button class="button-blue" id="Exit">Cancel</button>
+       <!--     <button class="button-blue" id="Test" onclick="testBtn()">Test</button> -->
+            <div class="button-list-wrapper" id="btn-list-wrapper"></div>
           </div>
         </div>
-
-      <div class="student-number-container">
-          <div class="student-number-header">Amounts of students</div>
-        <input class="student-number-content" placeholder="Enter number of students..">
-      </div>
 
      <!-- <div id="rooms-container" class="rooms-class-container">
         <div class="rooms-main-header">Define rooms</div>
@@ -48,15 +38,15 @@
       </div>
     </main>
     <script>
-      getCsvData();
+      /*getCsvData();
 
       async function getCsvData() {
         const response = await fetch("/public/Questionaire.csv");
         const CSVdata = await response.text();
-        console.log(CSVdata);
-      }
+        console.table(CSVdata);
+      }*/
 
-      document.getElementById("Exit").onclick = function () {
+     document.getElementById("Exit").onclick = function () {
         location.href = "/Homepage";
     };
     </script>

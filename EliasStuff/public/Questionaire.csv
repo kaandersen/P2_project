@@ -1,4 +1,6 @@
-ID,Question,Answer
-1,Icey1,yes
-2,Question2?,no
-3,Question3?,maybe
+questionaireid,id,question,answerOption,checkbox
+2,0,strawwberry,TEXT,
+2,1,Apple,SCALE,overruling
+3,2,Fly,TEXT,overruling
+3,3,Github,SCALE,overruling
+3,4,Bob,SCALE,

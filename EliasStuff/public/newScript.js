@@ -1,41 +1,11 @@
 var questionsArray = [];
+var questionaireArray = [];
 var roomArray = [];
 var counter = 0;
-// render question & rooms
+var _IDIndex = 1;
+var globalVar;
+var IDvariable = 0;
 
-
-function renderRooms() {
-  //container
-  var roomContainer = document.createElement("div");
-
-  //Wrapper
-
-  //header
-  var roomHeader = document.createElement("div");
-
-  //room content
-  var roomContainer = document.createElement("div");
-  var roomInput = document.createElement("input");
-
-
-  //Classes & co.
-  roomContainer.className = `room-wrapper ${roomArray.length}`;
-  roomHeader.className = "room-header";
-  roomContent.className = "room-content";
-  roomInput.className = "room-input";
-  roomInput.placeholder = "Enter number of rooms of x size";
-  roomHeader.innerHTML = "rooms of" + roomArray.length + "students";
-
-
-  //appending to header
-  roomContent.appendChild(roomInput);
-  roomContainer.appendChild(roomHeader);
-  roomContainer.appendChild(roomContent);
-
-  // adding content-wrapper to questions container
-  document.getElementById("room-container").appendChild(roomContainer);
-
-}
 
 
 function renderQuestion() {
@@ -48,6 +18,12 @@ function renderQuestion() {
   var questionHeading = document.createElement("div");
   var crossButton = document.createElement("button");
   var optionContainer = document.createElement("div");
+
+  
+ 
+ 
+
+  
 
 
   // question content
@@ -66,14 +42,20 @@ function renderQuestion() {
   var textInputOption = document.createElement("button");
   var trueFalseOption = document.createElement("button");
 
+  scaleOption.value = "SCALE";
+  textInputOption.value = "TEXT";
+  trueFalseOption.value = "TRUE/FALSE"
+
 
   //overruling
   var overrulingCheckbox = document.createElement("input");
+  var overrulingLabel = document.createElement("label");
+  overrulingLabel.innerText = "Overruling";
+  overrulingLabel.id = "overruling"
+
   overrulingCheckbox.type = "checkbox";
-  overrulingCheckbox.innerText = "Overruling";
-  overrulingCheckbox.innerHTML = "Overruling";
-  overrulingCheckbox.name = "overruling";
   overrulingCheckbox.id = "overruling";
+  overrulingCheckbox.value = "overruling";
 
 
   //classes
@@ -83,6 +65,9 @@ function renderQuestion() {
   crossButton.className = "cross-icon-button";
   questionContent.className = "question-content";
   questionInput.className = "question-input";
+  questionInput.name = "question-input-name";
+  questionInput.setAttribute("id","input-"+ _IDIndex++);
+  //questionInput.id = "question-input-id";
   questionInput.placeholder = "question content...";
   optionContainer.className = "option-container";
   questionHeading.className = "question-heading";
@@ -107,11 +92,18 @@ function renderQuestion() {
   questionHeader.appendChild(questionNumber);
   questionHeader.appendChild(questionHeading);
   questionHeader.appendChild(crossButton);
+  questionContent.appendChild(questionInput);
+
+
+  
 
   // adding question input , option container to question content
-  questionContent.appendChild(questionInput);
+  for (let i = 0; i < questionsArray; i++) {
+    questionContent.appendChild(overrulingLabel);
+    console.log("goodnight " + [i]);
+  }
   questionContent.appendChild(overrulingCheckbox);
-
+  questionContent.appendChild(overrulingLabel);
   
   questionContent.appendChild(optionContainer);
   questionContent.appendChild(answerTypeWrapper);
@@ -139,31 +131,46 @@ function renderQuestion() {
 
   questionInput.onchange = (event) => handleQuestionInputChange(event, index);
   answerType.onclick = () => handleDropdownClick(index);
-  scaleOption.onclick = () => handleScaleClick(optionContainer, index);
-  textInputOption.onclick = () => handleTextInputClick(optionContainer, index);
-  trueFalseOption.onclick = () => handleTrueFalseClick(optionContainer, index);
+  scaleOption.onclick = (event) => handleScaleClick(event, optionContainer, index);
+  textInputOption.onclick = (event) => handleTextInputClick(event, optionContainer, index);
+  trueFalseOption.onclick = (event) => handleTrueFalseClick(event, optionContainer, index);
+  overrulingCheckbox.onclick = (event) => handleCheckboxClick(event, index);
+
 
      // delete wrapper (Contains Error)
      function DeleteQuestionWrapper(){
       crossButton.addEventListener("click", function () {
         document.getElementById("questions-container").removeChild(questionContainer);
+
+        questionsArray[index - 1].checkbox = null;
+        questionsArray[index - 1].question = null;
+        questionsArray[index - 1].answerOption = null;
+        questionsArray[index - 1].answer = null;
+
   
-        console.log(questionNumber.innerHTML, "this is number", questionsArray.length - 1);
-        questionNumber.innerHTML = questionsArray.length - 1;
+        /*console.log(questionNumber.innerHTML, "this is number", questionsArray.length - 1);
+        questionNumber.innerHTML = questionsArray.length - 1;*/
       });}
       DeleteQuestionWrapper();
+
+  random = questionInput.id
+  console.log(random);
 }
+
 
 // on add button click
 
 function onNewQuestionAdd() {
+  //var randomNumber = Math.floor((Math.random() * 100) + 1);
   questionsArray = [
     ...questionsArray,
-    { id: questionsArray.length, question: "", answer: "" },
+    {id: questionsArray.length, question: "", answerOption: "", answer: "", checkbox: ""},
   ];
 
+  //console.log(globalVar);
   renderQuestion();
   counter = counter + 1;
+  
 }
 
 // handle answer type dropdown
@@ -173,7 +180,7 @@ function handleDropdownClick(index) {
   dropdown.classList.toggle("answer-type-list-show");
 }
 
-function handleScaleClick(optionContainer, index) {
+function handleScaleClick(event, optionContainer, index) {
   document.getElementsByClassName("answer-type")[index - 1].innerText = "Scale";
   var scaleOptionsWrapper = document.createElement("div");
   var agreeText = document.createElement("p");
@@ -228,9 +235,15 @@ function handleScaleClick(optionContainer, index) {
 
   optionContainer.innerHTML = "";
   optionContainer.appendChild(scaleOptionsWrapper);
+
+  console.log("Bad day?");
+
+  questionsArray[index - 1].answerOption = event.target.value;
+  
+
 }
 
-function handleTextInputClick(optionContainer, index) {
+function handleTextInputClick(event, optionContainer, index) {
   document.getElementsByClassName("answer-type")[index - 1].innerText =
     "Text Input";
   var yourAnswerWrapper = document.createElement("div");
@@ -248,9 +261,18 @@ function handleTextInputClick(optionContainer, index) {
   optionContainer.appendChild(yourAnswerWrapper);
 
   textInput.onchange = (event) => handleTextInputChange(event, index);
+
+  questionsArray[index - 1].answerOption = event.target.value;
 }
 
-function handleTrueFalseClick(optionContainer, index) {
+//overruling
+function handleCheckboxClick(event, index) {
+  
+    questionsArray[index - 1].checkbox = event.target.value;
+  
+}
+
+function handleTrueFalseClick(event, optionContainer, index) {
   document.getElementsByClassName("answer-type")[index - 1].innerText =
     "True/False";
   var trueFalseOptionsWrapper = document.createElement("div");
@@ -290,13 +312,20 @@ function handleTrueFalseClick(optionContainer, index) {
 
   optionContainer.innerHTML = "";
   optionContainer.appendChild(trueFalseOptionsWrapper);
+
+  questionsArray[index - 1].answerOption = event.target.value;
 }
 
 // question input on change
 
 function handleQuestionInputChange(event, index) {
   questionsArray[index - 1].question = event.target.value;
+  //questionsArray[index - 1].questionaireid = 3;
 }
+/*
+function handleStudentInputChange(event, index) {
+  questionsArray[index - 1].studentamount = event.target.value;
+}*/
 
 // handle scale option select
 
@@ -319,22 +348,201 @@ function handleTrueFalseOptionSelect(value, index) {
 }
 
 
-// write question array to csv file
-
-async function createCsvFileFromQuestionArray() {
-  const fileName = document.getElementById("fileName-input").value;
-  if(fileName){
-    questionsArray = questionsArray.map(item => ({...item , student : fileName}));
+function storeQuestionaireInLocalStorage () {
+  
+  var questionBoxAmount = questionsArray.length;
+  
+  if (localStorage.getItem('WrapperID') == null) {
+    localStorage.setItem('WrapperID', '[]');
   }
+
+  var old_WrapperID_Data = JSON.parse(localStorage.getItem('WrapperID'));
+  old_WrapperID_Data.push(questionBoxAmount);
+  localStorage.setItem('WrapperID', JSON.stringify(old_WrapperID_Data));
+
+
+
+  if (localStorage.getItem('QuestionContentID') == null) {
+    localStorage.setItem('QuestionContentID', '[]');
+  }
+
+  var old_QuestionContentID = JSON.parse(localStorage.getItem('QuestionContentID'));
+  inputValues = document.getElementsByClassName('question-input');
+  for (let i = 0; i < inputValues.length; i++) {
+    printValues = inputValues[i].value
+    old_QuestionContentID.push(printValues);
+  }
+
+  localStorage.setItem('QuestionContentID', JSON.stringify(old_QuestionContentID));
+
+}
+
+
+/*
+function viewLocalStorage(){
+  if (localStorage.getItem('WrapperID') == null) {
+    document.getElementById('output').innerHTML =  JSON.parse(localStorage.getItem('WrapperID'))
+  }
+  console.log("ok");
+}*/
+
+
+
+
+/*function storeInArray(){
+  var saveBtn = document.getElementById("SaveButton");
+
+  for (var k = 0; k < saveBtn.length; k++) {
+    var div = document.body.appendChild(document.createElement('div'));
+    questionaireArray.push(div);  
+  }
+  console.log(questionaireArray);
+
+  /*questionsArray = [
+    ...questionsArray,
+    { id: questionsArray.length, question: "", answerOption: "", answer: "", checkbox: ""},
+  ];
+  
+  for (let i = 0; i < questionsArray.length; i++) {
+    //const element = array[index];
+    console.log("Hello " + [i]);
+
+
+    renderQuestion();
+  }
+}*/
+//post questionaire to new page
+// function storeQuestionaireID(){
+//   localStorage.questionaireID = 1;
+// }
+
+
+// write question array to csv file
+//document.getElementById("fileName-input").value;
+async function createCsvFileFromQuestionArray() {
+//   console.log(window.section_id);
+//   if(window.section_id===undefined){
+//   let element_save =  document.getElementById("SaveButton");  
+//   let sectionID=element_save.getAttribute("data-section");
+//   window.section_ID=sectionID ;
+//   element_save.setAttribute("data-section", parseInt( sectionID)+1);  
+//     window.section_id=parseInt (element_save.getAttribute("data-section")); 
+//   if(sectionID){
+//     questionsArray = questionsArray.map(item => ({...item , questionaireid : sectionID}));
+//   }
+// }
+// else{
+    
+//   questionsArray = questionsArray.map(item => ({...item , questionaireid :window.section_id }));
+//       window.section_id=window.section_id+1
+// }
+     
+var sectionID = localStorage.getItem("questionaireID");
+if(sectionID===undefined ||sectionID===null ){
+
+  localStorage.setItem("questionaireID", 1);
+  sectionID=1;
+}
+//  localStorage.setItem("questionaireID", sectionID);
+  console.log(sectionID);
+
+  if(sectionID){
+    questionsArray = questionsArray.map(item => ({...item , questionaireid : sectionID}));
+  }
+  localStorage.setItem("questionaireID", ++sectionID);
+
+/*
+var questionaireid = 5;
+window.globalVar = questionaireid;*/
+
+/*var questionaireid = 5;
+console.log(questionaireid);*/
+
+//questionsArray = questionsArray.map(item => ({...item , questionaireid : sectionID}));
+
+
+
+
+
+
+
   const rawResponse = await fetch("/writetocsv", {
+
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ questionsArray, fileName }),
+    body: JSON.stringify({questionsArray}),
   });
   const content = await rawResponse.json();
 
   console.log(content);
+  
+  arrayLength = questionsArray.length;
+  
+
+  window.location.href = "/Homepage";
+  document.getElementById("SaveButton").disabled = true;
+
+ /*
+   IDvariable +=1;
+   //console.log(IDvariable);
+   localStorage.questionaireID = IDvariable;
+   var retrievedID = localStorage.getItem("questionaireID");
+   console.log(retrievedID);
+   retrievedID++;
+   localStorage.questionaireID = retrievedID;
+   console.log(retrievedID);  
+*/
+  
+  //storeInArray();
+  storeQuestionaireInLocalStorage();
+
+  
 }
+
+
+//async function testBtn() {
+  /*IDvariable +=1
+  console.log(IDvariable)*/
+
+
+  /*const rawResponse = await fetch("/writetocsv", {
+
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: null
+  });
+  const content = await rawResponse.json();
+
+  console.log(content);*/
+  
+  
+ /* console.log("This is a test button");
+
+  const inputClass = document.getElementsByClassName('question-input');
+  const arr = [...inputClass].map(input => input.value);
+  
+  console.log(arr);
+
+  
+  inputValues = document.getElementsByClassName('question-input');
+
+  for (let i = 0; i < inputValues.length; i++) {
+    printValues = inputValues[i].value
+    console.log(printValues)
+    
+  }*/
+
+
+ 
+
+
+
+//}
+
+
