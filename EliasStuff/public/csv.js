@@ -1,7 +1,7 @@
 const csv = require('csv-parser');
 const fs = require('fs');
 
-fs.createReadStream('public/Questionaire.csv')
+fs.createReadStream('EliasStuff/public/Questionaire.csv')
   .pipe(csv())
   .on('data', (row) => {
     console.log(row);
@@ -14,7 +14,7 @@ fs.createReadStream('public/Questionaire.csv')
 
 const WritingToCsv = require('csv-writer').createObjectCsvWriter;
 const csvObject = WritingToCsv({
-  path: 'public/Questionaire.csv',
+  path: 'EliasStuff/public/Questionaire.csv',
   header: [
     {id: 'id', title: 'ID'},
     {id: 'question', title: 'Question'},

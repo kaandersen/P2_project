@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Questionaire</title>
-    <link rel="stylesheet" href="/public/newStyle.css" />
+    <link rel="stylesheet" href="/EliasStuff/public/newStyle.css" />
   </head>
   <body>
     <header></header>
@@ -51,7 +51,7 @@
       getCsvData();
 
       async function getCsvData() {
-        const response = await fetch("/public/Questionaire.csv");
+        const response = await fetch("/EliasStuff/public/Questionaire.csv");
         const CSVdata = await response.text();
         console.log(CSVdata);
       }
@@ -61,8 +61,8 @@
     };
     </script>
 
-    <script src="/public/newScript.js"></script>
-    <script src="/public/csv.js"></script>
+    <script src="EliasStuff/public/newScript.js"></script>
+    <script src="EliasStuff/public/csv.js"></script>
     <!-- <script>
         onload=fetch("./Questionaire.csv").then(res => {
             return res.text()
