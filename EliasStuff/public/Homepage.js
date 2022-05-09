@@ -27,17 +27,17 @@ function savingQuestionaireBtns() {
  /* for (var i = 0; i < newArr.length; i++) {
       
 
-    btnListContainer = document.getElementById("btn-list-wrapper")
-    var createQuestionaireBtn = document.createElement("button");
-    createQuestionaireBtn.innerHTML = "Questionaire "+_buttonNameIndex++;
-    createQuestionaireBtn.setAttribute("id",""+ newArr[i]);
-    createQuestionaireBtn.setAttribute("questionairebtnid",""+ _questionaireIndex++);
-    createQuestionaireBtn.setAttribute("class","QuestionaireBtnClass");
-    createQuestionaireBtn.name ="renderBtn";
+    // btnListContainer = document.getElementById("btn-list-wrapper")
+    // var createQuestionaireBtn = document.createElement("button");
+    // createQuestionaireBtn.innerHTML = "Questionaire "+_buttonNameIndex++;
+    // createQuestionaireBtn.setAttribute("id",""+ newArr[i]);
+    // createQuestionaireBtn.setAttribute("questionairebtnid",""+ _questionaireIndex++);
+    // createQuestionaireBtn.setAttribute("class","QuestionaireBtnClass");
+    // createQuestionaireBtn.name ="renderBtn";
   
-    btnListContainer.appendChild(createQuestionaireBtn);
+    // btnListContainer.appendChild(createQuestionaireBtn);
 
-    console.log(createQuestionaireBtn.id);
+    // console.log(createQuestionaireBtn.id);
 
   }*/
 
