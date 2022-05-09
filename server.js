@@ -101,7 +101,7 @@ app.get("/Homepage", (req, res) => {
   });
   
 
-
+/*
   app.post("/writetocsv", (req, res) => {
     let temp_data = [];
   
@@ -176,6 +176,7 @@ app.get("/Homepage", (req, res) => {
           path: "EliasStuff/public/PublicQuestionaire.csv",
           header: [
             { id: "id", title: "id" },
+            { id: "studentid", title: "studentid" },
             { id: "question", title: "question" },
             { id: "answer", title: "answer" },
             { id: "answerOption", title: "answerOption" },
@@ -210,6 +211,7 @@ app.get("/Homepage", (req, res) => {
           path: "EliasStuff/public/PublicQuestionaire.csv",
           header: [
             { id: "id", title: "id" },
+            { id: "studentid", title: "studentid" },
             { id: "question", title: "question" },
             { id: "answer", title: "answer" },
             { id: "answerOption", title: "answerOption" },
@@ -227,7 +229,7 @@ app.get("/Homepage", (req, res) => {
     });
   
   
-  });
+  });*/
 
 
   //Student Info
@@ -291,11 +293,10 @@ app.get("/Homepage", (req, res) => {
   });*/
 
 
-  //testing
+  //Student info
   app.post("/writeinfotocsv", (req, res) => {
     const data = req.body.studentInfoArray;
    
-    
   
     const WritingToCsv = require("csv-writer").createObjectCsvWriter;
     const csvObject = WritingToCsv({
@@ -318,5 +319,30 @@ app.get("/Homepage", (req, res) => {
       message: "Successfully wrote to csv",
     });
   });
+
+    //Student DATA
+    app.post("/writetostudentcsv", (req, res) => {
+        const data = req.body.questionsArray;
+       
+      
+        const WritingToCsv = require("csv-writer").createObjectCsvWriter;
+        const csvObject = WritingToCsv({
+          append : true,
+          path: `EliasStuff/public/PublicQuestionaire.csv`,
+          header: [
+            { id: "studentid", title: "studentid" },
+            { id: "answer", title: "answer" },
+          ],
+        });
+        csvObject
+          .writeRecords(data)
+          .then(() =>
+            console.log("The CSV file was written successfully")
+          );
+      
+        res.status(200).json({
+          message: "Successfully wrote to csv",
+        });
+      });
  
 app.listen(process.env.PORT || 4000, () => console.log("Server running at http://localhost:4000/"));

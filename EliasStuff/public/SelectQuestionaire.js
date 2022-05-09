@@ -451,6 +451,12 @@ renderQuestionaireBtn();
   
 
   async function UploadToCsv() {
+
+    var studentBtnID = localStorage.getItem("SelectedBtnID");
+    if (studentBtnID) {
+        questionsArray = questionsArray.map(item => ({...item , studentid : studentBtnID}));
+    }
+
     const rawResponse = await fetch("/writetostudentcsv", {
       method: "POST",
       headers: {

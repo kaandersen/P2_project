@@ -24,7 +24,7 @@ function savingQuestionaireBtns() {
 
   
   //loop through local storage items and create button for each item
-  for (var i = 0; i < newArr.length; i++) {
+ /* for (var i = 0; i < newArr.length; i++) {
       
 
     btnListContainer = document.getElementById("btn-list-wrapper")
@@ -39,6 +39,11 @@ function savingQuestionaireBtns() {
 
     console.log(createQuestionaireBtn.id);
 
+  }*/
+
+  for (var i = 0; i < newArr.length; i++) {
+  
+
     btnEditListContainer = document.getElementById("btn-edit-list-wrapper")
     var deleteQuestionaireBtn = document.createElement("button");
     deleteQuestionaireBtn.innerHTML = "Edit";
@@ -51,16 +56,15 @@ function savingQuestionaireBtns() {
 
   }
 
-
   //Selects individual button
-  btnListContainer.addEventListener('click', (event) => {
+ /* btnListContainer.addEventListener('click', (event) => {
     localStorage.btnID = event.target.id;
     localStorage.SelectedBtnID = event.target.getAttribute('questionairebtnid')
     let csv = getCsvData();
     console.log(csv);
     window.location.href="/Selected";
     
-  })
+  })*/
 
   btnEditListContainer.addEventListener('click', (event) => {
     localStorage.btnID = event.target.id;
