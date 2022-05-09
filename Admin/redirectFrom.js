@@ -16,7 +16,7 @@ function checkForQuestionnaire() {
         linkText = document.createTextNode("Continue working on questionnaire");
         a.appendChild(linkText);
         a.title = "Continue";
-        a.href = "./P2HTML_continue.html";
+        a.href = "/Create";
         document.body.appendChild(a);
     } else {
         //Creates a link to create a new questionnaire based on the existance of a questionnaire. 

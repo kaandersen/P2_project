@@ -1,3 +1,11 @@
+var studentInfoArray = [];
+var globalVar;
+
+studentInfoArray = [
+    ...studentInfoArray,
+    { id: "", title: "", amount: "", rooms: "", max: 1 },
+  ];
+
 window.addEventListener("mousemove", giveFunctionality);
 window.addEventListener("mousemove", loadData);
 
@@ -11,7 +19,15 @@ function giveFunctionality() {
     let buttonID2 = document.getElementById("createNewSize");
     if (buttonID2) {
         buttonID2.addEventListener("click", () => {
-            counter++;
+
+
+            studentInfoArray = [
+                ...studentInfoArray,
+                { id: "", title: "", amount: "", rooms: "", max: "" },
+              ];
+            
+            window.globalVar = counter++;
+            
             createNewRoomSize();
         });
     }
@@ -38,6 +54,7 @@ function createNewRoomSize() {
     form.lastElementChild.parentNode.insertBefore(label, form.lastElementChild);
     form.lastElementChild.parentNode.insertBefore(input, form.lastElementChild);
     form.lastElementChild.parentNode.insertBefore(linebreak, form.lastElementChild);
+
 }
 
 //Load the previously saved data and logs it in the console, to check saving capability.
@@ -52,11 +69,61 @@ function loadData() {
 }
 
 //Validates the input data, if everything is ok, then it goes ahead, if not it alerts the user to the error.
-function validateData() {
+async function validateData() {
     if (checkIfStringHasOnlyDigits(document.getElementById("#students").value) && checkRoomInputs()) {
         if (checkSpaceForStudents()) {
             collectData();
-            window.location.href="./P2HTML_continue.html";
+
+           /* var maxID = localStorage.getItem("maxID");
+            if (maxID === undefined || maxID === null) {
+
+                localStorage.setItem("maxID", 1);
+                maxID = 1;
+            }
+            localStorage.setItem("maxID", ++maxID);
+            console.log(maxID);
+            
+            if (maxID) {
+                studentInfoArray = studentInfoArray.map(item => ({ ...item, max: maxID }));
+            }
+            localStorage.setItem("maxID", ++maxID);*/
+            
+
+            
+
+            const titleName = document.getElementById("questName").value;
+            if (titleName) {
+                studentInfoArray = studentInfoArray.map(item => ({...item , title : titleName}));
+            }
+            const studentAmount = document.getElementById("#students").value;
+            if (studentAmount) {
+                studentInfoArray = studentInfoArray.map(item => ({...item , amount : studentAmount}));
+            }
+            const roomSize = document.getElementById("#1rooms").value;
+            if (roomSize) {
+                studentInfoArray = studentInfoArray.map(item => ({...item , rooms : roomSize}));
+            } 
+            var counterValue = globalVar;
+            counterValue += 1;
+            if (counterValue) {
+                studentInfoArray = studentInfoArray.map(item => ({ ...item, max: counterValue }));
+            }
+
+            const rawResponse = await fetch("/writeinfotocsv", {
+
+                method: "POST",
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({studentInfoArray}),
+              });
+              const content = await rawResponse.json();
+            
+              console.log(content);
+              
+            
+            window.location.href="/Create";
         } else {
             alert("There are more students than there is space for, that is not okay.");
         }

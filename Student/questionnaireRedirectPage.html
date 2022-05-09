@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaires</title>
     <!--            js FILE              -->
-    <script src="questionnaireRedirectPage.js"></script>
+    <!--<script src="questionnaireRedirectPage.js"></script>-->
     <!--            CSS FILE              -->
     <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="/public/newStyle.css" />
 
 </head>
 <body>
@@ -119,6 +120,19 @@
 
                 <div class="mid-content">
                     <div class="affirmative-content" id="content">
+                        <h1>hello</h1>
+                        <main class="page-container">
+                            <div class="buttonHeader">
+                                <div class="button-container" id="btn-container">
+                                  <div class="button-list-wrapper" id="btn-list-wrapper"></div>
+                                  <div class="Button-edit-list-wrapper" id="btn-edit-list-wrapper"></div>
+                                </div>
+                              </div>
+                    
+                            <div id="questions-container"></div>
+                            </div>
+                    
+                        </main>
 
 
 
@@ -134,5 +148,15 @@
         <div class="footer"></div>
   
       </div>
+      <script src="/public/Homepage.js"></script>
+      <script>
+        getCsvData();
+
+        async function getCsvData() {
+        const response = await fetch("/public/Questionaire.csv");
+        const CSVdata = await response.text();
+        console.table(CSVdata);
+}
+    </script>
 </body>
 </html>

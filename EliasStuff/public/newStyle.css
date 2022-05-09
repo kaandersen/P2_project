@@ -12,7 +12,7 @@ body {
   box-sizing: border-box;
 }
 
-.header {
+.buttonHeader {
   display: flex;
   gap: 20px;
   justify-content: space-between;
@@ -36,6 +36,12 @@ body {
 }
 
 .button-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Button-edit-list-wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
