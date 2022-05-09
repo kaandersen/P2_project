@@ -59,66 +59,19 @@ function searchQuestionnaire() {
     }
 }
 
-/**
- *  This function is meant to publish questionnaires
- *  <input type="checkbox" name="selected" id="Selection">  
- * */ 
-function publish(){
-    let rows = document.getElementsByTagName('tr'); //amounts of rows in table
-    let validations = new Array(rows.length);
+// addRow();
 
-    for(let i=0; i < rows.length; i++){//run through all rows
-        let checkbox = rows[i].getElementsByTagName("input");
-        validations[i] = validate(checkbox);
-    }
+// function addRow(){
+//    let i, j;
+//     let table = document.getElementById("quest-table");
+//     let tableBody = document.getElementById("dyn-table-body");
+//     // let numQuestionnaire = localStorage.getItem("wrapperID");
+//     let numQuestionnaire = 4;
+//     let questTitle = ["questionnaire 1", "questionnaire 2","questionnaire 3"]; //Replace this with the values from the qctual questionnaires
 
-    for(let i=0; i < validations.length; i++){
-        if(validations[i] == true){
-            //change local storage variable to be published
-        }
-    }
-}
+//     let tableData = '<tr><td>${questionTitle[0]}</td><td><button id="edit-Odense-uni-2021" title="Edit questionnaire" class="editButton">Edit</button></td></tr>';
+        
 
-/**
- *  This function is meant to unpublish questionnaires
- * */ 
-function unpublish(){
-    let rows = document.getElementsByTagName('tr'); //amounts of rows in table
-    let validations = new Array(rows.length);
-
-    for(let i=0; i < rows.length; i++){//run through all rows
-        let checkbox = rows[i].getElementsByTagName("input");
-        validations[i] = validate(checkbox);
-    }
-
-    for(let i=0; i < validations.length; i++){
-        if(validations[i] == true){
-            //change local storage variable to be unpublished
-        }
-    }
-
-}
-
-/**
- * This function checks if  checkbox is selected or not
- * @param {*} checkbox 
- * @returns a boolean true or false
- */
-function validate(checkbox){ 
-    if(checkbox.checked){
-        return true;
-    } else{
-        return false;
-    }
-}
-
-/**
- * This functions should load the "unpulished/pulished" tags into the table on page load, by
- * retrievning data from local storage....
- */
-function loadLocalStorage(){
-    let rows = document.getElementsByTagName('tr'); //amounts of rows in table
+// }
 
 
-
-}

@@ -27,17 +27,17 @@ function savingQuestionaireBtns() {
   for (var i = 0; i < newArr.length; i++) {
       
 
-    btnListContainer = document.getElementById("btn-list-wrapper")
-    var createQuestionaireBtn = document.createElement("button");
-    createQuestionaireBtn.innerHTML = "Questionaire "+_buttonNameIndex++;
-    createQuestionaireBtn.setAttribute("id",""+ newArr[i]);
-    createQuestionaireBtn.setAttribute("questionairebtnid",""+ _questionaireIndex++);
-    createQuestionaireBtn.setAttribute("class","QuestionaireBtnClass");
-    createQuestionaireBtn.name ="renderBtn";
+    // btnListContainer = document.getElementById("btn-list-wrapper")
+    // var createQuestionaireBtn = document.createElement("button");
+    // createQuestionaireBtn.innerHTML = "Questionaire "+_buttonNameIndex++;
+    // createQuestionaireBtn.setAttribute("id",""+ newArr[i]);
+    // createQuestionaireBtn.setAttribute("questionairebtnid",""+ _questionaireIndex++);
+    // createQuestionaireBtn.setAttribute("class","QuestionaireBtnClass");
+    // createQuestionaireBtn.name ="renderBtn";
   
-    btnListContainer.appendChild(createQuestionaireBtn);
+    // btnListContainer.appendChild(createQuestionaireBtn);
 
-    console.log(createQuestionaireBtn.id);
+    // console.log(createQuestionaireBtn.id);
 
     btnEditListContainer = document.getElementById("btn-edit-list-wrapper")
     var deleteQuestionaireBtn = document.createElement("button");
@@ -53,14 +53,14 @@ function savingQuestionaireBtns() {
 
 
   //Selects individual button
-  btnListContainer.addEventListener('click', (event) => {
-    localStorage.btnID = event.target.id;
-    localStorage.SelectedBtnID = event.target.getAttribute('questionairebtnid')
-    let csv = getCsvData();
-    console.log(csv);
-    window.location.href="/Selected";
+  // btnListContainer.addEventListener('click', (event) => {
+  //   localStorage.btnID = event.target.id;
+  //   localStorage.SelectedBtnID = event.target.getAttribute('questionairebtnid')
+  //   let csv = getCsvData();
+  //   console.log(csv);
+  //   window.location.href="/Selected";
     
-  })
+  // })
 
   btnEditListContainer.addEventListener('click', (event) => {
     localStorage.btnID = event.target.id;
