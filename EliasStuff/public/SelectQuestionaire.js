@@ -454,7 +454,7 @@ renderQuestionaireBtn();
 
     var studentBtnID = localStorage.getItem("SelectedBtnID");
     if (studentBtnID) {
-        questionsArray = questionsArray.map(item => ({...item , studentid : studentBtnID}));
+        questionsArray = questionsArray.map(item => ({...item , questionaireid : studentBtnID}));
     }
 
     const rawResponse = await fetch("/writetostudentcsv", {

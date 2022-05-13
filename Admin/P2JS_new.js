@@ -1,195 +1,122 @@
-var studentInfoArray = [];
-var globalVar;
+roomInputFieldCounter = 1;
+var questionaireInfo = {
+  questionaireTitle: "",
+  totalStudents: 0,
+  amountOfRoomsForPersons: [],
+};
 
-studentInfoArray = [
-    ...studentInfoArray,
-    { id: "", title: "", amount: "", rooms: "", max: 1 },
-  ];
+// add on change event listener to the input field with id questName
+var questionaireTitle = document.getElementById("questionaireTitle");
+questionaireTitle.addEventListener("change", function () {
+  questionaireInfo.questionaireTitle = questionaireTitle.value;
+});
 
-window.addEventListener("mousemove", giveFunctionality);
-window.addEventListener("mousemove", loadData);
+// add on change event listener to the input field with id totalStudents
 
-var counter = 1;
-//gives functionality to the button
-function giveFunctionality() {
-    let buttonID1 = document.getElementById("goforth");
-    if (buttonID1) {
-        buttonID1.addEventListener("click", validateData);
-    }
-    let buttonID2 = document.getElementById("createNewSize");
-    if (buttonID2) {
-        buttonID2.addEventListener("click", () => {
+var totalStudents = document.getElementById("totalStudents");
+totalStudents.addEventListener("change", function () {
+  questionaireInfo.totalStudents = totalStudents.value;
+});
 
+// attach on change listener to the input with id
 
-            studentInfoArray = [
-                ...studentInfoArray,
-                { id: "", title: "", amount: "", rooms: "", max: "" },
-              ];
-            
-            window.globalVar = counter++;
-            
-            createNewRoomSize();
-        });
-    }
-    window.removeEventListener("mousemove", giveFunctionality);
-}
+var createNewRoomSizeFirstInput = document.getElementById("#0rooms");
 
-//Creates the ability to add a room of a size larger than the previous, when clicking a button
-function createNewRoomSize() {
-    counterString = counter.toString(10);
+createNewRoomSizeFirstInput.addEventListener("change", (event) => {
+  handleInputChange(event, 0);
+});
 
-    let input = document.createElement("input");
-    input.type = "text";
-    input.id = "#"+counterString+"rooms";
-    input.value = "0";
-    input.className = "roomData"; //adds classs name for css use
+// attach on click event listener to the button with id addNewRoomInputField
 
-    let label = document.createElement("label");
-    label.setAttribute = ("for","lname");
-    label.id = "label#"+counterString+"rooms";
-    label.innerHTML = "Amount of "+ counterString  +" person rooms: ";
+var addNewRoomInputField = document.getElementById("createNewSize");
+addNewRoomInputField.addEventListener("click", function () {
+  roomInputFieldCounterString = roomInputFieldCounter + 1;
+  roomInputFieldCounterString = roomInputFieldCounterString.toString(10);
 
-    let linebreak = document.createElement("br");
-    let form = document.getElementById("roomDefiner"); //changed name so that it affects the fieldset instead of the form
-    form.lastElementChild.parentNode.insertBefore(label, form.lastElementChild);
-    form.lastElementChild.parentNode.insertBefore(input, form.lastElementChild);
-    form.lastElementChild.parentNode.insertBefore(linebreak, form.lastElementChild);
+  let input = document.createElement("input");
+  input.type = "number";
+  input.id = "#" + roomInputFieldCounter + "rooms";
+  input.value = "0";
+  input.className = "roomData"; //adds classs name for css use
+  let label = document.createElement("label");
+  label.setAttribute = ("for", roomInputFieldCounterString);
+  label.id = roomInputFieldCounterString;
+  label.innerHTML =
+    "Amount of " + roomInputFieldCounterString + " person rooms: ";
+  let linebreak = document.createElement("br");
+  let form = document.getElementById("roomDefiner"); //changed name so that it affects the fieldset instead of the form
+  form.lastElementChild.parentNode.insertBefore(label, form.lastElementChild);
+  form.lastElementChild.parentNode.insertBefore(input, form.lastElementChild);
+  form.lastElementChild.parentNode.insertBefore(
+    linebreak,
+    form.lastElementChild
+  );
 
-}
+  // get index by label id
 
-//Load the previously saved data and logs it in the console, to check saving capability.
-function loadData() {
-    console.log("Amount of students: " + JSON.parse(localStorage.numberOfStudents));
-    console.log("Amount of rooms: " + JSON.parse(localStorage.numberOfRooms));
-    let numberOfRooms = JSON.parse(localStorage.numberOfRooms).split(',').map(Number);
-    numberOfRooms.pop();
-    numberOfRooms.unshift(0);
-    console.log(numberOfRooms);
-    window.removeEventListener("mousemove", loadData);
-}
+  const index = label.id - 1;
 
-//Validates the input data, if everything is ok, then it goes ahead, if not it alerts the user to the error.
-async function validateData() {
-    if (checkIfStringHasOnlyDigits(document.getElementById("#students").value) && checkRoomInputs()) {
-        if (checkSpaceForStudents()) {
-            collectData();
+  input.onchange = (event) =>
+    handleInputChange(event, index, roomInputFieldCounter);
 
-           /* var maxID = localStorage.getItem("maxID");
-            if (maxID === undefined || maxID === null) {
+  roomInputFieldCounter++;
+});
 
-                localStorage.setItem("maxID", 1);
-                maxID = 1;
-            }
-            localStorage.setItem("maxID", ++maxID);
-            console.log(maxID);
-            
-            if (maxID) {
-                studentInfoArray = studentInfoArray.map(item => ({ ...item, max: maxID }));
-            }
-            localStorage.setItem("maxID", ++maxID);*/
-            
+// handle input change of dynamic room input fields
 
-            
+const handleInputChange = (event, index, totalStudents) => {
+  //   console.log("totalStudents", typeof totalStudents, typeof event.target.value);
 
-            const titleName = document.getElementById("questName").value;
-            if (titleName) {
-                studentInfoArray = studentInfoArray.map(item => ({...item , title : titleName}));
-            }
-            const studentAmount = document.getElementById("#students").value;
-            if (studentAmount) {
-                studentInfoArray = studentInfoArray.map(item => ({...item , amount : studentAmount}));
-            }
-            const roomSize = document.getElementById("#1rooms").value;
-            if (roomSize) {
-                studentInfoArray = studentInfoArray.map(item => ({...item , rooms : roomSize}));
-            } 
-            var counterValue = globalVar;
-            counterValue += 1;
-            if (counterValue) {
-                studentInfoArray = studentInfoArray.map(item => ({ ...item, max: counterValue }));
-            }
+  //   const enteredStudents = parseInt(event.target.value);
+  //   totalStudents = parseInt(totalStudents);
 
-            const rawResponse = await fetch("/writeinfotocsv", {
+  //   // students should be greater than number of rooms
+  //   if (enteredStudents > totalStudents) {
+  //     event.target.value = "";
 
-                method: "POST",
-                headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({studentInfoArray}),
-              });
-              const content = await rawResponse.json();
-            
-              console.log(content);
-              
-            
-            window.location.href="/Create";
-        } else {
-            alert("There are more students than there is space for, that is not okay.");
-        }
-    } else {
-        alert("Something is wrong with one of the inputs");
-    }
-}
+  //     return;
+  //   }
 
-//collects data from input fields when button is pressed and saves it to the localStorage.
-function collectData() {
-    let myString = "";
+  questionaireInfo.amountOfRoomsForPersons[index] = event.target.value;
+};
 
-    /* * 
-    *   
-    *   possibly add the ability to also save the name of the questionnairef from the first field. 
-    *   Related question: how are we naming the file containing the questionnaire  set up by the teacher
-    * 
-    * */
+// add on click event listener to the button with id createQuestionaire`
 
-    localStorage.numberOfStudents = JSON.stringify(document.getElementById("#students").value);
-    for (let index = 1; index <= counter; index++) {
-        indexString = index.toString(10);
-        myString += document.getElementById("#"+indexString+"rooms").value+",";
-    }
-    localStorage.numberOfRooms = JSON.stringify(myString);
-}
+const createNewQuestionaire = async () => {
+  // convert amountOfRoomsForPersons to string separated by -
 
-//Checks if a given string only contains digits, used for validation of input fields.
-function checkIfStringHasOnlyDigits(_string){
-    if(_string.match(/^[0-9]+$/) != null)
-    {
-        return true;
-    } else {
-        return false;
-    }
-}
+  // there should not be more students than rooms
 
-//Checks each of the input fields for room types to see if they contain anything other than digits. 
-function checkRoomInputs() {
-    let myString = "";
-    for (let index = 1; index <= counter; index++) {
-        indexString = index.toString(10);
-        myString += document.getElementById("#"+indexString+"rooms").value;
-    }
-    if (checkIfStringHasOnlyDigits(myString)) {
-        return true;
-    } else {
-        return false;
-    }
-}
+  // check if there are enough rooms for all students
+  let totalAmountOfRoomsForPersons = 0;
+  for (let i = 0; i < questionaireInfo.amountOfRoomsForPersons.length; i++) {
+    totalAmountOfRoomsForPersons +=
+      (i + 1) * parseInt(questionaireInfo.amountOfRoomsForPersons[i]);
+  }
 
-//Checks if there are more students than there is room for them, or the other way around. 
-function checkSpaceForStudents() {
-    let students = document.getElementById("#students").value;
-    let myString = "";
-    for (let index = 1; index <= counter; index++) {
-        indexString = index.toString(10);
-        myString += document.getElementById("#"+indexString+"rooms").value*index+",";
-    }
-    let numberOfRooms = myString.split(',').map(Number);
-    numberOfRooms.pop();
-    numberOfRooms.unshift(0);
+  const totalStudents = parseInt(questionaireInfo.totalStudents);
 
-    if (students <= numberOfRooms.reduce((a, b) => a + b, 0)) {
-        return true;
-    } else {
-        return false;
-    }
-}
+  if (totalStudents > totalAmountOfRoomsForPersons) {
+    alert("You cannot have more students than rooms");
+    return;
+  }
+
+  let finalQuestionaireInfo = {
+    ...questionaireInfo,
+    amountOfRoomsForPersons: questionaireInfo.amountOfRoomsForPersons.join("-"),
+  };
+
+  finalQuestionaireInfo = [finalQuestionaireInfo];
+
+  const rawResponse = await fetch("/writeinfotocsv", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ finalQuestionaireInfo }),
+  });
+  const content = await rawResponse.json();
+
+  window.location.href = "/Create";
+};
