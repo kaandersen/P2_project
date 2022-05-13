@@ -200,8 +200,27 @@ async function addRow() {
                 body: JSON.stringify({ calculateDataArray }),
             });
             const content = await rawResponse.json();
+            
 
-            console.log(content);
+            /* Activating allocation program */
+            function activateProgram(){
+                const { spawn } = require('node:child_process');
+                const bat = spawn('AllocationProgram.exe', ['/c', 'my.bat']);
+    
+                bat.stdout.on('data', (data) => {
+                console.log(data.toString());
+                });
+    
+                bat.stderr.on('data', (data) => {
+                console.error(data.toString());
+                });
+    
+                bat.on('exit', (code) => {
+                console.log(`Child exited with code ${code}`);
+                });
+            }
+
+            console.log(content).then(() => activateProgram())
 
         })
 

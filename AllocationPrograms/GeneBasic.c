@@ -38,11 +38,11 @@ typedef struct group group;
 void getQuestionnaireInfoTemp(char* inputFile, int* amountOfStudents, int* amountOfQuestions, int** listOfQuestionTypes, int** listOfOverrulingQuestions,int* maxPersonRoom, int** roomtypes);
 void getStudentAnswersTemp(char* inputFile, int*** listOfStudents, int amountOfStudents, int amountOfQuestions);
 
-void getQuestionnaireInfo(char* inputFile, int* amountOfStudents, /* Reads from the input file */ 
+void getQuestionnaireInfo(int* questionnaireID, int* amountOfStudents, /* Reads from the input file */ 
                     int* amountOfQuestions, int** listOfQuestionTypes, int** listOfOverrulingQuestions,  /* Question related*/
                     int* maxPersonRoom, int** roomtypes    /* Get roomtypes in an array */);
-void getStudentAnswers(char* inputFile, int*** listOfStudents, int amountOfStudents, int amountOfQuestions);
 
+void getStudentAnswers(int*** listOfStudents, int amountOfStudents, int amountOfQuestions, int questionnaireID, int* listOfQuestionTypes);
 
 /* Make groups */
 group* generateGroups(int** listOfStudents, int amountOfStudents, int* listOfOverrulingQuestions, int amountOfQuestions, int* listOfQuestionTypes, int* amountOfGroups);
@@ -80,7 +80,7 @@ void freeValues(int** listOfStudents,int* roomTypes,int* listOfQuestionTypes,int
 
 int main(){
     /* Declaring variables */
-    int amountOfGroups, amountOfQuestions, amountOfStudents;
+    int amountOfGroups, amountOfQuestions, amountOfStudents, questionnaireID;
     int** listOfStudents;     /* 2 Dimensional array with all students-ID's followed by their answers */
     int maxPersonRoom;       /* Max amount of persons in a room */
     int* roomTypes;          /* Array with amount of rooms with different amount of people capacity, spot 0 represents 1 person rooms, 1 represents 2 person rooms etc. */
@@ -95,14 +95,13 @@ int main(){
 
    
     /* Get question data */
-    getQuestionnaireInfoTemp("input1.txt", &amountOfStudents, /* Reads from the input file */ 
+    getQuestionnaireInfo(&questionnaireID, &amountOfStudents, /* Reads from the input file */ 
                     &amountOfQuestions, &listOfQuestionTypes, &listOfOverrulingQuestions,  /* Question related*/
                     &maxPersonRoom, &roomTypes  /* Get roomtypes in an array */);
     srand(time(NULL));  /* For random students answers */
 
     /* Get data */
-    getStudentAnswersTemp("input2.txt", &listOfStudents, amountOfStudents, amountOfQuestions);
-    
+    getStudentAnswers(&listOfStudents, amountOfStudents, amountOfQuestions, questionnaireID, listOfQuestionTypes);
     printf("Got answers \n");
 
     group* listOfGroups = generateGroups(listOfStudents, amountOfStudents, listOfOverrulingQuestions, amountOfQuestions, listOfQuestionTypes, &amountOfGroups);      
@@ -120,7 +119,7 @@ int main(){
     printf("\n\nSuccessfully Freed values");
 
     /* Print output */  
-    createOutput("AllocationPrograms/output.txt", "AllocationPrograms/outputData.txt", "AllocationPrograms/outputGene.txt", listOfRoommates, inUseRooms, maxPersonRoom, amountOfQuestions, beginningTotalValue, listOfIterationValues); /* Prints the results */
+    createOutput("Admin/output.txt", "Admin/outputData.txt", "AllocationPrograms/outputGene.txt", listOfRoommates, inUseRooms, maxPersonRoom, amountOfQuestions, beginningTotalValue, listOfIterationValues); /* Prints the results */
 
 
     printf("Successfully Finished Program");
@@ -170,42 +169,253 @@ void getQuestionnaireInfoTemp(char* inputFile, int* amountOfStudents, int* amoun
 
 }
 
-void getQuestionnaireInfo(char* inputFile, int* amountOfStudents, int* amountOfQuestions, int** listOfQuestionTypes, int** listOfOverrulingQuestions,int* maxPersonRoom, int** roomtypes){
-    int i;
-    FILE *fp = fopen(inputFile, "r");   /*Open file in read */
+void getQuestionnaireInfo(int* questionnaireID, int* amountOfStudents, int* amountOfQuestions, int** listOfQuestionTypes, int** listOfOverrulingQuestions,int* maxPersonRoom, int** roomtypes){
+    int i, j;
+    
+    char* textBuffer1 = (char*)malloc(50*sizeof(char));
+    char* textBuffer2 = (char*)malloc(50*sizeof(char));
+    char* textBuffer3 = (char*)malloc(50*sizeof(char));
+    char* textBuffer4 = (char*)malloc(50*sizeof(char));
+    char* textBuffer5 = (char*)malloc(50*sizeof(char));
+
+    int numberBuffer1;
+    int numberBuffer2;
+
+    int scanres;
+
+    /* File questionnaire ID */
+
+    FILE *fp = fopen("EliasStuff/public/QuestionaireData.csv", "r");   /*Open file in read */
 
     if (fp != NULL){
 
+        fscanf(fp, " %20[^,] ,  %s ",    /* removing top part of section */
+        
+        textBuffer1, textBuffer2
+        );
 
-        for (i=0;!(feof(fp));i++){       /*Reads file till end of file */
-            //match_list = get_match(fp, match_list);
+        scanres = fscanf(fp, " %d , %d ",      /*Scans file to find relevant variables */
+
+            &amountOfQuestions, &questionnaireID);
+
+        if (scanres!=2){
+            printf("\nFail in reading questionnaire direction file.\n");
+            exit(EXIT_FAILURE);
+       }
+
+    }
+
+    else {  /*If no file found */
+        printf("\n Could not find questionnaire direction file.\n");
+        exit(EXIT_FAILURE);
+    }   
+    fclose(fp); /*Closes file */
+
+    printf("\nQuestions: %d,  Id: %d  \n", *amountOfQuestions, *questionnaireID);
+
+    /* Make space for lists */
+    *listOfOverrulingQuestions = (int*)malloc(*amountOfQuestions*sizeof(int));
+    *listOfQuestionTypes = (int*)malloc(*amountOfQuestions*sizeof(int));
+
+
+    /* 
+    //////////////////////////////
+    //////////////////////////////          QUESTION INFO
+    //////////////////////////////
+    */
+
+    fp = fopen("EliasStuff/public/Questionaire.csv", "r");   /*Open file in read */
+
+    if (fp != NULL){
+
+        fscanf(fp, " %20[^,] , %20[^,] , %20[^,] , %20[^,] , %s ",    /* removing top part of section */
+        
+        textBuffer1, textBuffer2, textBuffer3, textBuffer4, textBuffer5
+        );
+        i=0;
+        while (i<*amountOfQuestions && !(feof(fp)))
+        {
+            scanres = fscanf(fp, " %d , %d , %20[^,] , %20[^,] , %10[^123456789 ] ",      /*Scans file to find relevant variables */
+
+            &numberBuffer1, &numberBuffer2, textBuffer1, textBuffer2, textBuffer3);
+
+
+            printf("\n %d, %d, %s, %s, %s,\n", numberBuffer1, numberBuffer2, textBuffer1, textBuffer2, textBuffer3);
+
+
+            if (numberBuffer1==*questionnaireID){
+                /* Find question type */
+                if (strcmp(textBuffer2, "SCALE")==0){
+                    (*listOfQuestionTypes)[i]=1;
+                }
+                else if (strcmp(textBuffer2, "YES/NO")==0){
+                    (*listOfQuestionTypes)[i]=2;
+                }
+                else if (strcmp(textBuffer2, "TEXT")==0){
+                    (*listOfQuestionTypes)[i]=3;
+                }
+                else {
+                    printf("\nInvalid question type.\n");
+                    exit(EXIT_FAILURE);
+                }
+
+                /* Find overruling */
+                if (strcmp(textBuffer3, "overruling")==0){
+                    (*listOfOverrulingQuestions)[i]=1;
+                }
+                else{
+                    (*listOfOverrulingQuestions)[i]=0;
+                }
+
+                i++;
+                textBuffer3=""; /* Reset value */
+            }
+
+        }
+        if (i!=*amountOfQuestions){
+            printf("\nFail in finding all questions.\n");
+            exit(EXIT_FAILURE);
+        }
+
+
+    }
+
+    else {  /*If no file found */
+        printf("\n Could not find questionnaire question info file.\n");
+        exit(EXIT_FAILURE);
+    }
+    fclose(fp); /*Closes file */
+
+
+    for (i=0; i<*amountOfQuestions; i++){
+        printf("Type: %d    Overruling: %d \n", (*listOfQuestionTypes)[i], (*listOfOverrulingQuestions)[i]);
+    }
+
+
+    /* 
+    //////////////////////////////
+    //////////////////////////////          ROOM INFO
+    //////////////////////////////
+    */
+
+    fp = fopen("EliasStuff/public/StudentInfoQuestionnaire.csv", "r");   /*Open file in read */
+
+    if (fp != NULL){
+        
+        for (i=0; i<*questionnaireID; i++){
+
+            if (i!=*questionnaireID-1){
+                fscanf(fp, " %s ", textBuffer1);
+            }
+            else {
+                fscanf(fp, " %20[^,] ,  %d , ",    /* removing first part of section */
+                textBuffer1, &amountOfStudents);
+
+                (*roomtypes) = (int*)malloc(50*sizeof(int));   /* Sets max amount of roomsizes to 50 */
+                scanres=1;
+                j=0;
+                while (scanres==1){
+       
+                    fscanf(fp, " %d ", &roomtypes[j]);
+                    j++;
+                    scanres=fscanf(fp, " %1[-] ", textBuffer1);
+                }
+                *maxPersonRoom=j;
+            }
         }
 
     }
 
     else {  /*If no file found */
-        printf("\n Could not find questionnaire info file.\n");
+        printf("\n Could not find questionnaire room info file.\n");
         exit(EXIT_FAILURE);
     }
     fclose(fp); /*Closes file */
+
+    printf("MaxSize: %d , students: %d \n", *maxPersonRoom, *amountOfStudents);
+    for (i=0; i<*maxPersonRoom; i++){
+        printf("Amount at size %d: %d  \n", i, (*roomtypes)[i]);
+    }
+
+    free(textBuffer1);
+    free(textBuffer2);
+    free(textBuffer3);
+    free(textBuffer4);
+    free(textBuffer5);
 }
 
-void getStudentAnswers(char* inputFile, int*** listOfStudents, int amountOfStudents, int amountOfQuestions){
-    int i;
-    FILE *fp = fopen(inputFile, "r");   /*Open file in read */
+void getStudentAnswers(int*** listOfStudents, int amountOfStudents, int amountOfQuestions, int questionnaireID, int* listOfQuestionTypes){
+    int i, j;
+    int scanres;
+
+    char* textBuffer1 = (char*)malloc(50*sizeof(char));
+    char* textBuffer2 = (char*)malloc(50*sizeof(char));
+    int numberBuffer1;
+
+    (*listOfStudents) = (int**)malloc(amountOfStudents*sizeof(int*));
+    for (i=0; i<amountOfStudents;i++ ){
+        (*listOfStudents)[i]=(int*)malloc(amountOfQuestions*sizeof(int));
+    }
+
+    FILE *fp = fopen("EliasStuff/public/StudentQuestionnaire.csv", "r");   /*Open file in read */
 
     if (fp != NULL){
-        for (i=0;!(feof(fp));i++){       /*Reads file till end of file */
-            //listOfStudents = get_match(fp, match_list);
+
+        fscanf(fp, " %20[^,] ,  %s ",    /* removing top part of section */
+        
+        textBuffer1, textBuffer2
+        );
+
+        /* Reading student answers */
+        i=0; /* I counts amount of students */
+        j=0; /* j counts amount of questions */
+        while (i<amountOfStudents && !(feof(fp)))
+        {   
+            scanres = fscanf(fp, " %d , %s ", &numberBuffer1, textBuffer1);
+
+
+            //printf(" %d , %s \n", numberBuffer1, textBuffer1);
+
+            if (scanres!=2){
+                printf("\nFail in reading student answers file.\n");
+                exit(EXIT_FAILURE);
+            }
+
+            if (numberBuffer1==questionnaireID){
+                if (listOfQuestionTypes[j]!=3){
+                    sscanf(textBuffer1, "%d", &(*listOfStudents)[i][j]);   /* Convert string to integer*/
+                }
+                else{
+                    (*listOfStudents)[i][j]=0;
+                }
+                j++;
+                if (j==amountOfQuestions){
+                    j=0;
+                    i++;
+                }
+
+            }
+            
         }
 
     }
 
     else {  /*If no file found */
-        printf("\n Could not find student answers file.\n");
+        printf("\n Could not find questionnaire student answers file.\n");
         exit(EXIT_FAILURE);
     }
     fclose(fp); /*Closes file */
+
+    for (i=0; i<amountOfStudents; i++){
+        printf("Student %d \n", i);
+        for (j=0; j<amountOfQuestions; j++){
+            printf("Answer %d = %d\n", j, (*listOfStudents)[i][j]);
+        }
+    }
+
+    free(textBuffer1);
+    free(textBuffer2);
+
 }
 
 void getStudentAnswersTemp(char* inputFile, int*** listOfStudents, int amountOfStudents, int amountOfQuestions){
