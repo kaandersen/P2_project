@@ -154,7 +154,7 @@ async function editQuestionaire() {
 
       scaleOption.value = "SCALE";
       textInputOption.value = "TEXT";
-      trueFalseOption.value = "TRUE/FALSE";
+      trueFalseOption.value = "YES/NO";
 
       //overruling
       var overrulingCheckbox = document.createElement("input");
@@ -205,7 +205,7 @@ async function editQuestionaire() {
       trueFalseOption.className = "option";
 
       questionNumber.innerHTML = questionsArray.length;
-      questionHeading.innerHTML = "Sample Q " + questionsArray.length;
+      questionHeading.innerHTML = "Question " + questionsArray.length;
       crossButton.innerHTML = "X";
       scaleOption.innerText = "Scale";
       textInputOption.innerText = "Text Input";
@@ -400,8 +400,8 @@ function handleTrueFalseClick(event, optionContainer, index) {
   trueButton.type = "radio";
   falseButton.type = "radio";
 
-  trueButton.value = "true";
-  falseButton.value = "false";
+  trueButton.value = "True";
+  falseButton.value = "False";
 
   trueButton.name = "true-false" + index;
   falseButton.name = "true-false" + index;
@@ -455,7 +455,7 @@ function handleTrueFalseOptionSelect(value, index) {
 }
 
 function CancelChanges() {
-  window.location.href = "/Homepage";
+  window.location.href = "/AdminOverviewpage";
 }
 
 async function UploadChangesToCsv() {
@@ -542,7 +542,7 @@ async function UploadChangesToCsv() {
   });
   // reload
   window.location.reload();
-  window.location.href = "/Homepage";
+  window.location.href = "/AdminOverviewpage";
 }
 
 editQuestionaire();

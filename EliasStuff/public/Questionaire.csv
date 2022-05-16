@@ -1,14 +1,4 @@
 questionaireid,id,question,answerOption,checkbox
-6,0,Wed,,
-6,1,Hey,,
-4,2,YES,SCALE,
-4,3,NO,SCALE,
-2,4,strawwberry,TEXT,
-2,5,Apple,SCALE,overruling
-3,6,Fly,TEXT,overruling
-3,7,Github,SCALE,overruling
-3,8,Bob,SCALE,
-5,9,okay,,
-5,10,bye,,
-7,11,Fun,TEXT,overruling
-7,12,Non,SCALE,
+1,0,Angry,YES/NO,
+1,1,Happy,TEXT,
+2,2,Angry,TEXT,overruling

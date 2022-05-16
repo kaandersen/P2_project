@@ -1,7 +1,7 @@
 var questionsArray = [];
 
 function returnToHomepage() {
-    window.location.href="/Homepage";
+    window.location.href="/StudentHome";
 }
 
 var retrievedBtnID = localStorage.getItem("btnID");
@@ -121,7 +121,7 @@ for (let i = 0; i < answerColoumnArr.length; i++) {
           
             scaleOption.value = "SCALE";
             textInputOption.value = "TEXT";
-            trueFalseOption.value = "TRUE/FALSE"
+            trueFalseOption.value = "YES/NO"
           
           
             //overruling
@@ -187,7 +187,7 @@ for (let i = 0; i < answerColoumnArr.length; i++) {
             //trueFalseOption.className = "option";
           
             questionNumber.innerHTML = questionsArray.length;
-            questionHeading.innerHTML = "Sample Q " + questionsArray.length;
+            questionHeading.innerHTML = "Question " + questionsArray.length;
             crossButton.innerHTML = "X";
             scaleOption.innerText = "Scale";
             textInputOption.innerText = "Text Input";
@@ -394,8 +394,8 @@ renderQuestionaireBtn();
     trueButton.type = "radio";
     falseButton.type = "radio";
   
-    trueButton.value = "true";
-    falseButton.value = "false";
+    trueButton.value = "True";
+    falseButton.value = "False";
   
     trueButton.name = "true-false" + index;
     falseButton.name = "true-false" + index;
@@ -470,6 +470,6 @@ renderQuestionaireBtn();
     console.log(content);
 
   
-     window.location.href = "/Homepage";
+     window.location.href = "/StudentHome";
      
   }

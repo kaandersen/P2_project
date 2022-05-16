@@ -5,10 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/newStyle.css" />
-    <title>Selected Questionaire</title>
+    <link rel="stylesheet" href="./CSS/interface.css">
+    <title>Student Questionaire</title>
 </head>
+
 <body>
-    <main class="page-container">
+  
+  <div class="container">
+
+    <div class="header">
+        <div class="backButton">
+            <a href="/" title="Back to Front Page">
+                <image src="./icons/arrow2.png">
+            </a>
+      </div>
+    </div>
+  
+    <div class="navigation">
+        <a href="/Admin" class="nav__link" data-link>Front Page</a>
+        <a href="/AdminOverviewpage" class="nav__link" data-link>Overview Page</a>
+        <a href="/AdminResults" class="nav__link" data-link>Results</a>
+    </div>
+  
+    <div class="main-content">
+      <main class="page-container">
         <div class="questionaire-container" id="GFG">
           <h1 class="page-heading">Student Questionaire</h1>
           <div class="header">
@@ -19,9 +39,15 @@
           </div>
 
         <div id="questions-container"></div>
-          <button class="button-blue" id="returnHomepage" onclick="returnToHomepage();">Homepage</button>
+          <button class="button-blue" id="returnHomepage" onclick="returnToHomepage();">Cancel</button>
           <button class="button-blue mt-5" onclick="UploadToCsv()">Send</button>
         </div>
+    </main>
+  
+    <div class="footer"></div>
+  </div>
+
+
 
     <script src="/public/SelectQuestionaire.js"></script>
 </body>

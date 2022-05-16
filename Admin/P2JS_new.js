@@ -2,8 +2,10 @@ roomInputFieldCounter = 1;
 var questionaireInfo = {
   questionaireTitle: "",
   totalStudents: 0,
+  maxRooms: "",
   amountOfRoomsForPersons: [],
 };
+
 
 // add on change event listener to the input field with id questName
 var questionaireTitle = document.getElementById("questionaireTitle");
@@ -50,6 +52,8 @@ addNewRoomInputField.addEventListener("click", function () {
   form.lastElementChild.parentNode.insertBefore(
     linebreak,
     form.lastElementChild
+
+    
   );
 
   // get index by label id
@@ -103,8 +107,9 @@ const createNewQuestionaire = async () => {
 
   let finalQuestionaireInfo = {
     ...questionaireInfo,
-    amountOfRoomsForPersons: questionaireInfo.amountOfRoomsForPersons.join("-"),
+    amountOfRoomsForPersons: questionaireInfo.amountOfRoomsForPersons.join("-"), maxRooms: questionaireInfo.amountOfRoomsForPersons.length,
   };
+
 
   finalQuestionaireInfo = [finalQuestionaireInfo];
 
