@@ -315,7 +315,7 @@ void getQuestionnaireInfo(int* questionnaireID, int* amountOfStudents, int* amou
             // NOTE strtok clobbers tmp
 
 
-            if (i==(*questionnaireID)-1){ /* If time that matches questionnaire */
+            if (i==(*questionnaireID)){ /* If time that matches questionnaire */
                 *amountOfStudents = stringToInt(getfield(tmp1, 2));
 
                 textBuffer1 = getfield(tmp2, 3);

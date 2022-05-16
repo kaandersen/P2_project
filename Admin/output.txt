@@ -1,2 +1,5 @@
-Room   1:   2 -   1 | Satisfaction:  100%. 
-Room   2:   3 - -621717276 | Satisfaction:  100%. 
+Room   1:   5 -   9 | Satisfaction:  100%. 
+Room   2:   7 -   4 | Satisfaction:  100%. 
+Room   3:   3 -   8 | Satisfaction:  100%. 
+Room   4:   6 -   1 | Satisfaction:    0%. 
+Room   5:   2 -   0 | Satisfaction:  100%. 
