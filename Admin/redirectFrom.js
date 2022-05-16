@@ -16,14 +16,14 @@ function checkForQuestionnaire() {
         linkText = document.createTextNode("Continue working on questionnaire");
         a.appendChild(linkText);
         a.title = "Continue";
-        a.href = "./P2HTML_continue.html";
+        a.href = "/Create";
         document.body.appendChild(a);
     } else {
         //Creates a link to create a new questionnaire based on the existance of a questionnaire. 
         linkText = document.createTextNode("Create new questionnaire");
         a.appendChild(linkText);
         a.title = "Create new";
-        a.href = "./new.html";
+        a.href = "/AdminNewQuestionaire";
         document.body.appendChild(a);
     }
 }

@@ -6,37 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Questionaire</title>
     <link rel="stylesheet" href="/public/newStyle.css" />
+    <link rel="stylesheet" href="./CSS/interface.css">
   </head>
   <body>
-    <header></header>
 
-    <main class="page-container">
-      <div class="questionaire-container" id="GFG">
-        <h1 class="page-heading">Create Questionaire</h1>
-        <div class="header">
-          <div class="button-container" id="btn-container">
-            <button
-              class="button-blue"
-              id="SaveButton"
-              onclick="createCsvFileFromQuestionArray()"
-            >
-              Save
-            </button>
-        <button class="button-blue" id="Exit">Cancel</button>
-       <!--     <button class="button-blue" id="Test" onclick="testBtn()">Test</button> -->
-            <div class="button-list-wrapper" id="btn-list-wrapper"></div>
-          </div>
+    <div class="container">
+
+      <div class="header">
+          <div class="backButton">
+              <a href="/" title="Back to Front Page">
+                  <image src="./icons/arrow2.png">
+              </a>
         </div>
-
-     <!-- <div id="rooms-container" class="rooms-class-container">
-        <div class="rooms-main-header">Define rooms</div>
-        <button class="button-white mt-5" onclick="onNewRoomAdd()">+</button>
-      </div>-->
-
-      <div id="questions-container"></div>
-        <button class="button-blue mt-5" onclick="onNewQuestionAdd()">+</button>
       </div>
-    </main>
+
+      <div class="navigation">
+          <a href="/Admin" class="nav__link" data-link>Front Page</a>
+          <a href="/AdminOverviewpage" class="nav__link" data-link>Overview Page</a>
+          <a href="/AdminResults" class="nav__link" data-link>Results</a>
+      </div>
+
+      <div class="main-content">
+        <main class="page-container">
+          <div class="questionaire-container" id="GFG">
+            <h1 class="page-heading">Create Questionaire</h1>
+            <div class="buttonHeader">
+              <div class="button-container" id="btn-container">
+                <button
+                  class="button-blue"
+                  id="SaveButton"
+                  onclick="createCsvFileFromQuestionArray()"
+                >
+                  Save
+                </button>
+            <button class="button-blue" id="Exit">Cancel</button>
+                <div class="button-list-wrapper" id="btn-list-wrapper"></div>
+              </div>
+            </div>
+    
+
+    
+          <div id="questions-container"></div>
+            <button class="button-blue mt-5" onclick="onNewQuestionAdd()">+</button>
+          </div>
+        </main>
+
+      <div class="footer"></div>
+  </div>
+
+   
     <script>
       /*getCsvData();
 
@@ -47,7 +65,7 @@
       }*/
 
      document.getElementById("Exit").onclick = function () {
-        location.href = "/Homepage";
+        location.href = "/Admin";
     };
     </script>
 
