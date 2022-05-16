@@ -19,4 +19,4 @@ Rooms with satisfaction:  70% -  80% |   0
 
 Rooms with satisfaction:  80% -  90% |   0 
 
-Rooms with satisfaction:  90% - 100% |   3 
+Rooms with satisfaction:  90% - 100% |   2 

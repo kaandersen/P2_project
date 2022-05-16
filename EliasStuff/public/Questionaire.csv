@@ -1,2 +1,3 @@
 questionaireid,id,question,answerOption,checkbox
-1,0,PuhaPuha,SCALE,
+1,0,Hello,YES/NO,
+2,1,Hello,SCALE,

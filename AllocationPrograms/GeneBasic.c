@@ -184,7 +184,7 @@ void getQuestionnaireInfo(int* questionnaireID, int* amountOfStudents, int* amou
     
     char* textBuffer1 = (char*)malloc(50*sizeof(char));
 
-    char* line = (char*)malloc(1024*sizeof(char));;
+    char* line = (char*)malloc(1024*sizeof(char));
     /* File questionnaire ID */
 
     FILE* fp = fopen("EliasStuff/public/QuestionaireData.csv", "r");
@@ -245,13 +245,15 @@ void getQuestionnaireInfo(int* questionnaireID, int* amountOfStudents, int* amou
 
             if (i>0){ /* If not first line */
                 if (stringToInt(getfield(tmp1, 1))==*questionnaireID){  /* If correct questionnaire */
-                    if (strcmp(getfield(tmp2, 4), "SCALE")==0){
+
+                    textBuffer1 = getfield(tmp2,4);
+                    if (strcmp(textBuffer1, "SCALE")==0){
                         (*listOfQuestionTypes)[j]=1;
                     }
-                    else if (strcmp(tmp2, "YES/NO")==0){
+                    else if (strcmp(textBuffer1, "YES/NO")==0){
                         (*listOfQuestionTypes)[j]=2;
                     }
-                    else if (strcmp(tmp2, "TEXT")==0){
+                    else if (strcmp(textBuffer1, "TEXT")==0){
                         (*listOfQuestionTypes)[j]=3;
                     }
                     else {
@@ -298,7 +300,7 @@ void getQuestionnaireInfo(int* questionnaireID, int* amountOfStudents, int* amou
     //////////////////////////////
     */
 
-    *roomtypes = (int*)malloc(50*sizeof(int));
+    *roomtypes = (int*)malloc(50*sizeof(int));      /* Max rooms of size 50 */
     
     fp = fopen("EliasStuff/public/StudentInfoQuestionaire.csv", "r");
 
@@ -317,14 +319,25 @@ void getQuestionnaireInfo(int* questionnaireID, int* amountOfStudents, int* amou
                 *amountOfStudents = stringToInt(getfield(tmp1, 2));
 
                 textBuffer1 = getfield(tmp2, 3);
+                if (textBuffer1[0]== '-'){    /* If empty set to 0*/
+                    (*roomtypes)[j]=0;  
+                }
+                else{
+                    sscanf(textBuffer1, " %d - ", &(*roomtypes)[j]);
+                    strcpy(textBuffer1, textBuffer1+1); /* Remove one character*/
+                }
 
-                sscanf(textBuffer1, " %d - ", &(*roomtypes)[j]);
                 j++;
-                
-                while (textBuffer1[1]== '-')
-                {
-                    strcpy(textBuffer1, textBuffer1+2); /* Remove two characters*/
-                    sscanf(textBuffer1, " %d ", &(*roomtypes)[j]);
+                while (textBuffer1[0]== '-')
+                {   
+                    strcpy(textBuffer1, textBuffer1+1); /* Remove one character*/
+                    if (textBuffer1[0]== '-'){    /* If empty set to 0*/
+                        (*roomtypes)[j]=0; 
+                    }
+                    else{
+                        sscanf(textBuffer1, " %d - ", &(*roomtypes)[j]);
+                        strcpy(textBuffer1, textBuffer1+1); /* Remove one character*/
+                    }
 
                     j++;
                 }
@@ -383,8 +396,19 @@ void getStudentAnswers(int*** listOfStudents, int amountOfStudents, int amountOf
             if (i>0){ /* If over first run */
 
                 if (stringToInt(getfield(tmp1, 1))==questionnaireID){   /* If right questionnaire */
+                    
+                    if (listOfQuestionTypes[x]==2){ /* If Yes/No questions */
+                        textBuffer1 = getfield(tmp2, 2);
+                        if (strcmp(textBuffer1,"True")==0){
+                            (*listOfStudents)[j][x]=1;
+                        }
+                        else if (strcmp(textBuffer1,"False")==0){
+                            (*listOfStudents)[j][x]=0;
+                        }
 
-                    if (listOfQuestionTypes[x]!=3){ /* If not text*/
+                    }
+                    
+                    else if (listOfQuestionTypes[x]!=3){ /* If not text*/
                         (*listOfStudents)[j][x]=stringToInt(getfield(tmp2, 2));
                     }
                     else {
@@ -441,7 +465,7 @@ char* getfield(char* line, int num)
 
 int stringToInt(char* string){
     int output;
-    sscanf(string, "%d", &output);
+    sscanf(string, " %d ", &output);
     return output;  /* Convert string to integer*/
 }
 
