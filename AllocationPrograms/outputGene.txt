@@ -1,7 +1,7 @@
 
-Start value: 8 
+Start value: 16 
 
- Time 0:  16 -   8 | 80.000000% 
+ Time 0:  16 -   0 | 80.000000% 
 
  Time 1:  16 -   0 | 80.000000% 
 
