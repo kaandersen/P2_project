@@ -1,7 +1,7 @@
 
-AverageSatisfaction: 77.207547% 
+AverageSatisfaction: 80.000000% 
 
-Rooms with satisfaction:   0% -  10% |   0 
+Rooms with satisfaction:   0% -  10% |   1 
 
 Rooms with satisfaction:  10% -  20% |   0 
 
@@ -11,12 +11,12 @@ Rooms with satisfaction:  30% -  40% |   0
 
 Rooms with satisfaction:  40% -  50% |   0 
 
-Rooms with satisfaction:  50% -  60% |   6 
+Rooms with satisfaction:  50% -  60% |   0 
 
-Rooms with satisfaction:  60% -  70% |   4 
+Rooms with satisfaction:  60% -  70% |   0 
 
-Rooms with satisfaction:  70% -  80% |  20 
+Rooms with satisfaction:  70% -  80% |   0 
 
-Rooms with satisfaction:  80% -  90% |  17 
+Rooms with satisfaction:  80% -  90% |   0 
 
-Rooms with satisfaction:  90% - 100% |   5 
+Rooms with satisfaction:  90% - 100% |   4 

@@ -57,6 +57,27 @@ app.get("/StudentHome", (req, res) => {
   res.sendFile(path.resolve(__dirname, "Student", "StudentHomePage.html"));
 });
 
+
+app.get("/Please_work", (req, res) => {
+  function activateProgram(){
+    const { spawn } = require('node:child_process');
+    const bat = spawn('AllocationProgram.exe', ['/c', 'my.bat']);
+
+    bat.stdout.on('data', (data) => {
+    console.log(data.toString());
+    });
+
+    bat.stderr.on('data', (data) => {
+    console.error(data.toString());
+    });
+
+    bat.on('exit', (code) => {
+    console.log(`Child exited with code ${code}`);
+    });
+  }
+  activateProgram();
+})
+
 app.get("/StudentQuestionnairesPage", (req, res) => {
   res.sendFile(
     path.resolve(__dirname, "Student", "questionnaireRedirectPage.html")
