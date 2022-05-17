@@ -200,9 +200,11 @@ async function addRow() {
                 body: JSON.stringify({ calculateDataArray }),
             });
             const content = await rawResponse.json();
+            console.log(content)
             
             window.location.href = "/Please_work"
             /* Activating allocation program */
+
         })
 
 

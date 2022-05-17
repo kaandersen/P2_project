@@ -34,11 +34,29 @@ app.get("/Admin", (req, res) => {
   res.sendFile(path.resolve(__dirname, "Admin", "redirectFrom.html"));
 });
 
+app.get("/AdminOverviewpage", (req, res) => {
+  app.use(express.static(path.resolve(__dirname, "Admin")));
+  res.sendFile(path.resolve(__dirname, "Admin", "overviewPage.html"));
+});
+
+app.get("/AdminResults", (req, res) => {
+  app.use(express.static(path.resolve(__dirname, "Admin")));
+  res.sendFile(path.resolve(__dirname, "Admin", "P2HTML_showOutput.html"));
+});
+
+app.get("/AdminNewQuestionaire", (req, res) => {
+  app.use(express.static(path.resolve(__dirname, "Admin")));
+  res.sendFile(path.resolve(__dirname, "Admin", "new.html"));
+});
+
+
+
 //directs into the "Student" folder, which contains the student related stuff
 app.get("/StudentHome", (req, res) => {
   app.use(express.static(path.resolve(__dirname, "Student")));
   res.sendFile(path.resolve(__dirname, "Student", "StudentHomePage.html"));
 });
+
 
 app.get("/Please_work", (req, res) => {
   function activateProgram(){
@@ -60,6 +78,12 @@ app.get("/Please_work", (req, res) => {
   activateProgram();
 })
 
+app.get("/StudentQuestionnairesPage", (req, res) => {
+  res.sendFile(
+    path.resolve(__dirname, "Student", "questionnaireRedirectPage.html")
+  );
+});
+
 app.get("/views/StudentID.txt", (req, res) => {
   res.sendFile(
     path.resolve(
@@ -78,11 +102,14 @@ app.get("/data.txt", (req, res) => {
   res.sendFile(path.resolve(__dirname, "Admin", "output.txt"));
 });
 
+
+//Elias folder routes
 app.get("/Create", (req, res) => {
   res.sendFile(
     path.resolve(__dirname, "EliasStuff", "public", "QuestionairePage.html")
   );
 });
+
 
 app.get("/Homepage", (req, res) => {
   app.use(express.static(path.resolve(__dirname, "public")));
@@ -102,6 +129,9 @@ app.get("/Edit", (req, res) => {
     path.resolve(__dirname, "EliasStuff", "public", "EditQuestionaire.html")
   );
 });
+
+
+
 
 //Edit CSV
 app.post("/updateCsv", async (req, res) => {
@@ -344,6 +374,7 @@ app.post("/writeinfotocsv", (req, res) => {
     header: [
       { id: "questionaireTitle", title: "Title" },
       { id: "totalStudents", title: "Amount" },
+      { id: "maxRooms", title: "Max" },      
       { id: "amountOfRoomsForPersons", title: "Rooms" },
     ],
   });

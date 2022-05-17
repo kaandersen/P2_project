@@ -1,6 +1,6 @@
 //Global variables
 //var _IDIndex = 1;
-var _buttonNameIndex = 1;
+//var _buttonNameIndex = 1;
 var _questionaireIndex = 1;
 
 
@@ -14,7 +14,21 @@ function createQuestionaire() {
 
 
 //When a questionaire is saved a button is created 
-function savingQuestionaireBtns() {
+async function savingQuestionaireBtns() {
+
+
+  //Retrieve questionaire title
+  const responseInfo = await fetch("/public/StudentInfoQuestionaire.csv");
+  const CSVdataInfo = await responseInfo.text();
+  const rowsInfo = CSVdataInfo.split("\n").slice(1);
+
+  var titleColoumnArr = [];
+
+  rowsInfo.forEach((element) => {
+      const rowInfo = element.split(",");
+      const coloumnTitle = rowInfo[0];
+      titleColoumnArr.push(coloumnTitle);
+  });
  
   //sets local storage to an variable
   var newArr = JSON.parse(window.localStorage.getItem('WrapperID'));
@@ -27,7 +41,7 @@ function savingQuestionaireBtns() {
 
     btnListContainer = document.getElementById("btn-list-wrapper")
     var createQuestionaireBtn = document.createElement("button");
-    createQuestionaireBtn.innerHTML = "Questionaire "+_buttonNameIndex++;
+    createQuestionaireBtn.innerHTML = titleColoumnArr[i];
     createQuestionaireBtn.setAttribute("id",""+ newArr[i]);
     createQuestionaireBtn.setAttribute("questionairebtnid",""+ _questionaireIndex++);
     createQuestionaireBtn.setAttribute("class","QuestionaireBtnClass");

@@ -44,7 +44,7 @@ function renderQuestion() {
 
   scaleOption.value = "SCALE";
   textInputOption.value = "TEXT";
-  trueFalseOption.value = "TRUE/FALSE"
+  trueFalseOption.value = "YES/NO"
 
 
   //overruling
@@ -80,7 +80,7 @@ function renderQuestion() {
   trueFalseOption.className = "option";
 
   questionNumber.innerHTML = questionsArray.length;
-  questionHeading.innerHTML = "Sample Q " + questionsArray.length;
+  questionHeading.innerHTML = "Question " + questionsArray.length;
   crossButton.innerHTML = "X";
   scaleOption.innerText = "Scale";
   textInputOption.innerText = "Text Input";
@@ -292,8 +292,8 @@ function handleTrueFalseClick(event, optionContainer, index) {
   trueButton.type = "radio";
   falseButton.type = "radio";
 
-  trueButton.value = "true";
-  falseButton.value = "false";
+  trueButton.value = "True";
+  falseButton.value = "False";
 
   trueButton.name = "true-false" + index;
   falseButton.name = "true-false" + index;
@@ -482,7 +482,7 @@ console.log(questionaireid);*/
   arrayLength = questionsArray.length;
   
 
-  window.location.href = "/Homepage";
+  window.location.href = "/Admin";
   document.getElementById("SaveButton").disabled = true;
 
  /*

@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/newStyle.css" />
-    <title>Selected Questionaire</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/public/newStyle.css" />
+  <link rel="stylesheet" href="./CSS/interface.css">
+  <title>Edit Questionaire</title>
 </head>
 
 <body>
-    <main class="page-container">
+  <div class="container">
+
+    <div class="header">
+      <div class="backButton">
+        <a href="/" title="Back to Front Page">
+          <image src="./icons/arrow2.png">
+        </a>
+      </div>
+    </div>
+
+    <div class="navigation">
+      <a href="/Admin" class="nav__link" data-link>Front Page</a>
+      <a href="/AdminOverviewpage" class="nav__link" data-link>Overview Page</a>
+      <a href="/AdminResults" class="nav__link" data-link>Results</a>
+    </div>
+
+    <div class="main-content">
+      <main class="page-container">
         <div class="questionaire-container" id="GFG">
           <h1 class="page-heading">Edit Questionaire</h1>
           <div class="header">
@@ -19,11 +38,18 @@
             </div>
           </div>
 
-        <div id="questions-container"></div>
+          <div id="questions-container"></div>
           <button class="button-blue" id="returnHomepage" onclick="CancelChanges();">Cancel</button>
           <button class="button-blue mt-5" onclick="UploadChangesToCsv()">Save</button>
         </div>
+      </main>
+
+      <div class="footer"></div>
+    </div>
+
+
 
     <script src="/public/EditQuestionaire.js"></script>
 </body>
+
 </html>
