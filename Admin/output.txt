@@ -1,5 +1,5 @@
-Room   1:   7 -   2 | Satisfaction:  100%. 
-Room   2:   4 -   3 | Satisfaction:  100%. 
-Room   3:   8 -   5 | Satisfaction:  100%. 
-Room   4:   9 -   0 | Satisfaction:    0%. 
-Room   5:   1 -   6 | Satisfaction:  100%. 
+Room   1:   2 -   6 | Satisfaction:  100%. 
+Room   2:   5 -   9 | Satisfaction:    0%. 
+Room   3:   0 -   3 | Satisfaction:  100%. 
+Room   4:   1 -   4 | Satisfaction:  100%. 
+Room   5:   8 -   7 | Satisfaction:  100%. 
