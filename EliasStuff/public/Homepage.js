@@ -40,20 +40,19 @@ function savingQuestionaireBtns() {
     // console.log(createQuestionaireBtn.id);
 
   }*/
-
+  
+  //creates the edit button, that lets the admin edit an questionnaire
   for (var i = 0; i < newArr.length; i++) {
   
-
     btnEditListContainer = document.getElementById("btn-edit-list-wrapper")
-    var deleteQuestionaireBtn = document.createElement("button");
-    deleteQuestionaireBtn.innerHTML = "Edit";
-    deleteQuestionaireBtn.setAttribute("id",""+ newArr[i]);
-    deleteQuestionaireBtn.setAttribute("questionairebtnid",""+ _questionaireEditIndex++);
-    deleteQuestionaireBtn.setAttribute("class","deleteBtnClass");
-    deleteQuestionaireBtn.name ="deleteBtns";
+    var editQuestionaireBtn = document.createElement("button");
+    editQuestionaireBtn.innerHTML = "Edit";
+    editQuestionaireBtn.setAttribute("id",""+ newArr[i]);
+    editQuestionaireBtn.setAttribute("questionairebtnid",""+ _questionaireEditIndex++);
+    editQuestionaireBtn.setAttribute("class","editBtnClass"); 
+    editQuestionaireBtn.name ="editBtns";
   
-    btnEditListContainer.appendChild(deleteQuestionaireBtn);
-
+    btnEditListContainer.appendChild(editQuestionaireBtn);
   }
 
   //Selects individual button
@@ -66,6 +65,7 @@ function savingQuestionaireBtns() {
     
   })*/
 
+  //Button that can edit a previously existing questionnaire
   btnEditListContainer.addEventListener('click', (event) => {
     localStorage.btnID = event.target.id;
     localStorage.SelectedBtnID = event.target.getAttribute('questionairebtnid')

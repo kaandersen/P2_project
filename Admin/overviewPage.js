@@ -151,16 +151,16 @@ async function addRow() {
         editQuestionaireBtn.innerHTML = "Edit";
         editQuestionaireBtn.setAttribute("id", "" + newArr[i]);
         editQuestionaireBtn.setAttribute("questionairebtnid", "" + _questionaireEditIndex++);
-        editQuestionaireBtn.setAttribute("class", "deleteBtnClass");
-        editQuestionaireBtn.name = "deleteBtns";
+        editQuestionaireBtn.setAttribute("class", "editBtnClass");
+        editQuestionaireBtn.name = "editBtns";
 
         //Calculate button
         var calculateQuestionaireBtn = document.createElement("button");
         calculateQuestionaireBtn.innerHTML = "Calculate";
         calculateQuestionaireBtn.setAttribute("id", "" + newArr[i]);
         calculateQuestionaireBtn.setAttribute("calculatebtnid", "" + _questionaireCalculateIndex++);
-        calculateQuestionaireBtn.setAttribute("class", "deleteBtnClass");
-        calculateQuestionaireBtn.name = "deleteBtns";
+        calculateQuestionaireBtn.setAttribute("class", "editBtnClass");
+        calculateQuestionaireBtn.name = "edtiBtns";
 
         cell1.innerHTML = titleColoumnArr[i];
         cell2.appendChild(editQuestionaireBtn);
