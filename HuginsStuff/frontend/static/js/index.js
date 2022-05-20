@@ -3,7 +3,7 @@ import Student from "./views/StudentLogIn.js";
 import Admin from "./views/AdminLogIn.js";
 import About from "./views/AboutPage.js";
 
-
+//This is to surcomvent adding script in the html
 window.addEventListener("mousemove", giveFunctionality);
 
 
@@ -22,7 +22,7 @@ const navigateTo = url => {
     history.pushState(null, null, url);
     router(); //calls the client side router to process the new history entry
 };
-
+//Serves the dynamic pages
 const router = async () => {
     const routes = [
         { path: "/", view: FrontPage },
@@ -103,6 +103,7 @@ function helloWorld(){
     //     }
 
     // }
+    //If the admin log in input matches the hardcoded list of id's, then the admin home page is loaded
     if (location.pathname == "/adminLogin"){
         if(userID == adminIDs[adminIDs.indexOf(userID)]){
             location.pathname = "/Admin";
@@ -110,7 +111,7 @@ function helloWorld(){
             alert("Incorrect admin ID");
         }
     }
-
+    //If the student log in input matches the hardcoded list of id's, then the student home page is loaded
     if (location.pathname == "/studentLogin"){
         if(userID == studentIDs[studentIDs.indexOf(userID)]){
             location.pathname = "/StudentHome";
