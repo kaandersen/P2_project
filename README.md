@@ -135,12 +135,16 @@ What files are, generally, located in the "AllocationPrograms" folder?
 
 What files are, generally, located in the "Frontpage" folder?
     In the frontpage folder, all the files that relate to the program frontpage are located
+    Here the index.html file gets dynamically changed everytime the user goes to another page under the front page.
+    These pages include: Admin login, Student login, about and the front page itself. 
 
 What files are, generally, located in the "EliasStuff" folder?
-    In the EliasStuff folder all files related to the questionnaires are located 
+    In the EliasStuff folder, all the csv files can be found, and some js and html pages.
 
 What files are, generally, located in the "Student" folder?
     In the Student folder all files related to the student page are located
+    Here the html pages are static with some dynamic features. 
+    The Questionnaire redirect page, shows the student which questionnaires are currently awailable, and updates, as the admin creates a new questionnaire.
 
 What files are locatied in the "node_modules" folder?
     In here all node-modules can be found. 
