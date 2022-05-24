@@ -143,7 +143,8 @@ HTML, CSS, JS, C.
 
     What files are, generally, located in the "Frontpage" folder?
         In the frontpage folder, all the files that relate to the program frontpage are located
-        Here the index.html file gets dynamically changed everytime the user goes to another page under the front page.
+        Here the index.html file gets dynamically changed everytime the user 
+        goes to another page under the front page.
         These pages include: Admin login, Student login, about and the front page itself. 
 
     What files are, generally, located in the "EliasStuff" folder?
