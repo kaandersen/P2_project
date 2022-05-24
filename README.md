@@ -1,6 +1,10 @@
 # P2_project
 Repository for our P2 project
 
+
+Languages used:
+HTML, CSS, JS, C.
+
 The program:
 How to start and stop the program? 
     Requirements:
