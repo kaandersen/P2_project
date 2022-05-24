@@ -113,7 +113,7 @@ app.get("/Create", (req, res) => {
 
 app.get("/Homepage", (req, res) => {
   app.use(express.static(path.resolve(__dirname, "public")));
-  res.sendFile(path.resolve(__dirname, "EliasStuff", "public", "index.html"));
+  res.sendFile(path.resolve(__dirname, "Admin", "index.html"));
 });
 
 app.get("/Selected", (req, res) => {
@@ -124,9 +124,9 @@ app.get("/Selected", (req, res) => {
 });
 
 app.get("/Edit", (req, res) => {
-  app.use(express.static(path.resolve(__dirname, "public")));
+  app.use(express.static(path.resolve(__dirname, "Admin")));
   res.sendFile(
-    path.resolve(__dirname, "EliasStuff", "public", "EditQuestionaire.html")
+    path.resolve(__dirname, "Admin", "EditQuestionaire.html")
   );
 });
 
