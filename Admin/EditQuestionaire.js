@@ -6,40 +6,10 @@ console.log(retrievedBtnID);
 var retrievedSelectedBtnID = localStorage.getItem("SelectedBtnID");
 console.log(retrievedBtnID);
 
-/*getCsvData();
-
-async function getCsvData() {
-const response = await fetch("/public/Questionaire.csv");
-const CSVdata = await response.text();
-console.table(CSVdata);
-
-const rows = CSVdata.split('\n').slice(1);
-console.log(rows);
-rows.forEach(element => { 
-    const row = element.split(',');
-    const coloumnID = row[0];
-    //const coloumnQuestion = row[2];
-    //console.log(coloumnID, coloumnQuestion);
-    
-    if (coloumnID === retrievedEditBtnID) {
-        console.log(row[2]);
-    }
-    else {
-      console.log("coloumnID does not match retrievedBtnID?")
-    }
-});
-
-//return coloumnQuestion;
-
-}*/
-
 async function editQuestionaire() {
-  //var coloumnNewQuestionID = await getCsvData();
-  //console.log(coloumnNewQuestionID);
 
   const response = await fetch("/public/Questionaire.csv");
   const CSVdata = await response.text();
-  //console.table(CSVdata);
   const rows = CSVdata.split("\n").slice(1);
   console.log(rows);
 
@@ -55,7 +25,6 @@ async function editQuestionaire() {
     const coloumnQuestion = row[2];
     const coloumnAnswer = row[3];
     const coloumnCheckbox = row[4];
-    //console.log(coloumnID, coloumnQuestion);
 
     if (coloumnID === retrievedSelectedBtnID) {
       questionColoumnArr.push(coloumnQuestion);
@@ -64,18 +33,6 @@ async function editQuestionaire() {
       checkboxColoumnArr.push(coloumnCheckbox);
     }
   });
-
-  //console.log(questionColoumnArr);
-  //console.log(answerColoumnArr);
-  //console.log(checkboxColoumnArr);
-
-  /*for (let i = 0; i < globalVar.length; i++) {
-    const elementsInList = globalVar[i];
-    console.log(elementsInList);
-    
-  }*/
-
-  // console.log(globalVar);
 
   for (let i = 0; i < questionColoumnArr.length; i++) {
     questionColoumnArr[i];
@@ -87,31 +44,14 @@ async function editQuestionaire() {
 
   for (let i = 0; i < checkboxColoumnArr.length; i++) {
     checkboxColoumnArr[i];
-    //console.log(checkboxColoumnArr[i]);
   }
 
   var newInputArr = JSON.parse(
     window.localStorage.getItem("QuestionContentID")
   );
-  //var exit_loops = false;
-  for (var i = 0; i < newInputArr.length; i++) {
-    joe = newInputArr[i];
-    //console.log(joe);
-    /*if (i == eventID){
-        break;
-    }*/
-  }
-
-  /*for (let k = 0; k < coloumnQuestion.length; k++) {
-    inputID = coloumnQuestion[i];
-    console.log(inputID)
-    
-  }*/
 
   for (var i = 0; i < retrievedBtnID; i++) {
-    /*if (retrievedBtnID[i] >= 3) {
-        console.log("angryy");
-    }*/
+
 
     questionsArray = [
       ...questionsArray,
@@ -178,22 +118,7 @@ async function editQuestionaire() {
       questionInput.className = "question-input";
       questionInput.placeholder = questionColoumnArr[i];
 
-      /*if (newInputArr[i] === event.target.id) {
-          questionInput.innerHTML = "hello " + newInputArr[i];
-      }
-      else {
-          console.log("something went wrong");
-          console.log(newInputArr.length);
-      }*/
-
-      /*if (newInputArr[i] >= event.target.id[i]) {
-          console.log("This will be a good day");
-      }*/
-
       //TASK 2.
-      // questionInput.innerHTML = newInputArr[i];
-
-      //questionInput.innerHTML = bye;
       optionContainer.className = "option-container";
       questionHeading.className = "question-heading";
       answerTypeWrapper.className = "answer-type-wrapper";
@@ -275,8 +200,6 @@ async function editQuestionaire() {
           questionsArray[index - 1].answerOption = null;
           questionsArray[index - 1].answer = null;
 
-          /*console.log(questionNumber.innerHTML, "this is number", questionsArray.length - 1);
-          questionNumber.innerHTML = questionsArray.length - 1;*/
         });
       }
       DeleteQuestionWrapper();
@@ -429,10 +352,7 @@ function handleTrueFalseClick(event, optionContainer, index) {
 function handleQuestionInputChange(event, index) {
   questionsArray[index - 1].question = event.target.value;
 }
-/*
-function handleStudentInputChange(event, index) {
-  questionsArray[index - 1].studentamount = event.target.value;
-}*/
+
 
 // handle scale option select
 

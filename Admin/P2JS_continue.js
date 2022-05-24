@@ -1,13 +1,5 @@
 window.addEventListener("load", checkForQuestionnaire);
 
-
-/**
- * 
- * Karen: I would like it if this file / webpage was called "Editor" instead, as this is where the user will be customizing their questionnaire
- * 
-*/
-
-
 //This function removes the functionality to edit your questionnaire, if it is set as done. 
 function checkForQuestionnaire() {
     //Checks for the done state of the questionnaire

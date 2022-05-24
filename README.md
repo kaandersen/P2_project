@@ -116,14 +116,15 @@ What can you do on the student page:
         "cancel" button
             after pressing the "cancel" button, you will be redirected to the student front page
         
-        The questionnaire currently has no way of checking if all the questions have been answered
-        therefore, if you intend to use the algorithm with your own answers, don't leave empty answers
+        The questionnaire currently has no way of checking if all the questions have been answered therefore, if you intend to use the algorithm with your own answers, don't leave empty answers
 
 
 
 The files:
 What files are, generally, located in the "Admin" folder?
-    In the admin folder, all files that interact with the admin page can be found
+    In the admin folder, all files that interact with the admin page can be found.
+    Most of the html pages here, are statical with some dynamical changes. 
+    Such as the overview page, that has a statical description, with a dynamic table that changes based on how many questionnaires are currently active. 
 
 
 What files are, generally, located in the "AllocationPrograms" folder?

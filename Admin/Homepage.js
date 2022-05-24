@@ -1,5 +1,4 @@
 //Global variables
-//var _IDIndex = 1;
 var _buttonNameIndex = 1;
 var _questionaireIndex = 1;
 var _questionaireEditIndex = 1;
