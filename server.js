@@ -204,7 +204,6 @@ app.post("/writetocsv", (req, res) => {
       temp_data.unshift(row);
     })
     .on("end", () => {
-      // temp_data.concat(req.body.questionsArray);
       console.log(temp_data);
       console.log(req.body.questionsArray);
       const final_data = [...temp_data, ...req.body.questionsArray];
@@ -212,7 +211,6 @@ app.post("/writetocsv", (req, res) => {
       for (let i = 0; i < final_data.length; i++) {
         final_data[i].id = i;
       }
-      //console.log(final_data);
 
       const WritingToCsv = require("csv-writer").createObjectCsvWriter;
       const csvObject = WritingToCsv({
@@ -234,135 +232,6 @@ app.post("/writetocsv", (req, res) => {
     message: "Successfully wrote to csv",
   });
 });
-
-/*
-  //Student
-  app.post("/writetostudentcsv", (req, res) => {
-    let temp_data = [];
-  
-    fs.createReadStream("EliasStuff/public/PublicQuestionaire.csv")
-      .on("error", (err) => {
-        const data = req.body.questionsArray;
-  
-        const WritingToCsv = require("csv-writer").createObjectCsvWriter;
-        const csvObject = WritingToCsv({
-          path: "EliasStuff/public/PublicQuestionaire.csv",
-          header: [
-            { id: "id", title: "id" },
-            { id: "studentid", title: "studentid" },
-            { id: "question", title: "question" },
-            { id: "answer", title: "answer" },
-            { id: "answerOption", title: "answerOption" },
-            { id: "checkbox", title: "checkbox" },
-          ],
-        });
-        csvObject
-          .writeRecords(data)
-          .then(() => console.log("The CSV file was written successfully"));
-  
-        return;
-      })
-      .pipe(csv())
-      .on("data", (row) => {
-        console.log("I am Running");
-        temp_data.unshift(row);
-  
-      })
-      .on("end", () => {
-        // temp_data.concat(req.body.questionsArray);
-        // console.log(temp_data);
-        //  console.log(req.body.questionsArray);
-        const final_data = [...temp_data, ...req.body.questionsArray];
-  
-        for (let i = 0; i < final_data.length; i++) {
-          final_data[i].id = i;
-        }
-        //console.log(final_data);
-  
-        const WritingToCsv = require("csv-writer").createObjectCsvWriter;
-        const csvObject = WritingToCsv({
-          path: "EliasStuff/public/PublicQuestionaire.csv",
-          header: [
-            { id: "id", title: "id" },
-            { id: "studentid", title: "studentid" },
-            { id: "question", title: "question" },
-            { id: "answer", title: "answer" },
-            { id: "answerOption", title: "answerOption" },
-            { id: "checkbox", title: "checkbox" },
-          ],
-        });
-        csvObject
-          .writeRecords(final_data)
-          .then(() => console.log("The CSV file was written successfully"));
-  
-      });
-  
-    res.status(200).json({
-      message: "Successfully wrote to csv",
-    });
-  
-  
-  });*/
-
-//Student Info
-/*app.post("/writeinfotocsv", (req, res) => {
-    let temp_data = [];
-  
-    fs.createReadStream("EliasStuff/public/StudentInfoQuestionaire.csv")
-      .on("error", (err) => {
-        const data = req.body.studentInfoArray;
-  
-        const WritingToCsv = require("csv-writer").createObjectCsvWriter;
-        const csvObject = WritingToCsv({
-          path: "EliasStuff/public/StudentInfoQuestionaire.csv",
-          header: [
-            { id: "title", title: "Title" },
-            { id: "amount", title: "Amount" },
-            { id: "rooms", title: "Rooms" },
-            { id: "max", title: "Max" },
-          ],
-        });
-        csvObject
-          .writeRecords(data)
-          .then(() => console.log("The CSV file was written successfully"));
-  
-        return;
-      })
-      .pipe(csv())
-      .on("data", (row) => {
-        console.log("I am Running");
-        temp_data.unshift(row);
-  
-      })
-      .on("end", () => {
-        const final_data = [...temp_data, ...req.body.studentInfoArray];
-  
-        for (let i = 0; i < final_data.length; i++) {
-          final_data[i].id = i;
-        }
-  
-        const WritingToCsv = require("csv-writer").createObjectCsvWriter;
-        const csvObject = WritingToCsv({
-          path: "EliasStuff/public/StudentInfoQuestionaire.csv",
-          header: [
-            { id: "title", title: "Title" },
-            { id: "amount", title: "Amount" },
-            { id: "rooms", title: "Rooms" },
-            { id: "max", title: "Max" },
-          ],
-        });
-        csvObject
-          .writeRecords(final_data)
-          .then(() => console.log("The CSV file was written successfully"));
-  
-      });
-  
-    res.status(200).json({
-      message: "Successfully wrote to csv",
-    });
-  
-  
-  });*/
 
 //Student info
 app.post("/writeinfotocsv", (req, res) => {

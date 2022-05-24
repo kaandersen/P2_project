@@ -88,21 +88,6 @@ function helloWorld(){
     let userID = loginForm.ID.value;
 
     console.log(userID);
-
-    // if (location.pathname == "/studentLogin"){
-    //     if(userID == studentIDs[studentIDs.indexOf(userID)]){
-
-    //         fetch("/views/StudentID.txt").then(response => response.text()).then(data => {
-    //             console.log(data);
-    //         });
-    //         let inputvalue = document.getElementById("logInID").value;
-    //         console.log(inputvalue);    
-
-    //     } else{
-    //         alert("Incorrect student ID");
-    //     }
-
-    // }
     //If the admin log in input matches the hardcoded list of id's, then the admin home page is loaded
     if (location.pathname == "/adminLogin"){
         if(userID == adminIDs[adminIDs.indexOf(userID)]){

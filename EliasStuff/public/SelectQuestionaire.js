@@ -17,42 +17,23 @@ async function renderQuestionaireBtn() {
 
   const response = await fetch("/public/Questionaire.csv");
   const CSVdata = await response.text();
-  //console.table(CSVdata);
   const rows = CSVdata.split('\n').slice(1);
   console.log(rows);
 
   let questionColoumnArr = [];
   let answerColoumnArr = [];
-  //let checkboxColoumnArr = [];
 
   rows.forEach(element => {
     const row = element.split(',');
     const coloumnID = row[0];
     const coloumnQuestion = row[2];
     const coloumnAnswer = row[3];
-    //const coloumnCheckbox = row[4];
-    //console.log(coloumnID, coloumnQuestion);
 
     if (coloumnID === retrievedSelectedBtnID) {
       questionColoumnArr.push(coloumnQuestion)
       answerColoumnArr.push(coloumnAnswer);
-      //checkboxColoumnArr.push(coloumnCheckbox);
-
     }
   });
-
-  //console.log(questionColoumnArr);
-  //console.log(answerColoumnArr);
-  //console.log(checkboxColoumnArr);
-  
-  /*for (let i = 0; i < globalVar.length; i++) {
-    const elementsInList = globalVar[i];
-    console.log(elementsInList);
-    
-  }*/
-
- // console.log(globalVar);
-  
 
 for (let i = 0; i < questionColoumnArr.length; i++) {
   questionColoumnArr[i];
@@ -62,28 +43,13 @@ for (let i = 0; i < answerColoumnArr.length; i++) {
   answerColoumnArr[i];
 }
 
-/*for (let i = 0; i < checkboxColoumnArr.length; i++) {
-             
- checkboxColoumnArr[i];
- //console.log(checkboxColoumnArr[i]);
-
-}*/
-
     var newInputArr = JSON.parse(window.localStorage.getItem('QuestionContentID'));
-    //var exit_loops = false;
+
     for (var i = 0; i < newInputArr.length; i++) {
        joe = newInputArr[i];
-        //console.log(joe);
-        /*if (i == eventID){
-            break;
-        }*/
-      }
+    }
 
     for (var i = 0; i < retrievedBtnID; i++) {
-
-        /*if (retrievedBtnID[i] >= 3) {
-            console.log("angryy");
-        }*/
 
         questionsArray = [
             ...questionsArray,
@@ -101,18 +67,9 @@ for (let i = 0; i < answerColoumnArr.length; i++) {
             var crossButton = document.createElement("button");
             var optionContainer = document.createElement("div");
           
-            
-          
             // question content
             var questionContent = document.createElement("div");
             var questionInput = document.createElement("div");
-          
-          
-            // answer type wrapper
-            // var answerTypeWrapper = document.createElement("div");
-            //var answerType = document.createElement("button");
-            //var postionRelativeDiv = document.createElement("div");
-            //var answerTypeList = document.createElement("div");
           
             // options
             var scaleOption = document.createElement("button");
@@ -124,25 +81,6 @@ for (let i = 0; i < answerColoumnArr.length; i++) {
             trueFalseOption.value = "YES/NO"
           
           
-            //overruling
-            /*var overrulingCheckbox = document.createElement("input");
-            var overrulingLabel = document.createElement("label");
-            overrulingLabel.innerText = "Overruling";
-            overrulingLabel.id = "overruling"
-          
-            overrulingCheckbox.type = "checkbox";
-            overrulingCheckbox.id = "overruling";
-            overrulingCheckbox.value = "overruling";
-
-           if (checkboxColoumnArr[i] === overrulingCheckbox.value) {
-              overrulingCheckbox.checked = true;;
-            }*/
-            
-            /*var newInputArr = JSON.parse(window.localStorage.getItem('QuestionContentID'));
-            for (let l = 0; l < newInputArr.length; l++) {
-                bye = newInputArr[l];
-            }*/
-          
             //classes
             questionContainer.className = `question-wrapper ${questionsArray.length}`;
             questionHeader.className = "question-header";
@@ -150,41 +88,12 @@ for (let i = 0; i < answerColoumnArr.length; i++) {
             crossButton.className = "cross-icon-button";
             questionContent.className = "question-content";
             questionInput.className = "question-input";
-        
-
-            /*if (newInputArr[i] === event.target.id) {
-                questionInput.innerHTML = "hello " + newInputArr[i];
-            }
-            else {
-                console.log("something went wrong");
-                console.log(newInputArr.length);
-            }*/
-
-            /*if (newInputArr[i] >= event.target.id[i]) {
-                console.log("This will be a good day");
-            }*/
 
             //TASK 2.
-                questionInput.innerHTML = questionColoumnArr[i];;
+            questionInput.innerHTML = questionColoumnArr[i];;
             
-            
-            
-            
-        
-        
-        
-            
-        
-            //questionInput.innerHTML = bye;
             optionContainer.className = "option-container";
             questionHeading.className = "question-heading";
-            //answerTypeWrapper.className = "answer-type-wrapper";
-            //answerType.className = "answer-type";
-            //postionRelativeDiv.className = "position-relative";
-            //answerTypeList.className = "answer-type-list";
-            //scaleOption.className = "option";
-            //textInputOption.className = "option";
-            //trueFalseOption.className = "option";
           
             questionNumber.innerHTML = questionsArray.length;
             questionHeading.innerHTML = "Question " + questionsArray.length;
@@ -192,8 +101,6 @@ for (let i = 0; i < answerColoumnArr.length; i++) {
             scaleOption.innerText = "Scale";
             textInputOption.innerText = "Text Input";
             trueFalseOption.innerText = "True/False";
-            //answerType.innerText = "-";
-          
           
             // adding question number, question heading and cross button to question header
             questionHeader.appendChild(questionNumber);
@@ -201,32 +108,11 @@ for (let i = 0; i < answerColoumnArr.length; i++) {
             questionHeader.appendChild(crossButton);
             questionContent.appendChild(questionInput);
           
-          
-            
-          
-            // adding question input , option container to question content
-           /* for (let i = 0; i < questionsArray; i++) {
-              questionContent.appendChild(overrulingLabel);
-              console.log("goodnight " + [i]);
-            }*/
-            /*questionContent.appendChild(overrulingCheckbox);
-            questionContent.appendChild(overrulingLabel);*/
-            
             questionContent.appendChild(optionContainer);
-            //questionContent.appendChild(answerTypeWrapper);
           
             // adding question content to question container
             questionContainer.appendChild(questionHeader);
             questionContainer.appendChild(questionContent);
-          
-            // adding answer type type to answer type wrapper
-          
-            // answerTypeWrapper.appendChild(answerType);
-            // answerTypeWrapper.appendChild(postionRelativeDiv);
-            // postionRelativeDiv.appendChild(answerTypeList);
-            // answerTypeList.appendChild(scaleOption);
-            // answerTypeList.appendChild(textInputOption);
-            // answerTypeList.appendChild(trueFalseOption);
           
             // adding question wrapper to questions container
           
@@ -237,7 +123,6 @@ for (let i = 0; i < answerColoumnArr.length; i++) {
             //   handlers
           
             questionInput.onchange = (event) => handleQuestionInputChange(event, index);
-            //answerType.onclick = () => handleDropdownClick(index);
 
             if (answerColoumnArr[i] === scaleOption.value) {
               handleScaleClick(optionContainer, index);
@@ -251,8 +136,6 @@ for (let i = 0; i < answerColoumnArr.length; i++) {
             if (answerColoumnArr[i] === trueFalseOption.value) {
               handleTrueFalseClick(optionContainer, index);
             }
-
-            //overrulingCheckbox.onclick = (event) => handleCheckboxClick(event, index);
           
           
                // delete wrapper (Contains Error)
@@ -264,10 +147,6 @@ for (let i = 0; i < answerColoumnArr.length; i++) {
                   questionsArray[index - 1].question = null;
                   questionsArray[index - 1].answerOption = null;
                   questionsArray[index - 1].answer = null;
-          
-            
-                  /*console.log(questionNumber.innerHTML, "this is number", questionsArray.length - 1);
-                  questionNumber.innerHTML = questionsArray.length - 1;*/
                 });}
                 DeleteQuestionWrapper();
           
@@ -278,13 +157,8 @@ for (let i = 0; i < answerColoumnArr.length; i++) {
 }
 renderQuestionaireBtn();
 
-/*function handleDropdownClick(index) {
-    var dropdown = document.getElementsByClassName("answer-type-list")[index - 1];
-    dropdown.classList.toggle("answer-type-list-show");
-  }*/
-  
+
   function handleScaleClick(optionContainer, index) {
-    //document.getElementsByClassName("answer-type")[index - 1].innerText = "Scale";
     var scaleOptionsWrapper = document.createElement("div");
     var agreeText = document.createElement("p");
     var disagreeText = document.createElement("p");
@@ -338,15 +212,9 @@ renderQuestionaireBtn();
   
     optionContainer.innerHTML = "";
     optionContainer.appendChild(scaleOptionsWrapper);
-  
-  
-    //questionsArray[index - 1].answerOption = event.target.value;
-    
-  
   }
   
   function handleTextInputClick(optionContainer, index) {
-    //document.getElementsByClassName("answer-type")[index - 1].innerText =
     //  "Text Input";
     var yourAnswerWrapper = document.createElement("div");
     var textInput = document.createElement("input");
@@ -363,19 +231,9 @@ renderQuestionaireBtn();
     optionContainer.appendChild(yourAnswerWrapper);
   
     textInput.onchange = (event) => handleTextInputChange(event, index);
-  
-    //questionsArray[index - 1].answerOption = event.target.value;
   }
   
-  //overruling
-  /*function handleCheckboxClick(event, index) {
-    
-      questionsArray[index - 1].checkbox = event.target.value;
-    
-  }*/
-  
   function handleTrueFalseClick(optionContainer, index) {
-    //document.getElementsByClassName("answer-type")[index - 1].innerText =
     //  "True/False";
     var trueFalseOptionsWrapper = document.createElement("div");
     var trueText = document.createElement("p");
@@ -414,8 +272,6 @@ renderQuestionaireBtn();
   
     optionContainer.innerHTML = "";
     optionContainer.appendChild(trueFalseOptionsWrapper);
-  
-   // questionsArray[index - 1].answerOption = event.target.value;
   }
   
   // question input on change
@@ -424,17 +280,11 @@ renderQuestionaireBtn();
     
     questionsArray[index - 1].question = event.target.value;
   }
-  /*
-  function handleStudentInputChange(event, index) {
-    questionsArray[index - 1].studentamount = event.target.value;
-  }*/
   
   // handle scale option select
   
   function handleScaleOptionSelect(value, index) {
     questionsArray[index - 1].answer = value;
-    //var answerType = document.getElementsByClassName("answer-type")[index - 1];
-    //answerType.innerText = "Scale";
   }
   
   // handle text input change

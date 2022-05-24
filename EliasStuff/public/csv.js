@@ -63,37 +63,6 @@ return ;
 }); 
 
 
-
-
-
-
-
-
-
- 
-/*for (var i = 0; i < data.length; i++)
-data[i] += ",NewCol" + (i + 1);
-console.log(data);*/
-
-//let ws = fs.createWriteStream('Questionaire.csv', { flags: 'a' });
-//   const WritingToCsv = require("csv-writer").createObjectCsvWriter;
-//   const csvObject = WritingToCsv({
-//     path: "public/Questionaire.csv",
-//     header: [
-//   { id: "id", title: "id" },
-//   { id: "question", title: "question" },
-//   { id: "answer", title: "answer" },
-//   { id: "answerOption", title: "answerOption" },
-//   { id: "checkbox", title: "checkbox" },
-// ]
-
-//   });
-//   csvObject
-//     .writeRecords(final_data)
-//     .then(() =>
-//       console.log("The CSV file was written successfully")
-//     );
-
 res.status(200).json({
  message: "Successfully wrote to csv",
 });

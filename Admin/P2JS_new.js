@@ -69,18 +69,6 @@ addNewRoomInputField.addEventListener("click", function () {
 // handle input change of dynamic room input fields
 
 const handleInputChange = (event, index, totalStudents) => {
-  //   console.log("totalStudents", typeof totalStudents, typeof event.target.value);
-
-  //   const enteredStudents = parseInt(event.target.value);
-  //   totalStudents = parseInt(totalStudents);
-
-  //   // students should be greater than number of rooms
-  //   if (enteredStudents > totalStudents) {
-  //     event.target.value = "";
-
-  //     return;
-  //   }
-
   questionaireInfo.amountOfRoomsForPersons[index] = event.target.value;
 };
 

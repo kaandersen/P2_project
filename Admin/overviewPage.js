@@ -68,36 +68,7 @@ function searchQuestionnaire() {
     }
 }
 
-// addRow();
-
-// function addRow(){
-//    let i, j;
-//     let table = document.getElementById("quest-table");
-//     let tableBody = document.getElementById("dyn-table-body");
-//     // let numQuestionnaire = localStorage.getItem("wrapperID");
-//     let numQuestionnaire = 4;
-//     let questTitle = ["questionnaire 1", "questionnaire 2","questionnaire 3"]; //Replace this with the values from the qctual questionnaires
-
-//     let tableData = '<tr><td>${questionTitle[0]}</td><td><button id="edit-Odense-uni-2021" title="Edit questionnaire" class="editButton">Edit</button></td></tr>';
-
-
-// }
-
-
-
-
-
-
-
-
-
-
 addRow();
-/*getQuestionaireTitle();
-
-async function getQuestionaireTitle() {
-}*/
-
 
 async function addRow() {
 
@@ -113,24 +84,6 @@ async function addRow() {
         const coloumnTitle = rowInfo[0];
         titleColoumnArr.push(coloumnTitle);
     });
-
-    //Get Questions from csv
-   /* const response = await fetch("/public/Questionaire.csv");
-    const CSVdata = await response.text();
-    const rows = CSVdata.split("\n").slice(1);
-
-    var questionColoumnArr = [];
-
-    rows.forEach((element) => {
-        const row = element.split(",");
-        const coloumnQuestions = row[2];
-        questionColoumnArr.push(coloumnQuestions);
-    });
-
-    console.log(questionColoumnArr);*/
-
-    
-
 
     let i, j;
     let table = document.getElementById("quest-table");

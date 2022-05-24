@@ -19,13 +19,6 @@ function renderQuestion() {
   var crossButton = document.createElement("button");
   var optionContainer = document.createElement("div");
 
-  
- 
- 
-
-  
-
-
   // question content
   var questionContent = document.createElement("div");
   var questionInput = document.createElement("input");
@@ -147,9 +140,6 @@ function renderQuestion() {
         questionsArray[index - 1].answerOption = null;
         questionsArray[index - 1].answer = null;
 
-  
-        /*console.log(questionNumber.innerHTML, "this is number", questionsArray.length - 1);
-        questionNumber.innerHTML = questionsArray.length - 1;*/
       });}
       DeleteQuestionWrapper();
 
@@ -161,13 +151,11 @@ function renderQuestion() {
 // on add button click
 
 function onNewQuestionAdd() {
-  //var randomNumber = Math.floor((Math.random() * 100) + 1);
   questionsArray = [
     ...questionsArray,
     {id: questionsArray.length, question: "", answerOption: "", answer: "", checkbox: ""},
   ];
 
-  //console.log(globalVar);
   renderQuestion();
   counter = counter + 1;
   
@@ -322,10 +310,6 @@ function handleQuestionInputChange(event, index) {
   questionsArray[index - 1].question = event.target.value;
   //questionsArray[index - 1].questionaireid = 3;
 }
-/*
-function handleStudentInputChange(event, index) {
-  questionsArray[index - 1].studentamount = event.target.value;
-}*/
 
 // handle scale option select
 
@@ -377,94 +361,20 @@ function storeQuestionaireInLocalStorage () {
 
 }
 
-
-/*
-function viewLocalStorage(){
-  if (localStorage.getItem('WrapperID') == null) {
-    document.getElementById('output').innerHTML =  JSON.parse(localStorage.getItem('WrapperID'))
-  }
-  console.log("ok");
-}*/
-
-
-
-
-/*function storeInArray(){
-  var saveBtn = document.getElementById("SaveButton");
-
-  for (var k = 0; k < saveBtn.length; k++) {
-    var div = document.body.appendChild(document.createElement('div'));
-    questionaireArray.push(div);  
-  }
-  console.log(questionaireArray);
-
-  /*questionsArray = [
-    ...questionsArray,
-    { id: questionsArray.length, question: "", answerOption: "", answer: "", checkbox: ""},
-  ];
-  
-  for (let i = 0; i < questionsArray.length; i++) {
-    //const element = array[index];
-    console.log("Hello " + [i]);
-
-
-    renderQuestion();
-  }
-}*/
-//post questionaire to new page
-// function storeQuestionaireID(){
-//   localStorage.questionaireID = 1;
-// }
-
-
-// write question array to csv file
-//document.getElementById("fileName-input").value;
 async function createCsvFileFromQuestionArray() {
-//   console.log(window.section_id);
-//   if(window.section_id===undefined){
-//   let element_save =  document.getElementById("SaveButton");  
-//   let sectionID=element_save.getAttribute("data-section");
-//   window.section_ID=sectionID ;
-//   element_save.setAttribute("data-section", parseInt( sectionID)+1);  
-//     window.section_id=parseInt (element_save.getAttribute("data-section")); 
-//   if(sectionID){
-//     questionsArray = questionsArray.map(item => ({...item , questionaireid : sectionID}));
-//   }
-// }
-// else{
-    
-//   questionsArray = questionsArray.map(item => ({...item , questionaireid :window.section_id }));
-//       window.section_id=window.section_id+1
-// }
-     
+   
 var sectionID = localStorage.getItem("questionaireID");
 if(sectionID===undefined ||sectionID===null ){
 
   localStorage.setItem("questionaireID", 1);
   sectionID=1;
 }
-//  localStorage.setItem("questionaireID", sectionID);
   console.log(sectionID);
 
   if(sectionID){
     questionsArray = questionsArray.map(item => ({...item , questionaireid : sectionID}));
   }
   localStorage.setItem("questionaireID", ++sectionID);
-
-/*
-var questionaireid = 5;
-window.globalVar = questionaireid;*/
-
-/*var questionaireid = 5;
-console.log(questionaireid);*/
-
-//questionsArray = questionsArray.map(item => ({...item , questionaireid : sectionID}));
-
-
-
-
-
-
 
   const rawResponse = await fetch("/writetocsv", {
 
@@ -485,64 +395,5 @@ console.log(questionaireid);*/
   window.location.href = "/Admin";
   document.getElementById("SaveButton").disabled = true;
 
- /*
-   IDvariable +=1;
-   //console.log(IDvariable);
-   localStorage.questionaireID = IDvariable;
-   var retrievedID = localStorage.getItem("questionaireID");
-   console.log(retrievedID);
-   retrievedID++;
-   localStorage.questionaireID = retrievedID;
-   console.log(retrievedID);  
-*/
-  
-  //storeInArray();
-  storeQuestionaireInLocalStorage();
-
-  
+  storeQuestionaireInLocalStorage(); 
 }
-
-
-//async function testBtn() {
-  /*IDvariable +=1
-  console.log(IDvariable)*/
-
-
-  /*const rawResponse = await fetch("/writetocsv", {
-
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: null
-  });
-  const content = await rawResponse.json();
-
-  console.log(content);*/
-  
-  
- /* console.log("This is a test button");
-
-  const inputClass = document.getElementsByClassName('question-input');
-  const arr = [...inputClass].map(input => input.value);
-  
-  console.log(arr);
-
-  
-  inputValues = document.getElementsByClassName('question-input');
-
-  for (let i = 0; i < inputValues.length; i++) {
-    printValues = inputValues[i].value
-    console.log(printValues)
-    
-  }*/
-
-
- 
-
-
-
-//}
-
-
