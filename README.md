@@ -32,7 +32,7 @@ HTML, CSS, JS, C.
     When you are done with interacting with the server, you must press "ctrl + c" in the terminal
     to stop it
 
-Once you have opened the program, how do you operate the program? 
+    Once you have opened the program, how do you operate the program? 
     The first you will see when clicking the link is the front page
     from here you are free to navigate to any of the sites in the hotbar to the left
 
@@ -46,12 +46,12 @@ Once you have opened the program, how do you operate the program?
     When on the Admin page or the Student page, you can always navigate back to the front page
     by clicking the arrow in the top left corner.
 
-What do you do on the Admin page?
+    What do you do on the Admin page?
     When you have logged into the admin page, you will be greeted by the admin front page
     here you have these following options on the page:
         Create new questionnaire
         Continue working on questionnaire
-    and these following options on the sidebar:
+    these following options are on the sidebar:
         Front Page
         Overview Page
         Results
@@ -100,7 +100,7 @@ What do you do on the Admin page?
     Results page:
         Here you can see your calculated results
 
-What can you do on the student page:
+    What can you do on the student page:
     When you have logged into the student page, you will be greeted by the student front page
     here you have these following options on the sidebar:
         Front page
@@ -124,39 +124,42 @@ What can you do on the student page:
 
 
 
-The files:
-What files are, generally, located in the "Admin" folder?
-    In the admin folder, all files that interact with the admin page can be found.
-    Most of the html pages here, are statical with some dynamical changes. 
-    Such as the overview page, that has a statical description, with a dynamic table that changes based on how many questionnaires are currently active. 
+    The files:
+    What files are, generally, located in the "Admin" folder?
+        In the admin folder, all files that interact with the admin page can be found.
+        Most of the html pages here, are statical with some dynamical changes. 
+        Such as the overview page, that has a statical description, 
+        with a dynamic table that changes based on how many questionnaires 
+        are currently active. 
 
 
-What files are, generally, located in the "AllocationPrograms" folder?
-    In the allocationPrograms folder all the different allocation algorithms, that have been tested
-    can be found. 
-    The only algorithm that has been compiled beforehand is the geneBasic algorithm.
-    Gene basic is also the only algorithm that has been made compatible with the csv-files.
+    What files are, generally, located in the "AllocationPrograms" folder?
+        In the allocationPrograms folder all the different allocation algorithms, that have been tested
+        can be found. 
+        The only algorithm that has been compiled beforehand is the geneBasic algorithm.
+        Gene basic is also the only algorithm that has been made compatible with the csv-files.
 
-What files are, generally, located in the "Frontpage" folder?
-    In the frontpage folder, all the files that relate to the program frontpage are located
-    Here the index.html file gets dynamically changed everytime the user goes to another page under the front page.
-    These pages include: Admin login, Student login, about and the front page itself. 
+    What files are, generally, located in the "Frontpage" folder?
+        In the frontpage folder, all the files that relate to the program frontpage are located
+        Here the index.html file gets dynamically changed everytime the user goes to another page under the front page.
+        These pages include: Admin login, Student login, about and the front page itself. 
 
-What files are, generally, located in the "EliasStuff" folder?
-    In the EliasStuff folder, all the csv files can be found, and some js and html pages.
+    What files are, generally, located in the "EliasStuff" folder?
+        In the EliasStuff folder, all the csv files can be found, and some js and html pages.
 
-What files are, generally, located in the "Student" folder?
-    In the Student folder all files related to the student page are located
-    Here the html pages are static with some dynamic features. 
-    The Questionnaire redirect page, shows the student which questionnaires are currently available, and updates, as the admin creates a new questionnaire.
+    What files are, generally, located in the "Student" folder?
+        In the Student folder all files related to the student page are located
+        Here the html pages are static with some dynamic features. 
+        The Questionnaire redirect page, shows the student which questionnaires 
+        are currently available, and updates, as the admin creates a new questionnaire.
 
-What files are locatied in the "node_modules" folder?
-    In here all node-modules can be found. 
+    What files are locatied in the "node_modules" folder?
+        In here all node-modules can be found. 
 
-What files are not in any folder?
-    Here you can see: 
-        the server
-        The compiled allocation algorithm
-        the package.json
-        the package-lock.json
-        the readme.md file
+    What files are not in any folder?
+        Here you can see: 
+            the server
+            The compiled allocation algorithm
+            the package.json
+            the package-lock.json
+            the readme.md file
