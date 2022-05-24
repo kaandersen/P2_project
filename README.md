@@ -148,7 +148,7 @@ What files are, generally, located in the "EliasStuff" folder?
 What files are, generally, located in the "Student" folder?
     In the Student folder all files related to the student page are located
     Here the html pages are static with some dynamic features. 
-    The Questionnaire redirect page, shows the student which questionnaires are currently awailable, and updates, as the admin creates a new questionnaire.
+    The Questionnaire redirect page, shows the student which questionnaires are currently available, and updates, as the admin creates a new questionnaire.
 
 What files are locatied in the "node_modules" folder?
     In here all node-modules can be found. 
