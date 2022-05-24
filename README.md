@@ -1,15 +1,7 @@
 # P2_project
 Repository for our P2 project
 
-Setup server - in terminal:
-npm init -y
-npm i express 
-npm i csv-parser
-npm i --save-dev nodemon
-
-Languages: 
-Java Script, C, HTML and CSS
-
+The program:
 How to start and stop the program? 
     Requirements:
         Windows OS
@@ -129,30 +121,33 @@ What can you do on the student page:
 
 
 
-
-
-
-
+The files:
 What files are, generally, located in the "Admin" folder?
-Are there any files in here that need to be explained?
-What file(s) is most important in this folder?
+    In the admin folder, all files that interact with the admin page can be found
+
 
 What files are, generally, located in the "AllocationPrograms" folder?
-Are there any files in here that need to be explained?
-What file(s) is most important in this folder?
+    In the allocationPrograms folder all the different allocation algorithms, that have been tested
+    can be found. 
+    The only algorithm that has been compiled beforehand is the geneBasic algorithm.
+    Gene basic is also the only algorithm that has been made compatible with the csv-files.
 
 What files are, generally, located in the "Frontpage" folder?
-Are there any files in here that need to be explained?
-What file(s) is most important in this folder?
+    In the frontpage folder, all the files that relate to the program frontpage are located
 
-What files are, generally, located in the "node_modules" folder?
-Are there any files in here that need to be explained?
-What file(s) is most important in this folder?
-
-What files are, generally, located in the "Questionnaire" folder?
-Are there any files in here that need to be explained?
-What file(s) is most important in this folder?
+What files are, generally, located in the "EliasStuff" folder?
+    In the EliasStuff folder all files related to the questionnaires are located 
 
 What files are, generally, located in the "Student" folder?
-Are there any files in here that need to be explained?
-What file(s) is most important in this folder?
+    In the Student folder all files related to the student page are located
+
+What files are locatied in the "node_modules" folder?
+    In here all node-modules can be found. 
+
+What files are not in any folder?
+    Here you can see: 
+        the server
+        The compiled allocation algorithm
+        the package.json
+        the package-lock.json
+        the readme.md file
