@@ -102,15 +102,6 @@ app.get("/data.txt", (req, res) => {
   res.sendFile(path.resolve(__dirname, "Admin", "output.txt"));
 });
 
-
-//Elias folder routes
-app.get("/Create", (req, res) => {
-  res.sendFile(
-    path.resolve(__dirname, "EliasStuff", "public", "QuestionairePage.html")
-  );
-});
-
-
 app.get("/Homepage", (req, res) => {
   app.use(express.static(path.resolve(__dirname, "public")));
   res.sendFile(path.resolve(__dirname, "Admin", "index.html"));
@@ -134,6 +125,12 @@ app.get("/Edit", (req, res) => {
 
 
 //Edit CSV
+app.get("/Create", (req, res) => {
+  res.sendFile(
+    path.resolve(__dirname, "EliasStuff", "public", "QuestionairePage.html")
+  );
+});
+
 app.post("/updateCsv", async (req, res) => {
   let results = [];
 
@@ -178,26 +175,6 @@ app.post("/writetocsv", (req, res) => {
   let temp_data = [];
 
   fs.createReadStream("EliasStuff/public/Questionaire.csv")
-    .on("error", (err) => {
-      const data = req.body.questionsArray;
-      const WritingToCsv = require("csv-writer").createObjectCsvWriter;
-      const csvObject = WritingToCsv({
-        path: "EliasStuff/public/Questionaire.csv",
-        header: [
-          { id: "questionaireid", title: "questionaireid" },
-          { id: "id", title: "id" },
-          { id: "question", title: "question" },
-          { id: "answerOption", title: "answerOption" },
-          { id: "checkbox", title: "checkbox" },
-        ],
-      });
-      csvObject
-        .writeRecords(data)
-        .then(() => console.log("The CSV file was written successfully"));
-
-      return;
-    })
-
     .pipe(csv())
     .on("data", (row) => {
       console.log("I am Running");
