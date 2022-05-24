@@ -5,11 +5,11 @@ Repository for our P2 project
 Languages used:
 HTML, CSS, JS, C.
 
-The program:
-How to start and stop the program? 
-    Requirements:
-        Windows OS
-        Node installed
+    The program:
+    How to start and stop the program? 
+        Requirements:
+            Windows OS
+            Node installed
 
     Start by opening up the terminal in the P2_PROJECT folder 
     This can be done in the two following ways:
