@@ -120,7 +120,9 @@ HTML, CSS, JS, C.
         "cancel" button
             after pressing the "cancel" button, you will be redirected to the student front page
         
-        The questionnaire currently has no way of checking if all the questions have been answered therefore, if you intend to use the algorithm with your own answers, don't leave empty answers
+        The questionnaire currently has no way of checking if all 
+        the questions have been answered therefore, if you intend to use 
+        the algorithm with your own answers, don't leave empty answers
 
 
 
