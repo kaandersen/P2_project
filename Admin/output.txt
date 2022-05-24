@@ -1,2 +1,1 @@
-Room   1:   0 | Satisfaction:  100%. 
-Room   2:   2 -   1 | Satisfaction:  100%. 
+Room   1:   1 -   0 | Satisfaction:   50%. 

@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 app.use(
   "/static",
-  express.static(path.resolve(__dirname, "HuginsStuff", "frontend", "static"))
+  express.static(path.resolve(__dirname, "FrontPage", "frontend", "static"))
 );
 app.use(
   "/public",
@@ -24,7 +24,7 @@ app.use(
 
 app.get("/", (req, res) => {
   res.sendFile(
-    path.resolve(__dirname, "HuginsStuff", "frontend", "index.html")
+    path.resolve(__dirname, "FrontPage", "frontend", "index.html")
   );
 });
 
@@ -88,7 +88,7 @@ app.get("/views/StudentID.txt", (req, res) => {
   res.sendFile(
     path.resolve(
       __dirname,
-      "HuginsStuff",
+      "FrontPage",
       "frontend",
       "static",
       "js",
