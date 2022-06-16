@@ -68,35 +68,8 @@ function searchQuestionnaire() {
     }
 }
 
-// addRow();
-
-// function addRow(){
-//    let i, j;
-//     let table = document.getElementById("quest-table");
-//     let tableBody = document.getElementById("dyn-table-body");
-//     // let numQuestionnaire = localStorage.getItem("wrapperID");
-//     let numQuestionnaire = 4;
-//     let questTitle = ["questionnaire 1", "questionnaire 2","questionnaire 3"]; //Replace this with the values from the qctual questionnaires
-
-//     let tableData = '<tr><td>${questionTitle[0]}</td><td><button id="edit-Odense-uni-2021" title="Edit questionnaire" class="editButton">Edit</button></td></tr>';
-
-
-// }
-
-
-
-
-
-
-
-
-
 
 addRow();
-/*getQuestionaireTitle();
-
-async function getQuestionaireTitle() {
-}*/
 
 
 async function addRow() {
@@ -113,24 +86,6 @@ async function addRow() {
         const coloumnTitle = rowInfo[0];
         titleColoumnArr.push(coloumnTitle);
     });
-
-    //Get Questions from csv
-   /* const response = await fetch("/public/Questionaire.csv");
-    const CSVdata = await response.text();
-    const rows = CSVdata.split("\n").slice(1);
-
-    var questionColoumnArr = [];
-
-    rows.forEach((element) => {
-        const row = element.split(",");
-        const coloumnQuestions = row[2];
-        questionColoumnArr.push(coloumnQuestions);
-    });
-
-    console.log(questionColoumnArr);*/
-
-    
-
 
     let i, j;
     let table = document.getElementById("quest-table");
@@ -162,20 +117,24 @@ async function addRow() {
         calculateQuestionaireBtn.setAttribute("class", "deleteBtnClass");
         calculateQuestionaireBtn.name = "deleteBtns";
 
+        //Insert elements into the cells
         cell1.innerHTML = titleColoumnArr[i];
         cell2.appendChild(editQuestionaireBtn);
         cell3.appendChild(calculateQuestionaireBtn);
 
+        //Redirect to the edit page when button is clicked
         cell2.addEventListener('click', (event) => {
             localStorage.btnID = event.target.id;
             localStorage.SelectedBtnID = event.target.getAttribute('questionairebtnid')
             window.location.href = "/Edit";
         })
 
+        //When calculte button is clicked execute the following code...
         cell3.addEventListener('click', async (event) => {
             localStorage.btnID = event.target.id;
             localStorage.SelectedBtnID = event.target.getAttribute('calculatebtnid')
 
+            //map amount of questions & questionnaaireID to array
             var questionairebtnID = event.target.getAttribute('calculatebtnid');
             if (questionairebtnID) {
                 calculateDataArray = calculateDataArray.map(item => ({...item , selectedid : questionairebtnID}));
@@ -187,9 +146,9 @@ async function addRow() {
                 calculateDataArray = calculateDataArray.map(item => ({...item , titleamount : amountOfQuestions}));
             }
 
-            
-            console.log(titleColoumnArr.length)
+        
 
+            // Send POST request to server
             const rawResponse = await fetch("/writetodatacsv", {
 
                 method: "POST",

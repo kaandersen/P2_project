@@ -146,16 +146,6 @@
         <div class="footer"></div>
   
       </div>
-
-      <script>
-        getCsvData();
-
-        async function getCsvData() {
-        const response = await fetch("/public/Questionaire.csv");
-        const CSVdata = await response.text();
-        console.table(CSVdata);
-}
-    </script>
      <script src="/questionnaireRedirectPage.js"></script>
 
 </body>

@@ -1,14 +1,12 @@
+//Global Variables
 var questionsArray = [];
-var questionaireArray = [];
-var roomArray = [];
 var counter = 0;
 var _IDIndex = 1;
-var globalVar;
-var IDvariable = 0;
 
 
-
+// Render questionnaire boxes
 function renderQuestion() {
+
   // container
   var questionContainer = document.createElement("div");
 
@@ -18,12 +16,6 @@ function renderQuestion() {
   var questionHeading = document.createElement("div");
   var crossButton = document.createElement("button");
   var optionContainer = document.createElement("div");
-
-  
- 
- 
-
-  
 
 
   // question content
@@ -93,14 +85,11 @@ function renderQuestion() {
   questionHeader.appendChild(questionHeading);
   questionHeader.appendChild(crossButton);
   questionContent.appendChild(questionInput);
-
-
   
 
   // adding question input , option container to question content
   for (let i = 0; i < questionsArray; i++) {
     questionContent.appendChild(overrulingLabel);
-    console.log("goodnight " + [i]);
   }
   questionContent.appendChild(overrulingCheckbox);
   questionContent.appendChild(overrulingLabel);
@@ -128,7 +117,6 @@ function renderQuestion() {
   let index = parseInt(questionContainer.classList[1]);
 
   //   handlers
-
   questionInput.onchange = (event) => handleQuestionInputChange(event, index);
   answerType.onclick = () => handleDropdownClick(index);
   scaleOption.onclick = (event) => handleScaleClick(event, optionContainer, index);
@@ -137,7 +125,7 @@ function renderQuestion() {
   overrulingCheckbox.onclick = (event) => handleCheckboxClick(event, index);
 
 
-     // delete wrapper (Contains Error)
+     // delete wrapper 
      function DeleteQuestionWrapper(){
       crossButton.addEventListener("click", function () {
         document.getElementById("questions-container").removeChild(questionContainer);
@@ -147,30 +135,21 @@ function renderQuestion() {
         questionsArray[index - 1].answerOption = null;
         questionsArray[index - 1].answer = null;
 
-  
-        /*console.log(questionNumber.innerHTML, "this is number", questionsArray.length - 1);
-        questionNumber.innerHTML = questionsArray.length - 1;*/
       });}
       DeleteQuestionWrapper();
-
-  random = questionInput.id
-  console.log(random);
 }
 
 
-// on add button click
+// generate question box whenn (+)button is clicked
 
 function onNewQuestionAdd() {
-  //var randomNumber = Math.floor((Math.random() * 100) + 1);
   questionsArray = [
     ...questionsArray,
     {id: questionsArray.length, question: "", answerOption: "", answer: "", checkbox: ""},
   ];
 
-  //console.log(globalVar);
   renderQuestion();
   counter = counter + 1;
-  
 }
 
 // handle answer type dropdown
@@ -217,6 +196,8 @@ function handleScaleClick(event, optionContainer, index) {
   scale4.value = "4";
   scale5.value = "5";
 
+
+  //Scale handlers
   scale1.onclick = () => handleScaleOptionSelect(scale1.value, index);
   scale2.onclick = () => handleScaleOptionSelect(scale2.value, index);
   scale3.onclick = () => handleScaleOptionSelect(scale3.value, index);
@@ -236,13 +217,12 @@ function handleScaleClick(event, optionContainer, index) {
   optionContainer.innerHTML = "";
   optionContainer.appendChild(scaleOptionsWrapper);
 
-  console.log("Bad day?");
-
   questionsArray[index - 1].answerOption = event.target.value;
   
 
 }
 
+//construct textinput 
 function handleTextInputClick(event, optionContainer, index) {
   document.getElementsByClassName("answer-type")[index - 1].innerText =
     "Text Input";
@@ -265,7 +245,7 @@ function handleTextInputClick(event, optionContainer, index) {
   questionsArray[index - 1].answerOption = event.target.value;
 }
 
-//overruling
+//changes checkbox value onclick.
 function handleCheckboxClick(event, index) {
   
     questionsArray[index - 1].checkbox = event.target.value;
@@ -285,7 +265,6 @@ function handleTrueFalseClick(event, optionContainer, index) {
   trueFalseOptionsWrapper.className = "yes-no-wrapper";
 
   // creating true false radio buttons
-
   var trueButton = document.createElement("input");
   var falseButton = document.createElement("input");
 
@@ -298,6 +277,7 @@ function handleTrueFalseClick(event, optionContainer, index) {
   trueButton.name = "true-false" + index;
   falseButton.name = "true-false" + index;
 
+  //true/false handlers
   trueButton.onclick = () =>
     handleTrueFalseOptionSelect(trueButton.value, index);
   falseButton.onclick = () =>
@@ -320,12 +300,8 @@ function handleTrueFalseClick(event, optionContainer, index) {
 
 function handleQuestionInputChange(event, index) {
   questionsArray[index - 1].question = event.target.value;
-  //questionsArray[index - 1].questionaireid = 3;
 }
-/*
-function handleStudentInputChange(event, index) {
-  questionsArray[index - 1].studentamount = event.target.value;
-}*/
+
 
 // handle scale option select
 
@@ -348,10 +324,12 @@ function handleTrueFalseOptionSelect(value, index) {
 }
 
 
+// localstorage handler function
 function storeQuestionaireInLocalStorage () {
   
   var questionBoxAmount = questionsArray.length;
   
+  // creates variable that manages amount of questions there are in each questionnaire
   if (localStorage.getItem('WrapperID') == null) {
     localStorage.setItem('WrapperID', '[]');
   }
@@ -360,112 +338,27 @@ function storeQuestionaireInLocalStorage () {
   old_WrapperID_Data.push(questionBoxAmount);
   localStorage.setItem('WrapperID', JSON.stringify(old_WrapperID_Data));
 
-
-
-  if (localStorage.getItem('QuestionContentID') == null) {
-    localStorage.setItem('QuestionContentID', '[]');
-  }
-
-  var old_QuestionContentID = JSON.parse(localStorage.getItem('QuestionContentID'));
-  inputValues = document.getElementsByClassName('question-input');
-  for (let i = 0; i < inputValues.length; i++) {
-    printValues = inputValues[i].value
-    old_QuestionContentID.push(printValues);
-  }
-
-  localStorage.setItem('QuestionContentID', JSON.stringify(old_QuestionContentID));
-
 }
 
 
-/*
-function viewLocalStorage(){
-  if (localStorage.getItem('WrapperID') == null) {
-    document.getElementById('output').innerHTML =  JSON.parse(localStorage.getItem('WrapperID'))
-  }
-  console.log("ok");
-}*/
-
-
-
-
-/*function storeInArray(){
-  var saveBtn = document.getElementById("SaveButton");
-
-  for (var k = 0; k < saveBtn.length; k++) {
-    var div = document.body.appendChild(document.createElement('div'));
-    questionaireArray.push(div);  
-  }
-  console.log(questionaireArray);
-
-  /*questionsArray = [
-    ...questionsArray,
-    { id: questionsArray.length, question: "", answerOption: "", answer: "", checkbox: ""},
-  ];
-  
-  for (let i = 0; i < questionsArray.length; i++) {
-    //const element = array[index];
-    console.log("Hello " + [i]);
-
-
-    renderQuestion();
-  }
-}*/
-//post questionaire to new page
-// function storeQuestionaireID(){
-//   localStorage.questionaireID = 1;
-// }
-
-
-// write question array to csv file
-//document.getElementById("fileName-input").value;
 async function createCsvFileFromQuestionArray() {
-//   console.log(window.section_id);
-//   if(window.section_id===undefined){
-//   let element_save =  document.getElementById("SaveButton");  
-//   let sectionID=element_save.getAttribute("data-section");
-//   window.section_ID=sectionID ;
-//   element_save.setAttribute("data-section", parseInt( sectionID)+1);  
-//     window.section_id=parseInt (element_save.getAttribute("data-section")); 
-//   if(sectionID){
-//     questionsArray = questionsArray.map(item => ({...item , questionaireid : sectionID}));
-//   }
-// }
-// else{
-    
-//   questionsArray = questionsArray.map(item => ({...item , questionaireid :window.section_id }));
-//       window.section_id=window.section_id+1
-// }
-     
+
+//Create localstorage variable
 var sectionID = localStorage.getItem("questionaireID");
-if(sectionID===undefined ||sectionID===null ){
 
-  localStorage.setItem("questionaireID", 1);
-  sectionID=1;
-}
-//  localStorage.setItem("questionaireID", sectionID);
-  console.log(sectionID);
+  if(sectionID===undefined ||sectionID===null ){
+    localStorage.setItem("questionaireID", 1);
+    sectionID=1;
+  }
 
+  //Map the variable to the array and increment it everytime the function is executed.
   if(sectionID){
     questionsArray = questionsArray.map(item => ({...item , questionaireid : sectionID}));
   }
   localStorage.setItem("questionaireID", ++sectionID);
 
-/*
-var questionaireid = 5;
-window.globalVar = questionaireid;*/
 
-/*var questionaireid = 5;
-console.log(questionaireid);*/
-
-//questionsArray = questionsArray.map(item => ({...item , questionaireid : sectionID}));
-
-
-
-
-
-
-
+// Send POST request to the server
   const rawResponse = await fetch("/writetocsv", {
 
     method: "POST",
@@ -479,70 +372,13 @@ console.log(questionaireid);*/
 
   console.log(content);
   
-  arrayLength = questionsArray.length;
-  
 
   window.location.href = "/Admin";
   document.getElementById("SaveButton").disabled = true;
 
- /*
-   IDvariable +=1;
-   //console.log(IDvariable);
-   localStorage.questionaireID = IDvariable;
-   var retrievedID = localStorage.getItem("questionaireID");
-   console.log(retrievedID);
-   retrievedID++;
-   localStorage.questionaireID = retrievedID;
-   console.log(retrievedID);  
-*/
-  
-  //storeInArray();
   storeQuestionaireInLocalStorage();
 
-  
 }
 
-
-//async function testBtn() {
-  /*IDvariable +=1
-  console.log(IDvariable)*/
-
-
-  /*const rawResponse = await fetch("/writetocsv", {
-
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: null
-  });
-  const content = await rawResponse.json();
-
-  console.log(content);*/
-  
-  
- /* console.log("This is a test button");
-
-  const inputClass = document.getElementsByClassName('question-input');
-  const arr = [...inputClass].map(input => input.value);
-  
-  console.log(arr);
-
-  
-  inputValues = document.getElementsByClassName('question-input');
-
-  for (let i = 0; i < inputValues.length; i++) {
-    printValues = inputValues[i].value
-    console.log(printValues)
-    
-  }*/
-
-
- 
-
-
-
-//}
 
 

@@ -46,7 +46,7 @@ addNewRoomInputField.addEventListener("click", function () {
   label.innerHTML =
     "Amount of " + roomInputFieldCounterString + " person rooms: ";
   let linebreak = document.createElement("br");
-  let form = document.getElementById("roomDefiner"); //changed name so that it affects the fieldset instead of the form
+  let form = document.getElementById("roomDefiner"); 
   form.lastElementChild.parentNode.insertBefore(label, form.lastElementChild);
   form.lastElementChild.parentNode.insertBefore(input, form.lastElementChild);
   form.lastElementChild.parentNode.insertBefore(
@@ -69,18 +69,6 @@ addNewRoomInputField.addEventListener("click", function () {
 // handle input change of dynamic room input fields
 
 const handleInputChange = (event, index, totalStudents) => {
-  //   console.log("totalStudents", typeof totalStudents, typeof event.target.value);
-
-  //   const enteredStudents = parseInt(event.target.value);
-  //   totalStudents = parseInt(totalStudents);
-
-  //   // students should be greater than number of rooms
-  //   if (enteredStudents > totalStudents) {
-  //     event.target.value = "";
-
-  //     return;
-  //   }
-
   questionaireInfo.amountOfRoomsForPersons[index] = event.target.value;
 };
 
@@ -112,6 +100,8 @@ const createNewQuestionaire = async () => {
 
 
   finalQuestionaireInfo = [finalQuestionaireInfo];
+
+  // Send POST request to the server
 
   const rawResponse = await fetch("/writeinfotocsv", {
     method: "POST",

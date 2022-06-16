@@ -7,10 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>HomePage</title>
-
   <!--            CSS FILE              -->
   <link rel="stylesheet" href="./CSS/status.css">
-  <!--<link rel="stylesheet" href="./EliasStuff/public/newStyle.css" />-->
   <script src="overviewPage.js"></script>
 </head>
 
@@ -73,31 +71,9 @@
                   <th>Allocate students</th>
                 </thead>
                 <tbody id="dyn-table-body">
-                  <!-- <tr>
-                    <td>
-                      Sample
-                    </td>
-                    <td>
-                      <button id="edit-Odense-uni-2021" title="Edit questionnaire" class="editButton">Edit</button>
-                    </td>
-                    <td>
-                      Unpublished
-                    </td>
-                  </tr> -->
-                  <!-- Enter dynamic table rows here -->
-
-
 
 
                 </tbody>
-
-                <!-- <main class="page-container">
-                      <div class="buttonHeader">
-                        <div class="button-container" id="btn-container">
-                          <div class="button-list-wrapper" id="btn-list-wrapper"></div>
-                        </div>
-                      </div>
-                </main> -->
 
               </table>
 
@@ -112,96 +88,12 @@
 
   </div>
 
-  <!--<script>
-    var _questionaireEditIndex = 1;
-
-
-
-
-    addRow();
-    /*getQuestionaireTitle();
-
-    async function getQuestionaireTitle() {
-    }*/
-
-
-    async function addRow() {
-
-      const response = await fetch("/public/StudentInfoQuestionaire.csv");
-      const CSVdata = await response.text();
-      const rows = CSVdata.split("\n").slice(1);
-
-      var titleColoumnArr = [];
-
-      rows.forEach((element) => {
-        const row = element.split(",");
-        const coloumnTitle = row[0];
-        titleColoumnArr.push(coloumnTitle);
-      });
-
-
-      let i, j;
-      let table = document.getElementById("quest-table");
-      let tableBody = document.getElementById("dyn-table-body");
-
-
-      let newArr = JSON.parse(window.localStorage.getItem('WrapperID'));
-
-      //let questTitle = ["questionnaire 1", "questionnaire 2", "questionnaire 3"]; //Replace this with the values from the qctual questionnaires
-
-      let columns = 3;
-
-      for (i = 0; i < newArr.length; i++) {
-        let newRow = table.insertRow(i);
-        tableBody.appendChild(newRow);
-
-        var cell1 = newRow.insertCell(0);
-        var cell2 = newRow.insertCell(1);
-        var cell3 = newRow.insertCell(2);
-
-
-        // btnEditListContainer = document.getElementById("btn-edit-list-wrapper")
-        var deleteQuestionaireBtn = document.createElement("button");
-        deleteQuestionaireBtn.innerHTML = "Edit";
-        deleteQuestionaireBtn.setAttribute("id", "" + newArr[i]);
-        deleteQuestionaireBtn.setAttribute("questionairebtnid", "" + _questionaireEditIndex++);
-        deleteQuestionaireBtn.setAttribute("class", "deleteBtnClass");
-        deleteQuestionaireBtn.name = "deleteBtns";
-
-        // btnEditListContainer.appendChild(deleteQuestionaireBtn);
-
-        cell2.appendChild(deleteQuestionaireBtn);
-        cell1.innerHTML = titleColoumnArr[i]; //titel
-        //cell2.innerHTML = '<button  title="Edit questionnaire" class="editButton"> Edit </button>';
-        /*cell2.innerHTML = () => {
-          innerHTML = "hello";
-        }*/
-        // cell2.innerHTML = '<button id="id+$(newArray[i])" questionairebtnid="$(_questionaireEditIndex++)" class="deleteBtnClass" name="deleteBtns">Edit</button>'
-        // <button id="1" questionairebtnid="1" class="deleteBtnClass" name="deleteBtns">Edit</button>
-
-        cell3.innerHTML = '<button  title="calculate" class="Calculate"> Calculate </button>';
-      }
-
-      btnEditListContainer.addEventListener('click', (event) => {
-        localStorage.btnID = event.target.id;
-        localStorage.SelectedBtnID = event.target.getAttribute('questionairebtnid')
-        window.location.href = "/Admin";
-        console.log(event.target.id)
-      })
-
-
-    }
-  </script>-->
-
-  <!--<script src="/public/Homepage.js"></script>-->
-
   <script>
     getCsvData();
 
     async function getCsvData() {
       const response = await fetch("/public/Questionaire.csv");
       const CSVdata = await response.text();
-      //console.table(CSVdata);
     }
   </script>
 
